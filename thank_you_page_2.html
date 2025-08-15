@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're All Set! - Froala Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #5ec9cc 0%, #3fb8af 50%, #29a19c 100%);
+        }
+        .wave-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+        }
+        .circle-pattern::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+        .circle-pattern::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+        }
+        .code-highlight {
+            background: linear-gradient(90deg, #1f2937 0%, #374151 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-100">
+        <div class="px-8 py-5">
+            <h1 class="text-3xl font-semibold text-blue-500">Froala</h1>
+        </div>
+    </header>
+
+    <!-- Hero Section with Success Message -->
+    <section class="gradient-bg wave-pattern relative overflow-hidden">
+        <div class="circle-pattern"></div>
+        <div class="relative z-10 py-16 px-4">
+            <div class="max-w-3xl mx-auto">
+                <!-- Success Card -->
+                <div class="bg-white rounded-xl shadow-2xl p-8 relative">
+                    <!-- Success Icon -->
+                    <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-3">
+                        You're all set! 🎉
+                    </h2>
+                    <p class="text-center text-gray-600 text-lg mb-2">Your Froala Editor download is complete and your 30-day trial is active.</p>
+                    <p class="text-center text-gray-500 mb-8">Time to add some serious editing power to your app.</p>
+                    
+                    <!-- License Key Section -->
+                    <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-lg">Your License Key</p>
+                                <p class="text-sm text-gray-600">Save this somewhere safe - you'll need it to unlock all features</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between bg-white border-2 border-gray-200 rounded-lg p-4 hover:border-teal-300 transition-colors">
+                            <code class="text-sm font-mono text-gray-800 select-all" id="licenseKey">1234-1234-1234-1234-1234-1234-1234-1234-1234</code>
+                            <button onclick="copyKey()" id="copyBtn" class="flex items-center gap-2 px-4 py-2 text-sm bg-teal-500 text-white rounded-md hover:bg-teal-600 transition-colors font-medium">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                </svg>
+                                <span id="copyText">Copy Key</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex gap-4 justify-center">
+                        <a href="#quickstart" class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold shadow-lg">
+                            Let's Get Started →
+                        </a>
+                        <a href="https://froala.com/wysiwyg-editor/docs/" target="_blank" class="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-colors font-semibold">
+                            View Docs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start Section -->
+    <section id="quickstart" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Ready to integrate?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Add your license key and choose your stack. You'll have a working rich text editor in under 5 minutes.
+                </p>
+            </div>
+            
+            <!-- Complete HTML File Section -->
+            <div class="bg-gradient-to-r from-green-50 to-emerald-100 rounded-2xl p-8 mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">🚀 Instant Test Drive</h3>
+                <p class="text-center text-gray-600 mb-6">Copy this complete HTML file, save it as <code class="bg-white px-2 py-1 rounded text-sm">froala-test.html</code>, and open in your browser. No setup required!</p>
+                
+                <div class="bg-white rounded-xl border-2 border-gray-200 overflow-hidden">
+                    <div class="bg-gray-800 px-6 py-3 flex justify-between items-center">
+                        <span class="text-green-400 font-mono text-sm">froala-test.html</span>
+                        <button onclick="copyCompleteHTML()" id="copyHTMLBtn" class="flex items-center gap-2 px-4 py-2 text-sm bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                            <span id="copyHTMLText">Copy HTML</span>
+                        </button>
+                    </div>
+                    <div class="p-6 max-h-96 overflow-y-auto">
+                        <pre id="completeHTML" class="text-sm text-gray-800 whitespace-pre-wrap"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Froala Editor Test&lt;/title&gt;
+    
+    &lt;!-- Froala Editor CSS --&gt;
+    &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css"&gt;
+    
+    &lt;style&gt;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f8fafc;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+        #editor {
+            margin-top: 20px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;🎉 Froala Editor is Working!&lt;/h1&gt;
+        &lt;p class="subtitle"&gt;Start typing below to see the magic happen. All features are unlocked with your trial license.&lt;/p&gt;
+        
+        &lt;div id="editor"&gt;
+            &lt;h2&gt;Welcome to Froala Editor!&lt;/h2&gt;
+            &lt;p&gt;This is a &lt;strong&gt;fully functional&lt;/strong&gt; rich text editor with:&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;📝 Rich text formatting&lt;/li&gt;
+                &lt;li&gt;🖼️ Image uploads&lt;/li&gt;
+                &lt;li&gt;🔗 Link management&lt;/li&gt;
+                &lt;li&gt;📊 Tables and lists&lt;/li&gt;
+                &lt;li&gt;🎨 Custom styling&lt;/li&gt;
+                &lt;li&gt;📱 Mobile responsive&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p&gt;Try editing this content, inserting images, creating tables, or exploring the toolbar options above!&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Froala Editor JS --&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"&gt;&lt;/script&gt;
+    
+    &lt;script&gt;
+        // Initialize Froala Editor with your license key
+        new FroalaEditor('#editor', {
+            key: '1234-1234-1234-1234-1234-1234-1234-1234-1234',
+            
+            // Toolbar configuration
+            toolbarButtons: {
+                'moreText': {
+                    'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle', 'clearFormatting']
+                },
+                'moreParagraph': {
+                    'buttons': ['alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent', 'indent', 'quote']
+                },
+                'moreRich': {
+                    'buttons': ['insertLink', 'insertImage', 'insertVideo', 'insertTable', 'emoticons', 'fontAwesome', 'specialCharacters', 'embedly', 'insertFile', 'insertHR']
+                },
+                'moreMisc': {
+                    'buttons': ['undo', 'redo', 'fullscreen', 'print', 'getPDF', 'spellChecker', 'selectAll', 'html', 'help'],
+                    'align': 'right',
+                    'buttonsVisible': 2
+                }
+            },
+            
+            // Editor height
+            height: 400,
+            
+            // Placeholder text
+            placeholderText: 'Type something amazing...',
+            
+            // Enable all features
+            charCounterCount: true,
+            
+            // Image upload (you can configure this for your server)
+            imageUploadURL: false, // Set to your upload endpoint
+            
+            // Events
+            events: {
+                'contentChanged': function () {
+                    console.log('Content changed!');
+                }
+            }
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-6">
+                    <div class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        Copy → Save as HTML → Open in browser → Start editing!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Activation Steps -->
+            <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">⚡ Quick Start (HTML)</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Step 1 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                            <h4 class="font-semibold text-gray-900 text-lg">Find the initialization code</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">In <code class="bg-gray-100 px-2 py-1 rounded text-xs">froala_editor_4.6.0/HTML/Popular/full.html</code></p>
+                        <div class="code-highlight rounded-lg p-4 text-xs overflow-x-auto">
+                            <pre class="text-gray-100"><code>&lt;script&gt;
+  (function () {
+    new FroalaEditor("#edit")
+  })()
+&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                            <h4 class="font-semibold text-gray-900 text-lg">Add your license key</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Replace with your actual key and you're done!</p>
+                        <div class="code-highlight rounded-lg p-4 text-xs overflow-x-auto">
+                            <pre class="text-gray-100"><code>&lt;script&gt;
+  (function () {
+    new FroalaEditor("#edit", {
+      <span class="text-yellow-300">key: "YOUR_LICENSE_KEY"</span>
+    })
+  })()
+&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        That's it! Open the HTML file in your browser to see it working.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Framework Integration -->
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Using a JavaScript framework?</h3>
+                <p class="text-lg text-gray-600">We've got you covered with official integrations and detailed setup guides.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- React Card -->
+                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/react/" target="_blank" class="group block">
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-8 hover:border-blue-500 hover:shadow-xl transition-all duration-300 h-full">
+                        <div class="w-16 h-16 mb-6 flex items-center justify-center mx-auto">
+                            <img src="react.png" alt="React" class="w-full h-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">React</h3>
+                        <p class="text-gray-600 mb-6">Hooks, TypeScript support, and seamless state management</p>
+                        <div class="bg-gray-900 rounded-lg p-3 mb-4 text-left">
+                            <code class="text-xs text-green-400">npm install react-froala-wysiwyg</code>
+                        </div>
+                        <span class="text-blue-600 font-semibold group-hover:underline flex items-center gap-2">
+                            Setup Guide 
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Angular Card -->
+                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/angular/" target="_blank" class="group block">
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-8 hover:border-blue-500 hover:shadow-xl transition-all duration-300 h-full">
+                        <div class="w-16 h-16 mb-6 flex items-center justify-center mx-auto">
+                            <img src="angular.png" alt="Angular" class="w-full h-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Angular</h3>
+                        <p class="text-gray-600 mb-6">Full TypeScript integration with Angular 15+ support</p>
+                        <div class="bg-gray-900 rounded-lg p-3 mb-4 text-left">
+                            <code class="text-xs text-green-400">ng add angular-froala-wysiwyg</code>
+                        </div>
+                        <span class="text-blue-600 font-semibold group-hover:underline flex items-center gap-2">
+                            Setup Guide 
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Vue Card -->
+                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/vue/" target="_blank" class="group block">
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-8 hover:border-blue-500 hover:shadow-xl transition-all duration-300 h-full">
+                        <div class="w-16 h-16 mb-6 flex items-center justify-center mx-auto">
+                            <img src="vue.png" alt="Vue" class="w-full h-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Vue.js</h3>
+                        <p class="text-gray-600 mb-6">Vue 3 Composition API with reactive data binding</p>
+                        <div class="bg-gray-900 rounded-lg p-3 mb-4 text-left">
+                            <code class="text-xs text-green-400">npm install vue-froala-wysiwyg</code>
+                        </div>
+                        <span class="text-blue-600 font-semibold group-hover:underline flex items-center gap-2">
+                            Setup Guide 
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Node.js Card -->
+                <a href="https://froala.com/wysiwyg-editor/docs/overview/" target="_blank" class="group block">
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-8 hover:border-blue-500 hover:shadow-xl transition-all duration-300 h-full">
+                        <div class="w-16 h-16 mb-6 flex items-center justify-center mx-auto">
+                            <img src="node.png" alt="Node.js" class="w-full h-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Node.js</h3>
+                        <p class="text-gray-600 mb-6">Server-side processing and image uploads</p>
+                        <div class="bg-gray-900 rounded-lg p-3 mb-4 text-left">
+                            <code class="text-xs text-green-400">npm install wysiwyg-editor-node-sdk</code>
+                        </div>
+                        <span class="text-blue-600 font-semibold group-hover:underline flex items-center gap-2">
+                            Setup Guide 
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="bg-blue-50 rounded-2xl p-8 text-center">
+                <h3 class="text-2xl font-bold text-blue-900 mb-4">What's next?</h3>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0 mt-1">1</div>
+                        <div>
+                            <h4 class="font-semibold text-blue-900 mb-1">Explore the examples</h4>
+                            <p class="text-blue-700 text-sm">Check out the demos in your download to see all the features in action.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0 mt-1">2</div>
+                        <div>
+                            <h4 class="font-semibold text-blue-900 mb-1">Customize your setup</h4>
+                            <p class="text-blue-700 text-sm">Configure toolbars, themes, and plugins to match your app's needs.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0 mt-1">3</div>
+                        <div>
+                            <h4 class="font-semibold text-blue-900 mb-1">Deploy with confidence</h4>
+                            <p class="text-blue-700 text-sm">Your trial includes full production features. Go live when you're ready!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="py-16 px-4 bg-gray-50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Need help getting started?</h2>
+            <p class="text-lg text-gray-600 mb-8">Our team is here to help you succeed.</p>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="https://froala.com/wysiwyg-editor/docs/" target="_blank" class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Documentation</h3>
+                    <p class="text-gray-600 text-sm">Complete API reference and integration guides</p>
+                </a>
+                
+                <a href="mailto:support@froala.com" class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Email Support</h3>
+                    <p class="text-gray-600 text-sm">Get help from our technical team</p>
+                </a>
+                
+                <a href="https://github.com/froala/wysiwyg-editor" target="_blank" class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-gray-100 text-gray-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">GitHub</h3>
+                    <p class="text-gray-600 text-sm">Examples, issues, and community discussions</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-white border-t border-gray-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-2xl font-bold text-blue-500 mb-2">Froala</h3>
+                    <p class="text-gray-600">Making rich text editing powerful and simple.</p>
+                </div>
+                <div class="flex gap-6 text-sm text-gray-600">
+                    <a href="https://froala.com/wysiwyg-editor/pricing/" class="hover:text-blue-600 transition-colors">Pricing</a>
+                    <a href="https://froala.com/wysiwyg-editor/docs/" class="hover:text-blue-600 transition-colors">Documentation</a>
+                    <a href="https://froala.com/wysiwyg-editor/examples/" class="hover:text-blue-600 transition-colors">Examples</a>
+                    <a href="https://froala.com/wysiwyg-editor/support/" class="hover:text-blue-600 transition-colors">Support</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-8 pt-8 text-center text-sm text-gray-500">
+                <p>© 2024 Froala. All rights reserved. | Your 30-day trial expires on <strong>September 14, 2025</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyKey() {
+            const keyText = document.getElementById('licenseKey').textContent;
+            navigator.clipboard.writeText(keyText).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                const copyText = document.getElementById('copyText');
+                copyText.textContent = 'Copied!';
+                copyBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+                copyBtn.classList.remove('bg-teal-500', 'hover:bg-teal-600');
+                
+                setTimeout(() => {
+                    copyText.textContent = 'Copy Key';
+                    copyBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    copyBtn.classList.add('bg-teal-500', 'hover:bg-teal-600');
+                }, 2000);
+            });
+        }
+
+        function copyCompleteHTML() {
+            const htmlText = document.getElementById('completeHTML').textContent;
+            navigator.clipboard.writeText(htmlText).then(() => {
+                const copyBtn = document.getElementById('copyHTMLBtn');
+                const copyText = document.getElementById('copyHTMLText');
+                copyText.textContent = 'Copied!';
+                copyBtn.classList.add('bg-green-700');
+                copyBtn.classList.remove('bg-green-600');
+                
+                setTimeout(() => {
+                    copyText.textContent = 'Copy HTML';
+                    copyBtn.classList.remove('bg-green-700');
+                    copyBtn.classList.add('bg-green-600');
+                }, 2000);
+            });
+        }
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
