@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Froala</title>
+    <title>Complete Your Purchase - Froala</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -523,7 +523,7 @@
 
 <body>
     <div class="container">
-        <h1>Sign Up: Choose Your Plan</h1>
+        <h1>Complete Your Purchase</h1>
 
         <div class="subscription-section">
             <div class="subscription-header">
@@ -598,7 +598,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Account Details</h3>
+            <h3>Your Account Information</h3>
 
             <div class="form-group">
                 <label>Full Name <span class="required">*</span></label>
@@ -620,7 +620,7 @@
         </div>
 
         <div class="form-section">
-            <h3>Billing Details</h3>
+            <h3>Payment Information</h3>
 
             <div class="form-group">
                 <label>Card Holder's Full Name <span class="required">*</span></label>
@@ -687,7 +687,7 @@
         </div>
 
         <div class="submit-section">
-            <button type="submit" class="submit-btn">Complete Sign Up</button>
+            <button type="submit" class="submit-btn">Complete Purchase</button>
         </div>
     </div>
 
@@ -781,7 +781,7 @@
             const planName = selectedPlan.value;
             const planPrice = selectedPlan.closest('.plan-option').querySelector('.price-amount').textContent;
 
-            alert(`Sign up with ${planName.charAt(0).toUpperCase() + planName.slice(1)} plan - ${planPrice}`);
+            alert(`Completing purchase of ${planName.charAt(0).toUpperCase() + planName.slice(1)} plan - ${planPrice}`);
         });
 
         // Radio button selection
