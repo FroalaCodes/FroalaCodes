@@ -7,6 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Froala Editor CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
     <style>
         * {
             margin: 0;
@@ -617,7 +621,7 @@
 
             <div class="form-group">
                 <label for="comments">Additional Comments</label>
-                <textarea id="comments" name="comments" placeholder="Any special requests or questions?"></textarea>
+                <div id="comments"></div>
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 18px;">Submit Renewal Request</button>
@@ -779,7 +783,34 @@
         <p><a href="#">Contact Sales</a> | <a href="#">Support</a> | <a href="#">Blog</a></p>
     </footer>
 
+    <!-- Froala Editor JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+
     <script>
+        // Initialize Froala Editor
+        const editor = new FroalaEditor('#comments', {
+            placeholderText: 'Any special requests or questions?',
+            charCounterCount: true,
+            toolbarButtons: {
+                'moreText': {
+                    'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle', 'clearFormatting']
+                },
+                'moreParagraph': {
+                    'buttons': ['alignLeft', 'alignCenter', 'formatOLSimple', 'alignRight', 'alignJustify', 'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent', 'indent', 'quote']
+                },
+                'moreRich': {
+                    'buttons': ['insertLink', 'insertImage', 'insertVideo', 'insertTable', 'emoticons', 'fontAwesome', 'specialCharacters', 'embedly', 'insertFile', 'insertHR']
+                },
+                'moreMisc': {
+                    'buttons': ['undo', 'redo', 'fullscreen', 'print', 'getPDF', 'spellChecker', 'selectAll', 'html', 'help'],
+                    'align': 'right',
+                    'buttonsVisible': 2
+                }
+            },
+            heightMin: 200,
+            heightMax: 400
+        });
+
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
@@ -806,6 +837,9 @@
 
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
+
+            // Get content from Froala editor
+            data.comments = editor.html.get();
 
             // Create email body
             const emailBody = `
