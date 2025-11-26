@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froala - Renew Your Perpetual Maintenance and Support Licenses or Annual Subscription</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Top Banner */
+        .top-banner {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+
+        .top-banner a {
+            color: #1ABC9C;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            background: #f8f9fa;
+            padding: 10px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .announcement-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .announcement-bar a {
+            color: #0098DB;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .announcement-left {
+            flex: 1;
+        }
+
+        .announcement-right {
+            display: flex;
+            gap: 25px;
+        }
+
+        .announcement-right a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .announcement-right a:hover {
+            color: #0098DB;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0098DB;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0098DB;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-outline {
+            border: 2px solid #0098DB;
+            color: #0098DB;
+            background: white;
+        }
+
+        .btn-outline:hover {
+            background: #0098DB;
+            color: white;
+        }
+
+        .btn-primary {
+            background: #0098DB;
+            color: white;
+            border: 2px solid #0098DB;
+        }
+
+        .btn-primary:hover {
+            background: #0077b3;
+            border-color: #0077b3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1ABC9C 0%, #0098DB 100%);
+            color: white;
+            padding: 100px 50px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: white;
+            max-width: 700px;
+            margin: 80px auto;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0098DB;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Why Renew Section */
+        .why-renew {
+            background: #f8f9fa;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefit-card {
+            grid-column: span 2;
+        }
+
+        .benefit-card:nth-child(4) {
+            grid-column: 2 / span 2;
+        }
+
+        .benefit-card:nth-child(5) {
+            grid-column: 4 / span 2;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1ABC9C, #0098DB);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .benefit-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Support Plans Section */
+        .support-plans {
+            background: white;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .plan-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .plan-card.featured {
+            background: #f0f9ff;
+            border-color: #0098DB;
+            transform: scale(1.05);
+        }
+
+        .plan-card:hover {
+            border-color: #0098DB;
+            box-shadow: 0 10px 30px rgba(0,152,219,0.15);
+        }
+
+        .plan-name {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #0098DB;
+        }
+
+        .plan-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+            position: relative;
+            padding-left: 30px;
+            color: #666;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #1ABC9C;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .plan-features li.unavailable {
+            color: #ccc;
+        }
+
+        .plan-features li.unavailable::before {
+            content: '—';
+            color: #ccc;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #f8f9fa;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            font-weight: 700;
+            font-size: 18px;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 28px;
+            color: #0098DB;
+            font-weight: 300;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 30px 25px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 50px;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #1ABC9C;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                margin: 20px 0;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .container {
+                padding: 60px 20px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefit-card:nth-child(4),
+            .benefit-card:nth-child(5) {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="announcement-bar-inner">
+            <div class="announcement-left">
+                New Froala Editor v4.7.1 is here – <a href="#">Learn More</a>
+            </div>
+            <div class="announcement-right">
+                <a href="#renew-form">Renew</a>
+                <a href="#">Contact Sales</a>
+                <a href="#">Support</a>
+                <a href="#">Blog</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="logo">Froala</a>
+            <ul class="nav-links">
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Docs</a></li>
+                <li><a href="#">Examples</a></li>
+                <li><a href="#">File Management</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-outline">Pricing</a>
+                <a href="#renew-form" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Renew Your Froala License</h1>
+            <p style="font-size: 22px; margin-bottom: 10px; font-weight: 300;">Perpetual Maintenance & Support | Annual Subscription</p>
+            <p>Keep your editor current with security patches, new features, and priority support.</p>
+        </div>
+    </section>
+
+    <!-- Renewal Form -->
+    <div class="form-section" id="renew-form">
+        <h2 style="font-size: 28px; font-weight: 800; margin-bottom: 30px; color: #2c3e50; text-align: center;">Renewal Information</h2>
+        <form id="renewalForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company Name *</label>
+                <input type="text" id="company" name="company" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="licenseType">License Type *</label>
+                    <select id="licenseType" name="licenseType" required>
+                        <option value="">Select License Type</option>
+                        <option value="perpetual">Perpetual License</option>
+                        <option value="annual">Annual Subscription</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="licenseKey">License Key *</label>
+                <input type="text" id="licenseKey" name="licenseKey" required>
+            </div>
+
+            <div class="form-group">
+                <label for="renewalTerm">Renewal Term *</label>
+                <select id="renewalTerm" name="renewalTerm" required>
+                    <option value="">Select Renewal Term</option>
+                    <option value="12">12 Months</option>
+                    <option value="24">24 Months (Additional Savings)</option>
+                    <option value="36">36 Months (Maximum Savings)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="comments">Additional Comments</label>
+                <textarea id="comments" name="comments" placeholder="Any special requests or questions?"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 18px;">Submit Renewal Request</button>
+        </form>
+    </div>
+
+    <!-- Why Renew Section -->
+    <section class="why-renew">
+        <div class="container">
+            <h2 class="section-title">Why Renew?</h2>
+            <p style="text-align: center; font-size: 18px; color: #666; margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Renewing your Froala subscription ensures you continue to have access to the latest updates, features, and technical support.
+            </p>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Latest Features</h3>
+                    <p>Access the newest features and improvements continuously added to the editor, such as enhanced content pasting or new framework support.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <h3>Security Updates & Bug Fixes</h3>
+                    <p>New versions include important security patches and bug fixes. Renewing ensures your application remains secure and stable.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💬</div>
+                    <h3>Technical Support</h3>
+                    <p>Initial purchase includes 12 months of support. Renewal extends this support period for help with technical questions and troubleshooting.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Technology Compatibility</h3>
+                    <p>Stay compatible with new web frameworks like Angular and React, and leverage the latest improvements in the tech ecosystem.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Cost Savings</h3>
+                    <p>Perpetual license renewals are offered at a discounted rate (25% off) compared to purchasing a new license or full-price subscription.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Plans Section -->
+    <section class="support-plans">
+        <div class="container">
+            <h2 class="section-title">Froala Platinum Support Plan</h2>
+            <p style="text-align: center; font-size: 16px; color: #666; margin-bottom: 40px; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                All Froala licenses include our Standard support plan—email support, documentation access, and bug fixes in regular release cycles.
+                For teams that need faster response times and dedicated attention, we also offer a Platinum support plan with priority queuing, direct access to senior engineers, and custom SLAs.
+            </p>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3 class="plan-name">Standard</h3>
+                    <p class="plan-description">Perfect for a blog or personal application</p>
+                    <ul class="plan-features">
+                        <li>24×7 access to community-supported Froala forum</li>
+                        <li>Access to extensive Developer Experience Center</li>
+                        <li>Free upgrade to next major product release</li>
+                        <li>Issue reporting via Froala support portal</li>
+                        <li class="unavailable">Pre-release exclusive access and extended trial periods</li>
+                        <li class="unavailable">Access to development builds</li>
+                        <li class="unavailable">Support for Live Screen Sharing Sessions</li>
+                        <li class="unavailable">Priority handling of reported issues</li>
+                        <li class="unavailable">Priority bug review, out-of-cycle emergency hot-fixes</li>
+                        <li class="unavailable">Priority roadmap input to incorporate feature requests</li>
+                    </ul>
+                </div>
+                <div class="plan-card featured">
+                    <h3 class="plan-name">Platinum</h3>
+                    <p class="plan-description">Enterprise-grade support customized to fit your needs</p>
+                    <ul class="plan-features">
+                        <li>24×7 access to community-supported Froala forum</li>
+                        <li>Access to extensive Developer Experience Center</li>
+                        <li>Free upgrade to next major product release</li>
+                        <li>Issue reporting via Froala support portal</li>
+                        <li>Pre-release exclusive access and extended trial periods</li>
+                        <li>Access to development builds</li>
+                        <li>Support for Live Screen Sharing Sessions</li>
+                        <li>Priority handling of reported issues</li>
+                        <li>Priority bug review, out-of-cycle emergency hot-fixes</li>
+                        <li>Priority roadmap input to incorporate feature requests</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-size: 14px; color: #666; font-style: italic;">Applicable to Pro & Enterprise plans only</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">What is a perpetual license?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Froala offers both annual subscriptions and perpetual licenses for our Professional and Enterprise editions. All licenses include 12 months of software updates and technical support.<br><br>
+                            With an annual subscription, you're entitled to use Froala for the duration of one year. For perpetual licenses, you can continue using the version of Froala available at the time your license expires indefinitely. However, to access versions released after your license expiration date, renewal is required.<br><br>
+                            For example, if your license expired on 10/1/19 and you chose not to renew, you would still have access to all versions released prior to 10/1/19. However, versions released after this date would require a license renewal to access. Renewals come with an additional 12 months of software updates and support.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Do I have to renew the license to continue using the Froala Editor?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            After the software updates period ends, you can use the last editor release that was available to you for lifetime, but you will no longer have access to the latest software updates.<br><br>
+                            E.g. Let's say that you purchased a license on June 26, 2018. You can use any editor release made until June 26, 2019 for lifetime, but you can no longer use releases made after June 26, 2019.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What license do I need for a Subscription business?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Froala WYSIWYG HTML Editor can be used in Subscription businesses only under the Pro license. Subscription means a business model that gives customers the right to use a product or service for a given period of time by paying a recurring fee. Subscription terms are annual renewals to continue use of the products.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What do I need to do to cancel my Subscription?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            To terminate a subscription license, you must provide written notice to Froala at least 30 days before the expiration date of your current term. Failure to notify will result in automatic invoicing for another renewal term at the then-current list price.<br><br>
+                            Upon termination, you must immediately stop using the Froala software, remove all copies from your systems, destroy the licensed material, and provide an affidavit to Froala certifying compliance.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How long is each renewal term?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Each renewal term is 12 months, but 24 and 36-month options are available with additional savings.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What happens if I don't renew?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            For subscription licenses, you will lose access to the Froala Editor. For perpetual licenses, you can continue using the version available at the time of expiration but won't receive updates.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Froala. All rights reserved.</p>
+        <p><a href="#">Contact Sales</a> | <a href="#">Support</a> | <a href="#">Blog</a></p>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+
+                // Close all FAQs
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.style.maxHeight = null;
+                });
+
+                // Open clicked FAQ if it wasn't active
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // Form Submission
+        document.getElementById('renewalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Create email body
+            const emailBody = `
+Renewal Request Details:
+
+Name: ${data.firstName} ${data.lastName}
+Email: ${data.email}
+Company: ${data.company}
+Phone: ${data.phone || 'Not provided'}
+License Type: ${data.licenseType}
+License Key: ${data.licenseKey}
+Renewal Term: ${data.renewalTerm} months
+Comments: ${data.comments || 'None'}
+            `.trim();
+
+            // In production, this would send to froala@renewals.com
+            // For now, we'll show a success message
+            alert('Thank you for your renewal request! Our team will contact you shortly at ' + data.email);
+
+            // Log the data (in production, send to server)
+            console.log('Renewal request submitted:', data);
+            console.log('Email would be sent to: froala@renewals.com');
+            console.log('Email body:', emailBody);
+
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
