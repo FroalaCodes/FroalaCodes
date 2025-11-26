@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Concepts - Froala Glossary</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+               line-height: 1.6; color: #333; background: #f9fafb; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .search-bar { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px;
+                      box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .search-input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;
+                        font-size: 14px; }
+        .main-content { background: #fff; padding: 40px; border-radius: 8px; border-left: 4px solid #0098F7;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        h1 { color: #2c3e50; font-size: 2.2em; margin-bottom: 15px; }
+        .category-badge { display: inline-block; background: #0098F7; color: white; padding: 6px 18px;
+                          border-radius: 4px; font-size: 0.85em; font-weight: 600; margin-bottom: 20px; }
+        .description { font-size: 1.05em; color: #555; line-height: 1.7; margin-bottom: 30px; }
+
+        .detail-section { margin: 35px 0; }
+        .detail-section h2 { color: #2c3e50; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+        .detail-section ul { list-style: none; padding: 0; margin: 0; }
+        .detail-section li { padding: 8px 0 8px 25px; position: relative; color: #34495e;
+                             line-height: 1.6; }
+        .detail-section li:before { content: "•"; position: absolute; left: 8px; color: #0098F7;
+                                     font-weight: bold; font-size: 1.2em; }
+
+        .doc-link-section { background: #e6f4ff; padding: 25px; border-radius: 8px; margin: 30px 0;
+                            border-left: 4px solid #0098F7; }
+        .doc-link-section h3 { color: #2c3e50; font-size: 1.1em; margin-bottom: 10px; }
+        .doc-link-section p { color: #555; margin-bottom: 15px; font-size: 0.95em; }
+        .doc-button { display: inline-block; background: #0098F7; color: white; padding: 12px 24px;
+                      text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.95em;
+                      transition: all 0.3s; }
+        .doc-button:hover { background: #0077C2; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,152,247,0.3); }
+        .doc-button:before { content: "🔗 "; }
+
+        .related-section { margin: 40px 0; }
+        .related-section h2 { color: #2c3e50; font-size: 1.6em; margin-bottom: 20px; font-weight: 600; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                        gap: 20px; margin-top: 20px; }
+        .related-card { background: #f8f9fa; padding: 20px; border-radius: 8px; text-decoration: none;
+                        display: block; transition: all 0.3s; border: 2px solid transparent; }
+        .related-card:hover { border-color: #0098F7; box-shadow: 0 4px 12px rgba(0,152,247,0.2);
+                              transform: translateY(-3px); }
+        .related-card h3 { color: #2c3e50; font-size: 1.15em; margin-bottom: 8px; font-weight: 600; }
+        .related-card p { color: #7f8c8d; font-size: 0.9em; line-height: 1.5; margin: 0; }
+
+        .back-button { display: inline-block; margin-top: 30px; padding: 12px 30px; background: #0098F7;
+                       color: white; text-decoration: none; border-radius: 5px; font-weight: 600;
+                       transition: all 0.3s; }
+        .back-button:hover { background: #0077C2; }
+        .back-button:before { content: "← "; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search terms..."
+                   onclick="window.location.href='../index.html'">
+        </div>
+
+        <div class="main-content">
+            <h1>Security Concepts</h1>
+            <span class="category-badge">Security</span>
+
+            <div class="description">
+                Security concepts encompass the measures taken to protect the Froala Editor from vulnerabilities, such as XSS attacks and ensuring content sanitization.
+            </div>
+
+            
+            <div class="detail-section">
+                <h2>Key Features</h2>
+                <ul>
+                    <li>Built-in XSS protection to safeguard against malicious scripts.</li>
+                    <li>Content sanitization processes to clean user input.</li>
+                    <li>HTML validation to ensure safe content rendering.</li>
+                </ul>
+            </div>
+            <div class="detail-section">
+                <h2>Implementation</h2>
+                <ul>
+                    <li>Integrate security measures during content processing.</li>
+                    <li>Regularly update security protocols to address new threats.</li>
+                    <li>Conduct security testing to identify vulnerabilities.</li>
+                </ul>
+            </div>
+            <div class="detail-section">
+                <h2>Best Practices</h2>
+                <ul>
+                    <li>Educate users about safe content practices.</li>
+                    <li>Implement regular security audits and updates.</li>
+                    <li>Document security features for transparency.</li>
+                </ul>
+            </div>
+
+            
+            <div class="doc-link-section">
+                <h3>📚 Froala Documentation</h3>
+                <p>Learn more about Security Concepts in the official Froala documentation:</p>
+                <a href="https://froala.com/wysiwyg-editor/docs/concepts/security/" target="_blank" class="doc-button">View Official Documentation</a>
+            </div>
+        </div>
+
+        
+        <div class="related-section">
+            <h2>Related Terms</h2>
+            <div class="related-grid">
+
+                <a href="input-filtering.html" class="related-card">
+                    <h3>Input Filtering</h3>
+                    <p>Input Filtering involves restricting the types of data that can be entered into the editor, enhancing security by preventing malicious content.</p>
+                </a>
+                <a href="xss-protection.html" class="related-card">
+                    <h3>XSS Protection</h3>
+                    <p>XSS Protection refers to the measures implemented in the Froala Editor to prevent cross-site scripting attacks, ensuring the security of user-generated content.</p>
+                </a>
+                <a href="content-sanitization.html" class="related-card">
+                    <h3>Content Sanitization</h3>
+                    <p>Content sanitization in Froala Editor ensures that user-generated content is cleaned and safe from malicious code, protecting applications from security vulnerabilities.</p>
+                </a>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-button">Back to All Terms</a>
+    </div>
+</body>
+</html>
