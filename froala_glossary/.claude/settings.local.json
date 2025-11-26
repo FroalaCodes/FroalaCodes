@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(python fix_existing_html.py:*)"
-    ],
-    "deny": [],
-    "ask": []
-  }
-}
