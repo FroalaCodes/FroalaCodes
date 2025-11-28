@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Case Study: How People Alchemy empowered non-technical users with Froala Editor">
+    <title>People Alchemy Case Study | Froala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --froala-blue: #0098f7;
+            --froala-green: #00d8bf;
+            --froala-black: #2D313C;
+            --froala-gray: #6b7280;
+            --gradient-green: #15b69b;
+            --gradient-blue: #0097f6;
+            --text-dark: #2D313C;
+            --text-gray: #6b7280;
+            --bg-light: #f9fafb;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        a {
+            color: var(--froala-blue);
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--froala-green);
+            text-decoration: none;
+        }
+
+
+        /* Hero - Gradient background with WHITE text */
+        .hero {
+            background: linear-gradient(135deg, var(--gradient-green) 0%, var(--gradient-blue) 100%);
+            color: #ffffff;
+            padding: 6rem 0 7rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .company-badge {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .company-logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: #ffffff;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Layout with Sidebar */
+        .page-layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 3rem;
+            padding: 3rem 2rem 0;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-inner {
+            position: sticky;
+            top: 90px;
+        }
+
+        .sidebar h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav li {
+            margin-bottom: 0.5rem;
+            padding: 0;
+        }
+
+        .sidebar nav li::before {
+            display: none;
+        }
+
+        .sidebar nav a {
+            display: block;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 16px;
+            padding: 0.5rem 0;
+            border-left: 3px solid transparent;
+            padding-left: 1rem;
+            transition: all 0.3s;
+        }
+
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
+            color: var(--froala-blue);
+            border-left-color: var(--froala-blue);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 100%;
+            padding: 0;
+        }
+
+        /* Full width sections */
+        .section-full {
+            margin-left: -2rem;
+            margin-right: -2rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        /* Sections - WHITE background with DARK text */
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Add more spacing after first section */
+        section#about {
+            padding-bottom: 4rem;
+        }
+
+        /* Add spacing to Looking Forward section */
+        section#forward {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 33px;
+            color: var(--text-dark);
+            font-size: 33px;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: var(--text-dark);
+            margin: 2rem 0 1rem;
+            font-weight: 400;
+        }
+
+        p {
+            color: var(--text-gray);
+            margin-bottom: 1.25rem;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        strong {
+            color: var(--text-dark);
+        }
+
+        a strong {
+            color: inherit;
+        }
+
+        /* Light gray background for alternate sections */
+        .bg-light {
+            background: var(--bg-light);
+        }
+
+        /* Lists - no cards, just clean lists */
+        ul,
+        ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            color: var(--text-gray);
+            margin-bottom: 0.75rem;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        ul li::marker {
+            color: var(--froala-blue);
+        }
+
+        /* Feature Grid - only for major feature callouts */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        .feature-item p {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* Card styles for features and benefits */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .card:hover {
+
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 152, 247, 0.15);
+            border-color: rgba(0, 152, 247, 0.3);
+        }
+
+        .card h4 {
+            color: var(--froala-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 0.75rem;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 22px;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Two column card grid */
+        .card-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* Quote */
+        .quote {
+            background: linear-gradient(135deg, rgba(21, 182, 155, 0.05) 0%, rgba(0, 151, 246, 0.05) 100%);
+            border-left: 4px solid var(--froala-blue);
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote p {
+            font-size: 20px;
+            color: var(--text-dark);
+            line-height: 30px;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .quote cite {
+            display: block;
+            font-style: normal;
+            font-size: 16px;
+            color: var(--text-gray);
+        }
+
+        .quote cite strong {
+            display: block;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        /* Image placeholder */
+        .image-placeholder {
+            background: linear-gradient(135deg, rgba(21, 182, 155, 0.1) 0%, rgba(0, 151, 246, 0.1) 100%);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 2px dashed rgba(0, 152, 247, 0.3);
+            margin: 3rem 0;
+            color: var(--froala-blue);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .content-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 3rem 0 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-gray);
+            font-style: italic;
+            margin: 0.5rem 0 3rem;
+        }
+
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(21, 182, 155, 0.08) 0%, rgba(0, 151, 246, 0.08) 100%);
+            border-left: 4px solid var(--froala-green);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            margin: 0;
+        }
+
+        /* CTA Section - Gradient with WHITE text */
+        .cta-section {
+            background: linear-gradient(135deg, var(--gradient-green) 0%, var(--gradient-blue) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .cta-section h2 {
+            color: #ffffff;
+            font-size: 33px;
+        }
+
+        .cta-section p {
+            color: #ffffff;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 1rem 2.5rem;
+            background: white;
+            color: var(--froala-blue);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Related Studies - Gradient with WHITE text */
+        .related-studies {
+            background: linear-gradient(135deg, var(--gradient-green) 0%, var(--gradient-blue) 100%);
+            padding: 4rem 0;
+            color: #ffffff;
+        }
+
+        .related-studies h2 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: transform 0.3s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .case-card-image {
+            background: linear-gradient(135deg, rgba(21, 182, 155, 0.1) 0%, rgba(0, 151, 246, 0.1) 100%);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border-bottom: 3px solid var(--froala-blue);
+        }
+
+        .case-card-content {
+            padding: 2rem;
+        }
+
+        .case-card h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin: 0 0 1rem;
+            color: var(--text-dark);
+        }
+
+        .case-card p {
+            font-size: 16px;
+            margin: 0;
+            color: var(--text-gray);
+        }
+
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .page-layout {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+
+            .sidebar-inner {
+                position: static;
+            }
+
+            .sidebar nav {
+                display: flex;
+                overflow-x: auto;
+                gap: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            .sidebar nav a {
+                white-space: nowrap;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                padding: 0.5rem 1rem;
+            }
+
+            .sidebar nav a:hover,
+            .sidebar nav a.active {
+                border-left: none;
+                border-bottom-color: var(--froala-blue);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero .subtitle {
+                font-size: 18px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .feature-grid,
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* Split Layout */
+        /* Split Layout */
+        .split-layout {
+            display: flex;
+            gap: 4rem;
+            margin: 4rem 0;
+            align-items: center;
+        }
+
+        .section-header-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-header-icon {
+            display: none;
+        }
+
+        .split-content-left {
+            flex: 0 0 35%;
+        }
+
+        .split-content-left h3 {
+            margin-top: 0;
+            color: var(--froala-blue);
+            font-size: 28px;
+            margin-bottom: 1rem;
+        }
+
+        .split-content-left p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-gray);
+        }
+
+        .split-content-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 152, 247, 0.15);
+            border-color: rgba(0, 152, 247, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 18px;
+            color: var(--text-dark);
+        }
+
+        .feature-text p {
+            margin: 0;
+            font-size: 15px;
+            color: var(--text-gray);
+        }
+
+        @media (max-width: 768px) {
+            .split-layout {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .split-content-left {
+                flex: auto;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero">
+        <div class="hero-content">
+            <img src="images/logo-pa.svg" alt="People Alchemy Logo" class="company-logo">
+            <h1>How an NHS-focused learning platform empowered non-technical users to create consistent, professional
+                content</h1>
+            <p class="subtitle"></p>
+            <div class="hero-badges">
+                <span class="badge">Reduced support tickets</span>
+                <span class="badge">Faster content turnaround</span>
+                <span class="badge">Self-service content management</span>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="page-layout">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="sidebar-inner">
+                    <h4>On This Page</h4>
+                    <nav>
+                        <ul>
+                            <li><a href="#about">About People Alchemy</a></li>
+                            <li><a href="#challenge">The Challenge</a></li>
+                            <li><a href="#why-froala">Why Froala</a></li>
+                            <li><a href="#integration">Integration</a></li>
+                            <li><a href="#features">Key Features</a></li>
+                            <li><a href="#adoption">User Adoption</a></li>
+                            <li><a href="#results">Results</a></li>
+                            <li><a href="#forward">Looking Forward</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- About Section -->
+                <section id="about">
+                    <h2>About People Alchemy</h2>
+                    <p><a href="https://peoplealchemy.com" target="_blank" rel="noopener"><strong>People
+                                Alchemy</strong></a> provides
+                        a SaaS learning and development platform that supports workplace learning, behaviour change, and
+                        performance improvement. Their core products are a Learning Workflow Platform and an ePortfolio
+                        system.</p>
+
+                    <p>The company works primarily with NHS Trusts and corporate L&D teams to support programmes such as
+                        the Care Certificate, Preceptorship, Clinical Skills, leadership development and much more.</p>
+
+                    <div class="info-box">
+                        <p><strong>Their Mission:</strong> Turn learning into measurable results through practical tools
+                            that make learning transfer easy for everyone.</p>
+                    </div>
+
+                    <h3>Who uses the platform</h3>
+                    <p>People Alchemy's platform serves L&D teams and education departments in medium-to-large
+                        organisations, including NHS Trust administrators and clinical educators.</p>
+                </section>
+
+                <!-- Challenge Section -->
+                <section id="challenge" class="bg-light section-full">
+                    <h2>The Challenge</h2>
+                    <p>People Alchemy's platform depends on editable digital learning pathways, templates, and
+                        reflective forms. Customers need to create and maintain this content without technical
+                        knowledge. Enabling non-technical users to edit and manage content easily is critical to
+                        adoption and long-term scalability.</p>
+
+                    <p><strong>Before implementing Froala, the team faced several content creation obstacles:</strong>
+                    </p>
+
+                    <ul>
+                        <li>Inconsistent formatting and layout across content pages</li>
+                        <li>Text only fields were just not rich enough in looks</li>
+                        <li>Administrators often needed developer support to get things formatted as they needed</li>
+                        <li>Limited control and poor user experience with the previous editor</li>
+                        <li>Time-consuming process to convert Word-based materials into web-ready content</li>
+                        <li>Needed an editor that worked well for both advanced users and casual learners</li>
+                    </ul>
+                </section>
+
+                <img src="images/people_alchemy_interface.png" alt="People Alchemy Learning Platform Interface"
+                    class="content-image">
+                <p class="image-caption">People Alchemy Website</p>
+
+                <!-- Why Froala -->
+                <section id="why-froala">
+                    <h2>Why People Alchemy Chose Froala</h2>
+                    <p>The team had previously used TinyMCE but made the switch to Froala. The deciding factors were
+                        clear.</p>
+
+                    <div class="quote">
+                        <img src="images/logo-pa.svg" alt="People Alchemy Logo"
+                            style="height: 32px; margin-bottom: 1.5rem; opacity: 1; background-color: white; padding: 4px 8px; border-radius: 4px;">
+                        <p>"We previously used TinyMCE but switched to Froala because of the better functionality and
+                            ease of use for non-technical users. Froala was easier to customise and integrate into our
+                            system. The interface is cleaner and more intuitive. Licensing and embedding model suited
+                            our SaaS architecture."</p>
+                        <cite>
+                            <strong>Paul Matthews</strong>
+                            CEO, Author, Speaker, L&D Strategist
+                        </cite>
+                    </div>
+
+                    <h3>Key Advantages</h3>
+                    <div class="card-grid-2">
+                        <div class="card">
+                            <span class="card-icon">👤</span>
+                            <h4>Better functionality for non-technical users</h4>
+                            <p>Superior ease of use compared to alternatives</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🔧</span>
+                            <h4>Easier customization and integration</h4>
+                            <p>Simple to integrate into their PHP (Yii) application</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">✨</span>
+                            <h4>Cleaner, more intuitive interface</h4>
+                            <p>Modern design that reduces learning curve</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">📄</span>
+                            <h4>SaaS-friendly licensing</h4>
+                            <p>Embedding model suited their multi-tenant architecture</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Integration -->
+                <section id="integration" class="bg-light section-full">
+                    <h2>Integration Experience</h2>
+
+                    <h3>Technical Setup</h3>
+                    <p>People Alchemy integrated Froala into their <a
+                            href="https://froala.com/wysiwyg-editor/docs/server/php/" target="_blank" rel="noopener">PHP
+                            (Yii) application</a>. The
+                        process was straightforward.</p>
+
+                    <div class="quote">
+                        <img src="images/logo-pa.svg" alt="People Alchemy Logo"
+                            style="height: 32px; margin-bottom: 1.5rem; opacity: 1; background-color: white; padding: 4px 8px; border-radius: 4px;">
+                        <p>"Straightforward integration with our PHP (Yii) application. Required only minor
+                            customisation of toolbar options. Documentation and examples were clear and easy to follow.
+                            Upgrades have been stable with no major compatibility issues."</p>
+                        <cite>
+                            <strong>Paul Matthews</strong>
+                            CEO, Author, Speaker, L&D Strategist
+                        </cite>
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>For teams working with similar tech stacks:</strong> Froala's PHP SDK documentation
+                            provides step-by-step guidance for server-side integration.</p>
+                    </div>
+
+                    <h3>Performance in production</h3>
+                    <div class="quote">
+                        <img src="images/logo-pa.svg" alt="People Alchemy Logo"
+                            style="height: 32px; margin-bottom: 1.5rem; opacity: 1; background-color: white; padding: 4px 8px; border-radius: 4px;">
+                        <p>"The editor loads quickly and runs smoothly. No noticeable impact on page performance, even
+                            when we are loading the editor on many input fields on the same page. Works well on tablets
+                            and mobile devices used in clinical environments."</p>
+                        <cite>
+                            <strong>Paul Matthews</strong>
+                            CEO, Author, Speaker, L&D Strategist
+                        </cite>
+                    </div>
+                </section>
+
+                <!-- Features -->
+                <section id="features">
+                    <h2>Features That Made the Difference</h2>
+                    <p>The team identified several Froala features that have had the biggest impact on efficiency:</p>
+
+                    <div class="card-grid">
+                        <div class="card">
+                            <span class="card-icon">⚙️</span>
+                            <h4><a href="https://froala.com/wysiwyg-editor/docs/concepts/toolbar/" target="_blank"
+                                    rel="noopener">Customisable
+                                    toolbar</a> with role-based controls</h4>
+                            <p>Allows different user types to see only the options they need</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">📋</span>
+                            <h4><a href="https://froala.com/wysiwyg-editor/docs/plugins/word-paste/" target="_blank"
+                                    rel="noopener">Paste-from-Word
+                                    clean-up</a></h4>
+                            <p>Eliminates the tedious manual formatting work when migrating existing materials</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🖼️</span>
+                            <h4><a href="https://froala.com/wysiwyg-editor/docs/concepts/image/upload/" target="_blank"
+                                    rel="noopener">Image handling</a> and
+                                embedding tools</h4>
+                            <p>Make it easy to add visual elements to learning content</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">💻</span>
+                            <h4>Clean HTML output</h4>
+                            <p>Integrates smoothly with platform styles</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🔌</span>
+                            <h4>Plugin-based structure</h4>
+                            <p>Allows tailored configuration for specific use cases</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- User Adoption -->
+                <section id="adoption" class="bg-light section-full">
+                    <h2>User Adoption</h2>
+
+                    <div class="quote">
+                        <img src="images/logo-pa.svg" alt="People Alchemy Logo"
+                            style="height: 32px; margin-bottom: 1.5rem; opacity: 1; background-color: white; padding: 4px 8px; border-radius: 4px;">
+                        <p>"Very short learning curve. Administrators doing more complex stuff became comfortable after
+                            a short introduction. End-users found it intuitive and familiar from the start."</p>
+                        <cite>
+                            <strong>Paul Matthews</strong>
+                            CEO, Author, Speaker, L&D Strategist
+                        </cite>
+                    </div>
+
+                    <h3>User feedback</h3>
+                    <p>The response from content creators and editors has been positive:</p>
+                    <div class="card-grid">
+                        <div class="card">
+                            <span class="card-icon">👍</span>
+                            <h4>Simplicity</h4>
+                            <p>Users appreciate the simplicity</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🎨</span>
+                            <h4>Self-sufficiency</h4>
+                            <p>Being able to create well-formatted content without technical help</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">⭐</span>
+                            <h4>Excellent usability</h4>
+                            <p>Generally excellent usability across the platform</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>Practical tip from the team:</strong> When users paste content from Teams or Outlook,
+                            advising them to paste as plain text first, then use Froala to format, produces the best
+                            results.</p>
+                    </div>
+                </section>
+
+                <!-- Results -->
+                <section id="results">
+                    <h2>Results</h2>
+
+
+                    <div class="split-layout">
+                        <div class="split-content-left">
+                            <img src="images/workflow_image.png" alt="Workflow Improvements"
+                                class="section-header-image">
+                            <h3>Workflow improvements</h3>
+                            <p>The integration of Froala has led to significant improvements in several key areas:</p>
+                        </div>
+                        <div class="split-content-right">
+                            <div class="feature-item">
+                                <span class="feature-icon">📉</span>
+                                <div class="feature-text">
+                                    <h4>Reduced support requests</h4>
+                                    <p>Reduced the number of support requests related to formatting</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">👥</span>
+                                <div class="feature-text">
+                                    <h4>Direct content management</h4>
+                                    <p>Admin teams now manage content directly without involving developers</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⚡</span>
+                                <div class="feature-text">
+                                    <h4>Faster turnaround</h4>
+                                    <p>Faster turnaround times for content updates</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✨</span>
+                                <div class="feature-text">
+                                    <h4>Enhanced learner output</h4>
+                                    <p>Learners can create more polished reflections and evidence entries for assessors
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Content quality</h3>
+                    <div class="quote">
+                        <p>"Content now looks more consistent across templates and learning pathways. Easier to maintain
+                            a standard visual style for each organisation. Less manual clean-up or formatting correction
+                            required."</p>
+                        <cite>
+                            <strong>Paul Matthews</strong>
+                            CEO, Author, Speaker, L&D Strategist
+                        </cite>
+                    </div>
+
+                    <div class="split-layout">
+                        <div class="split-content-left">
+                            <img src="images/business_impact.png" alt="Business Impact" class="section-header-image">
+                            <h3>Business impact</h3>
+                            <p>These operational improvements translated into tangible business value:</p>
+                        </div>
+                        <div class="split-content-right">
+                            <div class="feature-item">
+                                <span class="feature-icon">🎯</span>
+                                <div class="feature-text">
+                                    <h4>Improved self-service</h4>
+                                    <p>Improved self-service content management for customers</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🛠️</span>
+                                <div class="feature-text">
+                                    <h4>Reduced support workload</h4>
+                                    <p>Reduced support workload for the technical team</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🚀</span>
+                                <div class="feature-text">
+                                    <h4>Faster onboarding</h4>
+                                    <p>Faster onboarding and setup for new clients</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">😊</span>
+                                <div class="feature-text">
+                                    <h4>Higher satisfaction</h4>
+                                    <p>Higher customer satisfaction and smoother implementation processes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- In Their Words -->
+                <section class="bg-light section-full">
+                    <h2>In Their Words</h2>
+                    <div class="quote">
+                        <p>"Froala gives us a fast, flexible, and easy-to-use editor that empowers non-technical users
+                            to create clean, consistent content."</p>
+                        <cite>
+                            <strong>Paul Matthews</strong>
+                            CEO, Author, Speaker, L&D Strategist
+                        </cite>
+                    </div>
+                </section>
+
+                <!-- Looking Forward -->
+                <section id="forward">
+                    <h2>Looking Forward</h2>
+                    <p><strong>Froala is now a core part of People Alchemy's platform.</strong> As the team puts it: "it
+                        mostly just works."</p>
+
+                    <p>Areas where the team would welcome future improvements:</p>
+                    <ul>
+                        <li>Enhanced paste handling for web content</li>
+                        <li>Better keyboard navigation for accessibility compliance</li>
+                        <li>Built-in accessibility checking for WCAG compliance of created content</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>Try Froala for Your Platform</h2>
+            <p>If your team needs a WYSIWYG editor that non-technical users can adopt quickly while still offering the
+                customisation developers need</p>
+            <div class="cta-buttons">
+                <a href="https://froala.com/wysiwyg_editor-download/" class="cta-button">Start Free Trial</a>
+                <a href="https://froala.com/wysiwyg-editor/docs/getting-started/"
+                    class="cta-button cta-button-outline">Explore Documentation</a>
+            </div>
+        </div>
+
+        <!-- Related Studies -->
+        <div class="related-studies">
+            <h2>More Success Stories</h2>
+            <div class="case-grid">
+                <a href="#" class="case-card">
+                    <div class="case-card-image">🏥</div>
+                    <div class="case-card-content">
+                        <h3>Healthcare Technology Co.</h3>
+                        <p>How a healthcare tech company streamlined clinical documentation with Froala</p>
+                    </div>
+                </a>
+                <a href="#" class="case-card">
+                    <div class="case-card-image">🎓</div>
+                    <div class="case-card-content">
+                        <h3>Enterprise Learning Platform</h3>
+                        <p>Transforming corporate training content for 10,000+ users</p>
+                    </div>
+                </a>
+                <a href="#" class="case-card">
+                    <div class="case-card-image">🏛️</div>
+                    <div class="case-card-content">
+                        <h3>Higher Education Institution</h3>
+                        <p>Empowering faculty with modern content creation tools</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        // Active navigation highlighting on scroll
+        const navLinks = document.querySelectorAll('.sidebar nav a');
+        const sections = document.querySelectorAll('section[id]');
+
+        function updateActiveLink() {
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                const sectionHeight = section.offsetHeight;
+
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        window.addEventListener('load', updateActiveLink);
+    </script>
+</body>
+
+</html>
