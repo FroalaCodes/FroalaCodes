@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froala Chatbot Analytics Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #f5f7fa;
+            color: #2d3748;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: white;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: #0094FF;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 8px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #718096;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background: #f0f9ff;
+            color: #0094FF;
+        }
+
+        .nav-link.active {
+            background: #0094FF;
+            color: white;
+        }
+
+        .nav-link svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+        }
+
+        .main-wrapper {
+            margin-left: 260px;
+            flex: 1;
+            padding: 30px;
+            width: calc(100% - 260px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #0094FF;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .upload-section {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .upload-btn {
+            background: #0094FF;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .upload-btn:hover {
+            background: #0077CC;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 148, 255, 0.25);
+        }
+
+        .upload-btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .processing-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .processing-overlay.active {
+            display: flex;
+        }
+
+        .processing-content {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .spinner {
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #0094FF;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .stat-card h3 {
+            color: #718096;
+            font-size: 0.875em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-card .value {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #0094FF;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .card h2 {
+            color: #0094FF;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: 700;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .conversations-section {
+            grid-column: 1 / -1;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1em;
+            font-family: 'Nunito', sans-serif;
+            margin-bottom: 20px;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #0094FF;
+            box-shadow: 0 0 0 3px rgba(0, 148, 255, 0.1);
+        }
+
+        .session-list {
+            max-height: 700px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 10px;
+            background: #f9fafb;
+        }
+
+        .session-item {
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid #e2e8f0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .session-item:hover {
+            background: #f0f9ff;
+            border-left-color: #0094FF;
+            transform: translateX(4px);
+        }
+
+        .session-item.active {
+            background: #0094FF;
+            color: white;
+            border-left-color: #0094FF;
+        }
+
+        .session-item.active strong {
+            color: white;
+        }
+
+        .session-item.active > div {
+            color: white !important;
+        }
+
+        .session-info {
+            font-size: 0.875em;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        .session-item.active .session-info {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .conversation-detail {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            max-height: 700px;
+            overflow-y: auto;
+            background: #ffffff;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0,148,255,0.02) 35px, rgba(0,148,255,0.02) 70px);
+        }
+
+        .message {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            max-width: 70%;
+            clear: both;
+        }
+
+        .question {
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .answer {
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .question .message-bubble {
+            background: #0094FF;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .answer .message-bubble {
+            background: #f0f0f0;
+            color: #2d3748;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+            font-size: 0.75em;
+        }
+
+        .question .message-header {
+            justify-content: flex-end;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .answer .message-header {
+            justify-content: flex-start;
+            color: #718096;
+        }
+
+        .message-type {
+            font-weight: 700;
+        }
+
+        .question .message-type {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .answer .message-type {
+            color: #00ABA4;
+        }
+
+        .message-timestamp {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .message-content {
+            line-height: 1.6;
+        }
+
+        .question .message-content {
+            color: white;
+        }
+
+        .answer .message-content {
+            color: #2d3748;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fef3c7;
+            border-radius: 8px;
+            font-size: 0.875em;
+            border: 1px solid #fde68a;
+        }
+
+        .feedback.positive {
+            background: #d1fae5;
+            color: #065f46;
+            border-color: #a7f3d0;
+        }
+
+        .feedback.negative {
+            background: #fee2e2;
+            color: #991b1b;
+            border-color: #fecaca;
+        }
+
+        .list-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .list-item:hover {
+            border-color: #0094FF;
+            box-shadow: 0 2px 4px rgba(0, 148, 255, 0.1);
+        }
+
+        .badge {
+            background: #0094FF;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875em;
+            font-weight: 700;
+        }
+
+        .semantic-group {
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .semantic-group.collapsed {
+            min-height: auto;
+        }
+
+        .semantic-group:hover {
+            box-shadow: 0 4px 12px rgba(0, 148, 255, 0.1);
+            border-color: #0094FF;
+        }
+
+        .semantic-group h4 {
+            color: #0094FF;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .semantic-group h4 .toggle-icon {
+            font-size: 0.8em;
+            transition: transform 0.2s ease;
+        }
+
+        .semantic-group.collapsed h4 .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .semantic-group .count-badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0094FF;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .expand-btn {
+            color: #0094FF;
+            cursor: pointer;
+            font-style: normal;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .expand-btn:hover {
+            color: #0077CC;
+        }
+
+        .translate-btn {
+            background: #00ABA4;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.75em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: 15px;
+            position: relative;
+            top: -2px;
+        }
+
+        .translate-btn:hover {
+            background: #008F88;
+            transform: translateY(-1px);
+        }
+
+        .translate-btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+        }
+
+        .question-list {
+            font-size: 0.85em;
+            color: #718096;
+            padding-left: 0;
+            list-style: none;
+            flex: 1;
+            transition: all 0.3s ease;
+            max-height: 1000px;
+            overflow: hidden;
+        }
+
+        .semantic-group.collapsed .question-list {
+            max-height: 0;
+            opacity: 0;
+            margin: 0;
+        }
+
+        .semantic-group.collapsed .count-badge {
+            margin-bottom: 0;
+        }
+
+        .question-list li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            padding-left: 12px;
+            border-left: 2px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .question-list li:hover {
+            border-left-color: #00ABA4;
+            background: #f0f9ff;
+            padding-left: 16px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #0094FF;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #fecaca;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-wrapper {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1em;
+            color: #666;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab:hover {
+            color: #0094FF;
+        }
+
+        .tab.active {
+            color: #0094FF;
+            border-bottom-color: #0094FF;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .chart-container {
+            margin-top: 20px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #0094FF;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 148, 255, 0.3);
+            transition: all 0.2s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #0077CC;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="processing-overlay" id="processingOverlay">
+        <div class="processing-content">
+            <div class="spinner"></div>
+            <h2>Processing CSV file...</h2>
+            <p id="processingStatus">Please wait while we analyze your data</p>
+        </div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            Froala Chatbot Replies
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a class="nav-link active" onclick="showSection('conversations')">
+                    <span>💬</span>
+                    <span>Conversations</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="showSection('analytics')">
+                    <span>📊</span>
+                    <span>Analytics</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="showSection('keywords')">
+                    <span>🔑</span>
+                    <span>Keywords</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="showSection('semantic')">
+                    <span>🏷️</span>
+                    <span>Topics</span>
+                </a>
+            </li>
+        </ul>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+            <input type="file" id="fileInput" accept=".csv" onchange="handleFileUpload(event)">
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()" style="width: 100%; justify-content: center;">
+                <span>📁</span>
+                <span>Upload CSV</span>
+            </button>
+            <div id="lastUpdated" style="font-size: 0.75em; color: #718096; margin-top: 10px; text-align: center;"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <div class="container">
+            <div id="loading" class="loading">Loading data...</div>
+            <div id="error" class="error" style="display: none;"></div>
+
+            <div id="dashboard" style="display: none;">
+
+            <!-- Conversations Section (Default View) -->
+            <div class="section active" id="section-conversations">
+                <h1>Conversations</h1>
+                <div class="card conversations-section">
+                    <div class="tabs">
+                        <button class="tab active" onclick="switchTab('all')">All Sessions</button>
+                        <button class="tab" onclick="switchTab('multi')">Multi-Question Sessions</button>
+                        <button class="tab" onclick="switchTab('single')">Single-Question Sessions</button>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                        <input type="text" class="search-box" id="searchBox" placeholder="Search conversations by question, answer, or session ID..." style="flex: 1; margin-bottom: 0;">
+                        <input type="date" class="search-box" id="startDate" placeholder="Start Date" style="width: 150px; margin-bottom: 0;">
+                        <input type="date" class="search-box" id="endDate" placeholder="End Date" style="width: 150px; margin-bottom: 0;">
+                        <button class="upload-btn" onclick="clearDateFilters()" style="padding: 8px 16px; font-size: 0.85em;">Clear Dates</button>
+                    </div>
+
+                    <div class="tab-content active" id="tab-all">
+                        <div style="display: grid; grid-template-columns: 400px 1fr; gap: 24px;">
+                            <div>
+                                <h3 style="margin-bottom: 15px; color: #2d3748;">Sessions</h3>
+                                <div class="session-list" id="sessionList"></div>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 15px; color: #2d3748;">Conversation</h3>
+                                <div class="conversation-detail" id="conversationDetail">
+                                    <p style="color: #999; text-align: center;">Select a session to view the conversation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-multi">
+                        <div style="display: grid; grid-template-columns: 400px 1fr; gap: 24px;">
+                            <div>
+                                <h3 style="margin-bottom: 15px; color: #2d3748;">Multi-Question Sessions</h3>
+                                <div class="session-list" id="sessionListMulti"></div>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 15px; color: #2d3748;">Conversation</h3>
+                                <div class="conversation-detail" id="conversationDetailMulti">
+                                    <p style="color: #999; text-align: center;">Select a session to view the conversation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-single">
+                        <div style="display: grid; grid-template-columns: 400px 1fr; gap: 24px;">
+                            <div>
+                                <h3 style="margin-bottom: 15px; color: #2d3748;">Single-Question Sessions</h3>
+                                <div class="session-list" id="sessionListSingle"></div>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 15px; color: #2d3748;">Conversation</h3>
+                                <div class="conversation-detail" id="conversationDetailSingle">
+                                    <p style="color: #999; text-align: center;">Select a session to view the conversation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+                        <button class="translate-btn" onclick="translatePage()" style="padding: 10px 16px; font-size: 0.85em;">
+                            <span>🌐</span>
+                            <span>Translate to English</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div class="section" id="section-analytics">
+                <h1>Analytics Overview</h1>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Sessions</h3>
+                        <div class="value" id="totalSessions">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Unique Users</h3>
+                        <div class="value" id="uniqueUsers">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Questions</h3>
+                        <div class="value" id="totalQuestions">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Avg Q per Session</h3>
+                        <div class="value" id="avgQuestions">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Positive Feedback</h3>
+                        <div class="value" id="positiveFeedback">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keywords Section -->
+            <div class="section" id="section-keywords">
+                <h1>Top Keywords & Questions</h1>
+                <div class="main-content">
+                    <div class="card">
+                        <h2>Top Keywords</h2>
+                        <div id="topKeywords"></div>
+                    </div>
+
+                    <div class="card">
+                        <h2>Top Questions</h2>
+                        <div id="topQuestions"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Semantic Groups Section -->
+            <div class="section" id="section-semantic">
+                <h1>Question Topics</h1>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <p style="color: #718096; margin: 0;">Questions grouped by similar topics and keywords</p>
+                    <button class="upload-btn" onclick="toggleAllSemanticGroups()" id="toggleAllBtn" style="padding: 8px 16px; font-size: 0.85em;">
+                        Collapse All
+                    </button>
+                </div>
+                <div id="semanticGroups" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px;"></div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        ↑
+    </div>
+
+    <script>
+        let allData = null;
+        let allConversations = [];
+        let currentTab = 'all';
+
+        async function loadData() {
+            try {
+                const response = await fetch('chatbot_data.json');
+                if (!response.ok) throw new Error('Failed to load data');
+                allData = await response.json();
+
+                displayAnalytics();
+                displayTopKeywords();
+                displayTopQuestions();
+                displaySemanticGroups();
+                displaySessions();
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').textContent = 'Error loading data: ' + error.message;
+            }
+        }
+
+        function displayAnalytics() {
+            const analytics = allData.analytics;
+            document.getElementById('totalSessions').textContent = analytics.total_sessions.toLocaleString();
+            document.getElementById('uniqueUsers').textContent = analytics.unique_users.toLocaleString();
+            document.getElementById('totalQuestions').textContent = analytics.total_questions.toLocaleString();
+            document.getElementById('avgQuestions').textContent = analytics.avg_questions_per_session.toFixed(1);
+            document.getElementById('positiveFeedback').textContent = analytics.positive_feedback.toLocaleString();
+        }
+
+        function displayTopKeywords() {
+            const keywords = allData.analytics.top_keywords.slice(0, 15);
+            const html = keywords.map(kw => `
+                <div class="list-item">
+                    <span>${kw.keyword}</span>
+                    <span class="badge">${kw.count}</span>
+                </div>
+            `).join('');
+            document.getElementById('topKeywords').innerHTML = html;
+        }
+
+        function displayTopQuestions() {
+            const questions = allData.analytics.top_questions_exact.slice(0, 10);
+            const html = questions.map(q => `
+                <div class="list-item" style="flex-direction: column; align-items: flex-start;">
+                    <div style="display: flex; justify-content: space-between; width: 100%; margin-bottom: 5px;">
+                        <span class="badge">${q.count}x</span>
+                    </div>
+                    <span style="font-size: 0.9em;">${escapeHtml(q.question)}</span>
+                </div>
+            `).join('');
+            document.getElementById('topQuestions').innerHTML = html;
+        }
+
+        function displaySemanticGroups() {
+            const groups = allData.semantic_groups.slice(0, 12);
+            const html = groups.map((group, index) => `
+                <div class="semantic-group" id="semantic-group-${index}">
+                    <h4 onclick="toggleSemanticGroup(${index})">
+                        <span>${group.keyword}</span>
+                        <span class="toggle-icon">▼</span>
+                    </h4>
+                    <span class="count-badge">${group.count} questions</span>
+                    <ul class="question-list" id="group-${index}">
+                        ${group.questions.slice(0, 3).map(q => `<li onclick="navigateToConversation('${escapeHtml(q).replace(/'/g, "\\'")}')">${escapeHtml(q.length > 80 ? q.substring(0, 80) + '...' : q)}</li>`).join('')}
+                        ${group.questions.length > 3 ? `
+                            <li class="expand-btn" onclick="expandGroup(${index}, ${JSON.stringify(group.questions.map(q => escapeHtml(q))).replace(/"/g, '&quot;')})">
+                                Show all ${group.questions.length} questions
+                            </li>
+                        ` : ''}
+                    </ul>
+                </div>
+            `).join('');
+            document.getElementById('semanticGroups').innerHTML = html;
+        }
+
+        function toggleSemanticGroup(index) {
+            const group = document.getElementById(`semantic-group-${index}`);
+            group.classList.toggle('collapsed');
+        }
+
+        function toggleAllSemanticGroups() {
+            const groups = document.querySelectorAll('.semantic-group');
+            const btn = document.getElementById('toggleAllBtn');
+            const allCollapsed = Array.from(groups).every(g => g.classList.contains('collapsed'));
+
+            if (allCollapsed) {
+                groups.forEach(g => g.classList.remove('collapsed'));
+                btn.textContent = 'Collapse All';
+            } else {
+                groups.forEach(g => g.classList.add('collapsed'));
+                btn.textContent = 'Expand All';
+            }
+        }
+
+        function expandGroup(index, allQuestions) {
+            const listElement = document.getElementById(`group-${index}`);
+            const html = allQuestions.map(q => `<li onclick="navigateToConversation('${q.replace(/'/g, "\\'")}')">${q}</li>`).join('');
+            listElement.innerHTML = html;
+        }
+
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById('section-' + sectionName).classList.add('active');
+
+            // Update nav active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.closest('.nav-link').classList.add('active');
+        }
+
+        function displaySessions(filter = '', startDate = '', endDate = '') {
+            const conversations = allData.conversations;
+            allConversations = Object.entries(conversations).map(([sessionId, messages]) => ({
+                sessionId,
+                messages,
+                searchText: messages.map(m => `${m.question} ${m.answer}`).join(' ').toLowerCase(),
+                timestamp: messages[0].user_question_timestamp
+            }));
+
+            // Text search filter
+            if (filter) {
+                allConversations = allConversations.filter(conv =>
+                    conv.searchText.includes(filter.toLowerCase()) ||
+                    conv.sessionId.includes(filter.toLowerCase())
+                );
+            }
+
+            // Date range filter
+            if (startDate || endDate) {
+                allConversations = allConversations.filter(conv => {
+                    const convDate = new Date(conv.timestamp);
+                    let inRange = true;
+
+                    if (startDate) {
+                        const start = new Date(startDate);
+                        start.setHours(0, 0, 0, 0);
+                        inRange = inRange && convDate >= start;
+                    }
+
+                    if (endDate) {
+                        const end = new Date(endDate);
+                        end.setHours(23, 59, 59, 999);
+                        inRange = inRange && convDate <= end;
+                    }
+
+                    return inRange;
+                });
+            }
+
+            renderSessionList('sessionList', 'conversationDetail', allConversations);
+
+            const multiConversations = allConversations.filter(c => c.messages.length > 1);
+            renderSessionList('sessionListMulti', 'conversationDetailMulti', multiConversations);
+
+            const singleConversations = allConversations.filter(c => c.messages.length === 1);
+            renderSessionList('sessionListSingle', 'conversationDetailSingle', singleConversations);
+        }
+
+        function renderSessionList(listId, detailId, conversations) {
+            const listElement = document.getElementById(listId);
+            if (!listElement) return;
+
+            const html = conversations.map(conv => {
+                const firstMessage = conv.messages[0];
+                return `
+                    <div class="session-item" onclick="showConversation('${conv.sessionId}', '${detailId}', '${listId}')">
+                        <strong style="font-size: 1em; color: #2d3748;">${escapeHtml(firstMessage.question.substring(0, 70))}${firstMessage.question.length > 70 ? '...' : ''}</strong>
+                        <div class="session-info" style="margin-top: 8px;">
+                            ${conv.messages.length} question${conv.messages.length > 1 ? 's' : ''} |
+                            ${firstMessage.user_question_timestamp}
+                        </div>
+                        <div style="font-size: 0.75em; color: #a0aec0; margin-top: 5px;">
+                            Session: ${conv.sessionId.substring(0, 12)}...
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            listElement.innerHTML = html || '<p style="text-align: center; color: #999;">No sessions found</p>';
+        }
+
+        function showConversation(sessionId, detailId, listId) {
+            const conversation = allData.conversations[sessionId];
+            if (!conversation) return;
+
+            const sessionHeader = `
+                <div style="background: white; padding: 16px; border-radius: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
+                    <div style="font-size: 0.875em; color: #718096; margin-bottom: 6px; font-weight: 600;">Session ID</div>
+                    <div style="font-family: 'Courier New', monospace; color: #0094FF; font-size: 0.9em; word-break: break-all;">${sessionId}</div>
+                    <div style="font-size: 0.75em; color: #a0aec0; margin-top: 6px;">User ID: ${conversation[0].user_id}</div>
+                </div>
+            `;
+
+            const messages = conversation.map(msg => `
+                <div class="message question">
+                    <div class="message-header">
+                        <span class="message-type">You</span>
+                        <span class="message-timestamp">${msg.user_question_timestamp}</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-content">${escapeHtml(msg.question)}</div>
+                    </div>
+                </div>
+                <div class="message answer">
+                    <div class="message-header">
+                        <span class="message-type">Chatbot</span>
+                        <span class="message-timestamp">${msg.answer_timestamp}</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-content">${formatAnswer(msg.answer)}</div>
+                        ${msg.feedback_grade ? `
+                            <div class="feedback ${msg.feedback_grade === '↑' ? 'positive' : 'negative'}" style="margin-top: 8px;">
+                                Feedback: ${msg.feedback_grade} ${msg.feedback_text || ''}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById(detailId).innerHTML = sessionHeader + messages;
+
+            // Update active session
+            const listElement = document.getElementById(listId);
+            if (listElement) {
+                listElement.querySelectorAll('.session-item').forEach(item => item.classList.remove('active'));
+                event.currentTarget.classList.add('active');
+            }
+        }
+
+        function formatAnswer(answer) {
+            if (!answer) return '';
+            // Basic markdown-like formatting
+            let formatted = escapeHtml(answer);
+            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            formatted = formatted.replace(/\n/g, '<br>');
+            return formatted;
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+
+        function applyFilters() {
+            const searchText = document.getElementById('searchBox').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            displaySessions(searchText, startDate, endDate);
+        }
+
+        function clearDateFilters() {
+            document.getElementById('startDate').value = '';
+            document.getElementById('endDate').value = '';
+            applyFilters();
+        }
+
+        document.getElementById('searchBox').addEventListener('input', applyFilters);
+        document.getElementById('startDate').addEventListener('change', applyFilters);
+        document.getElementById('endDate').addEventListener('change', applyFilters);
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // CSV Upload and Processing Functions
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            document.getElementById('processingOverlay').classList.add('active');
+            document.getElementById('processingStatus').textContent = 'Reading CSV file...';
+
+            try {
+                const text = await file.text();
+                document.getElementById('processingStatus').textContent = 'Parsing CSV data...';
+
+                const csvData = parseCSV(text);
+                document.getElementById('processingStatus').textContent = 'Processing conversations...';
+
+                const processedData = processCSVData(csvData);
+                document.getElementById('processingStatus').textContent = 'Calculating analytics...';
+
+                // Update the global data
+                allData = processedData;
+
+                // Save to localStorage for persistence
+                localStorage.setItem('chatbotData', JSON.stringify(processedData));
+                localStorage.setItem('lastUpdated', new Date().toISOString());
+
+                // Refresh the dashboard
+                displayAnalytics();
+                displayTopKeywords();
+                displayTopQuestions();
+                displaySemanticGroups();
+                displaySessions();
+
+                updateLastUpdatedTime();
+
+                document.getElementById('processingOverlay').classList.remove('active');
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+
+                // Reset file input
+                event.target.value = '';
+            } catch (error) {
+                document.getElementById('processingOverlay').classList.remove('active');
+                alert('Error processing CSV: ' + error.message);
+                console.error('CSV processing error:', error);
+            }
+        }
+
+        function parseCSV(text) {
+            const lines = text.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            const data = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+
+                const values = parseCSVLine(lines[i]);
+                if (values.length === headers.length) {
+                    const row = {};
+                    headers.forEach((header, index) => {
+                        row[header] = values[index];
+                    });
+                    data.push(row);
+                }
+            }
+
+            return data;
+        }
+
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+
+            result.push(current.trim());
+            return result;
+        }
+
+        function processCSVData(csvData) {
+            const conversations = {};
+            const allQuestions = [];
+            const allKeywords = [];
+
+            csvData.forEach(row => {
+                const sessionId = row.user_session_id;
+                if (!conversations[sessionId]) {
+                    conversations[sessionId] = [];
+                }
+
+                const message = {
+                    question_order: parseInt(row.question_order_number) || 0,
+                    question: row.question || '',
+                    answer: row.answer || '',
+                    user_question_timestamp: row.user_question_timestamp || '',
+                    answer_timestamp: row.answer_timestamp || '',
+                    feedback_grade: row.feedback_grade || null,
+                    feedback_text: row.feedback_text || null,
+                    user_id: row.user_id || ''
+                };
+
+                conversations[sessionId].push(message);
+
+                if (message.question) {
+                    allQuestions.push(message.question.toLowerCase().trim());
+                    const words = message.question.toLowerCase().match(/\b\w{4,}\b/g) || [];
+                    allKeywords.push(...words);
+                }
+            });
+
+            // Sort conversations by question order
+            Object.keys(conversations).forEach(sessionId => {
+                conversations[sessionId].sort((a, b) => a.question_order - b.question_order);
+            });
+
+            // Calculate analytics
+            const analytics = calculateAnalyticsFromCSV(conversations, csvData, allQuestions, allKeywords);
+
+            // Find semantic groups
+            const semanticGroups = findSemanticGroupsFromData(allQuestions, allKeywords);
+
+            return {
+                conversations,
+                analytics,
+                semantic_groups: semanticGroups,
+                generated_at: new Date().toISOString()
+            };
+        }
+
+        function calculateAnalyticsFromCSV(conversations, csvData, allQuestions, allKeywords) {
+            const uniqueUsers = new Set(csvData.map(r => r.user_id)).size;
+
+            // Stop words to filter out (expanded list)
+            const stopWords = new Set([
+                'this', 'that', 'these', 'those', 'what', 'when', 'where', 'which', 'while',
+                'with', 'have', 'from', 'they', 'been', 'were', 'their', 'there', 'would',
+                'could', 'should', 'about', 'after', 'before', 'between', 'into', 'through',
+                'during', 'above', 'below', 'under', 'again', 'further', 'then', 'once',
+                'here', 'both', 'each', 'more', 'most', 'other', 'some', 'such', 'only',
+                'same', 'than', 'very', 'will', 'just', 'dont', 'does', 'page', 'untitled',
+                'table', 'aida', 'questions', 'feedback', 'report', 'help', 'please', 'need',
+                'want', 'know', 'make', 'like', 'using', 'used', 'work', 'works', 'also',
+                // Common single words to filter
+                'free', 'give', 'html', 'your', 'name', 'code', 'hello', 'mujhe', 'robux',
+                'download', 'version', 'license', 'editor', 'roblox', 'froala', 'yes', 'can',
+                'talk', 'human'
+            ]);
+
+            // Filter out single words and non-questions
+            const singleWordNonQuestions = new Set([
+                'hi', 'hello', 'ok', 'okay', 'yes', 'no', 'yeah', 'nope', 'thanks',
+                'thank', 'bye', 'h', 'y', 'n', 'test', 'hii', 'hiii'
+            ]);
+
+            // Filter questions - must be either multi-word OR end with question mark
+            const filteredQuestions = allQuestions.filter(q => {
+                return (q.split(' ').length > 1 || q.includes('?')) && !singleWordNonQuestions.has(q);
+            });
+
+            // Count question occurrences
+            const questionCounts = {};
+            filteredQuestions.forEach(q => {
+                questionCounts[q] = (questionCounts[q] || 0) + 1;
+            });
+
+            const topQuestionsExact = Object.entries(questionCounts)
+                .map(([question, count]) => ({ question, count }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 20);
+
+            // Count keywords (filter stop words)
+            const keywordCounts = {};
+            allKeywords.forEach(k => {
+                if (!stopWords.has(k.toLowerCase())) {
+                    keywordCounts[k] = (keywordCounts[k] || 0) + 1;
+                }
+            });
+
+            const topKeywords = Object.entries(keywordCounts)
+                .map(([keyword, count]) => ({ keyword, count }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 30);
+
+            // Calculate feedback
+            const feedbackRows = csvData.filter(r => r.feedback_grade);
+            const positiveFeedback = feedbackRows.filter(r => r.feedback_grade === '↑').length;
+
+            return {
+                total_sessions: Object.keys(conversations).length,
+                total_questions: csvData.length,
+                unique_users: uniqueUsers,
+                avg_questions_per_session: csvData.length / Object.keys(conversations).length || 0,
+                avg_session_duration_minutes: 0,
+                total_feedback: feedbackRows.length,
+                positive_feedback: positiveFeedback,
+                negative_feedback: feedbackRows.length - positiveFeedback,
+                top_questions_exact: topQuestionsExact,
+                top_keywords: topKeywords
+            };
+        }
+
+        function findSemanticGroupsFromData(allQuestions, allKeywords) {
+            const keywordToQuestions = {};
+
+            allQuestions.forEach(question => {
+                const words = question.match(/\b\w{4,}\b/g) || [];
+                words.forEach(word => {
+                    if (!keywordToQuestions[word]) {
+                        keywordToQuestions[word] = [];
+                    }
+                    if (!keywordToQuestions[word].includes(question)) {
+                        keywordToQuestions[word].push(question);
+                    }
+                });
+            });
+
+            const semanticGroups = Object.entries(keywordToQuestions)
+                .filter(([keyword, questions]) => questions.length >= 3)
+                .map(([keyword, questions]) => ({
+                    keyword,
+                    count: questions.length,
+                    questions: questions  // Keep all questions, not just first 10
+                }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 20);
+
+            return semanticGroups;
+        }
+
+        function updateLastUpdatedTime() {
+            const lastUpdated = localStorage.getItem('lastUpdated');
+            if (lastUpdated) {
+                const date = new Date(lastUpdated);
+                document.getElementById('lastUpdated').textContent =
+                    'Updated: ' + date.toLocaleString();
+            }
+        }
+
+        // Translation function using Google Translate widget
+        function translatePage() {
+            // Check if Google Translate is already loaded
+            if (window.google && window.google.translate) {
+                // Toggle the translate widget
+                const translateElement = document.querySelector('.goog-te-combo');
+                if (translateElement) {
+                    translateElement.dispatchEvent(new Event('click'));
+                } else {
+                    loadGoogleTranslate();
+                }
+            } else {
+                loadGoogleTranslate();
+            }
+        }
+
+        function loadGoogleTranslate() {
+            // Create Google Translate element if it doesn't exist
+            if (!document.getElementById('google_translate_element')) {
+                const translateDiv = document.createElement('div');
+                translateDiv.id = 'google_translate_element';
+                translateDiv.style.cssText = 'position: fixed; top: 80px; right: 20px; z-index: 1000; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+                document.body.appendChild(translateDiv);
+
+                // Load Google Translate script
+                const script = document.createElement('script');
+                script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+                document.body.appendChild(script);
+            }
+
+            // Show the translate div
+            const translateEl = document.getElementById('google_translate_element');
+            if (translateEl) {
+                translateEl.style.display = translateEl.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'auto',
+                includedLanguages: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+        function navigateToConversation(questionText) {
+            const normalizedQuestion = questionText.toLowerCase().trim();
+            let targetSessionId = null;
+
+            for (const [sessionId, messages] of Object.entries(allData.conversations)) {
+                for (const msg of messages) {
+                    if (msg.question && msg.question.toLowerCase().trim() === normalizedQuestion) {
+                        targetSessionId = sessionId;
+                        break;
+                    }
+                }
+                if (targetSessionId) break;
+            }
+
+            if (!targetSessionId) {
+                for (const [sessionId, messages] of Object.entries(allData.conversations)) {
+                    for (const msg of messages) {
+                        if (msg.question && msg.question.toLowerCase().includes(normalizedQuestion)) {
+                            targetSessionId = sessionId;
+                            break;
+                        }
+                    }
+                    if (targetSessionId) break;
+                }
+            }
+
+            if (targetSessionId) {
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById('section-conversations').classList.add('active');
+
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                document.querySelector('.nav-link[onclick*="conversations"]').classList.add('active');
+
+                switchTabProgrammatically('all');
+
+                setTimeout(() => {
+                    showConversationById(targetSessionId, 'conversationDetail', 'sessionList');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 100);
+            } else {
+                alert('Conversation not found for this question.');
+            }
+        }
+
+        function switchTabProgrammatically(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            document.querySelectorAll('.tab').forEach(t => {
+                if (t.textContent.toLowerCase().includes(tab === 'all' ? 'all sessions' : tab)) {
+                    t.classList.add('active');
+                }
+            });
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+
+        function showConversationById(sessionId, detailId, listId) {
+            const conversation = allData.conversations[sessionId];
+            if (!conversation) return;
+
+            const sessionHeader = `
+                <div style="background: white; padding: 16px; border-radius: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
+                    <div style="font-size: 0.875em; color: #718096; margin-bottom: 6px; font-weight: 600;">Session ID</div>
+                    <div style="font-family: 'Courier New', monospace; color: #0094FF; font-size: 0.9em; word-break: break-all;">${sessionId}</div>
+                    <div style="font-size: 0.75em; color: #a0aec0; margin-top: 6px;">User ID: ${conversation[0].user_id}</div>
+                </div>
+            `;
+
+            const messages = conversation.map(msg => `
+                <div class="message question">
+                    <div class="message-header">
+                        <span class="message-type">You</span>
+                        <span class="message-timestamp">${msg.user_question_timestamp}</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-content">${escapeHtml(msg.question)}</div>
+                    </div>
+                </div>
+                <div class="message answer">
+                    <div class="message-header">
+                        <span class="message-type">Chatbot</span>
+                        <span class="message-timestamp">${msg.answer_timestamp}</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-content">${formatAnswer(msg.answer)}</div>
+                        ${msg.feedback_grade ? `
+                            <div class="feedback ${msg.feedback_grade === '↑' ? 'positive' : 'negative'}" style="margin-top: 8px;">
+                                Feedback: ${msg.feedback_grade} ${msg.feedback_text || ''}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById(detailId).innerHTML = sessionHeader + messages;
+
+            const listElement = document.getElementById(listId);
+            if (listElement) {
+                listElement.querySelectorAll('.session-item').forEach(item => {
+                    item.classList.remove('active');
+                    if (item.onclick && item.onclick.toString().includes(sessionId)) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        }
+
+
+        // Initialize - try to load from localStorage first, then from JSON file
+        async function loadData() {
+            try {
+                const storedData = localStorage.getItem('chatbotData');
+                if (storedData) {
+                    allData = JSON.parse(storedData);
+                    displayAnalytics();
+                    displayTopKeywords();
+                    displayTopQuestions();
+                    displaySemanticGroups();
+                    displaySessions();
+                    updateLastUpdatedTime();
+
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('dashboard').style.display = 'block';
+                    return;
+                }
+            } catch (e) {
+                console.log('No stored data found, trying to load from JSON...');
+            }
+
+            // Fallback to JSON file
+            try {
+                const response = await fetch('chatbot_data.json');
+                if (!response.ok) throw new Error('Failed to load data');
+                allData = await response.json();
+
+                displayAnalytics();
+                displayTopKeywords();
+                displayTopQuestions();
+                displaySemanticGroups();
+                displaySessions();
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+            } catch (error) {
+                document.getElementById('loading').textContent = 'No data loaded. Please upload a CSV file to get started.';
+                document.getElementById('loading').style.color = 'white';
+            }
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
