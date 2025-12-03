@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,7 +116,7 @@
             background: white;
             padding: 15px 25px;
             border-radius: 16px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             border: 1px solid #e2e8f0;
         }
 
@@ -157,7 +158,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             display: none;
             justify-content: center;
             align-items: center;
@@ -186,8 +187,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .stats-grid {
@@ -201,14 +207,14 @@
             background: white;
             border-radius: 16px;
             padding: 25px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             border: 1px solid #e2e8f0;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .stat-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .stat-card h3 {
@@ -237,7 +243,7 @@
             background: white;
             border-radius: 16px;
             padding: 25px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             border: 1px solid #e2e8f0;
         }
 
@@ -309,7 +315,7 @@
             color: white;
         }
 
-        .session-item.active > div {
+        .session-item.active>div {
             color: white !important;
         }
 
@@ -331,7 +337,7 @@
             overflow-y: auto;
             background: #ffffff;
             background-image:
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0,148,255,0.02) 35px, rgba(0,148,255,0.02) 70px);
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0, 148, 255, 0.02) 35px, rgba(0, 148, 255, 0.02) 70px);
         }
 
         .message {
@@ -355,7 +361,7 @@
         .message-bubble {
             padding: 12px 16px;
             border-radius: 16px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             word-wrap: break-word;
             overflow-wrap: break-word;
             word-break: break-word;
@@ -717,6 +723,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="processing-overlay" id="processingOverlay">
         <div class="processing-content">
@@ -759,11 +766,13 @@
         </ul>
         <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
             <input type="file" id="fileInput" accept=".csv" onchange="handleFileUpload(event)">
-            <button class="upload-btn" onclick="document.getElementById('fileInput').click()" style="width: 100%; justify-content: center;">
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()"
+                style="width: 100%; justify-content: center;">
                 <span>📁</span>
                 <span>Upload CSV</span>
             </button>
-            <div id="lastUpdated" style="font-size: 0.75em; color: #718096; margin-top: 10px; text-align: center;"></div>
+            <div id="lastUpdated" style="font-size: 0.75em; color: #718096; margin-top: 10px; text-align: center;">
+            </div>
         </div>
     </div>
 
@@ -775,130 +784,148 @@
 
             <div id="dashboard" style="display: none;">
 
-            <!-- Conversations Section (Default View) -->
-            <div class="section active" id="section-conversations">
-                <h1>Conversations</h1>
-                <div class="card conversations-section">
-                    <div class="tabs">
-                        <button class="tab active" onclick="switchTab('all')">All Sessions</button>
-                        <button class="tab" onclick="switchTab('multi')">Multi-Question Sessions</button>
-                        <button class="tab" onclick="switchTab('single')">Single-Question Sessions</button>
-                    </div>
+                <!-- Conversations Section (Default View) -->
+                <div class="section active" id="section-conversations">
+                    <h1>Conversations</h1>
+                    <div class="card conversations-section">
+                        <div class="tabs">
+                            <button class="tab active" onclick="switchTab('all')">All Sessions</button>
+                            <button class="tab" onclick="switchTab('multi')">Multi-Question Sessions</button>
+                            <button class="tab" onclick="switchTab('single')">Single-Question Sessions</button>
+                        </div>
 
-                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                        <input type="text" class="search-box" id="searchBox" placeholder="Search conversations by question, answer, or session ID..." style="flex: 1; margin-bottom: 0;">
-                        <input type="date" class="search-box" id="startDate" placeholder="Start Date" style="width: 150px; margin-bottom: 0;">
-                        <input type="date" class="search-box" id="endDate" placeholder="End Date" style="width: 150px; margin-bottom: 0;">
-                        <button class="upload-btn" onclick="clearDateFilters()" style="padding: 8px 16px; font-size: 0.85em;">Clear Dates</button>
-                    </div>
+                        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                            <input type="text" class="search-box" id="searchBox"
+                                placeholder="Search conversations by question, answer, or session ID..."
+                                style="flex: 1; margin-bottom: 0;">
+                            <input type="date" class="search-box" id="startDate" placeholder="Start Date"
+                                style="width: 150px; margin-bottom: 0;">
+                            <input type="date" class="search-box" id="endDate" placeholder="End Date"
+                                style="width: 150px; margin-bottom: 0;">
+                            <button class="upload-btn" onclick="clearDateFilters()"
+                                style="padding: 8px 16px; font-size: 0.85em;">Clear Dates</button>
+                        </div>
 
-                    <div class="tab-content active" id="tab-all">
-                        <div style="display: grid; grid-template-columns: 400px 1fr; gap: 24px;">
-                            <div>
-                                <h3 style="margin-bottom: 15px; color: #2d3748;">Sessions</h3>
-                                <div class="session-list" id="sessionList"></div>
-                            </div>
-                            <div>
-                                <h3 style="margin-bottom: 15px; color: #2d3748;">Conversation</h3>
-                                <div class="conversation-detail" id="conversationDetail">
-                                    <p style="color: #999; text-align: center;">Select a session to view the conversation</p>
+                        <div class="tab-content active" id="tab-all">
+                            <div style="display: grid; grid-template-columns: 400px 1fr; gap: 24px;">
+                                <div>
+                                    <h3 style="margin-bottom: 15px; color: #2d3748;">Sessions</h3>
+                                    <div class="session-list" id="sessionList"></div>
+                                </div>
+                                <div>
+                                    <h3 style="margin-bottom: 15px; color: #2d3748;">Conversation</h3>
+                                    <div class="conversation-detail" id="conversationDetail">
+                                        <p style="color: #999; text-align: center;">Select a session to view the
+                                            conversation</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="tab-content" id="tab-multi">
-                        <div style="display: grid; grid-template-columns: 400px 1fr; gap: 24px;">
-                            <div>
-                                <h3 style="margin-bottom: 15px; color: #2d3748;">Multi-Question Sessions</h3>
-                                <div class="session-list" id="sessionListMulti"></div>
-                            </div>
-                            <div>
-                                <h3 style="margin-bottom: 15px; color: #2d3748;">Conversation</h3>
-                                <div class="conversation-detail" id="conversationDetailMulti">
-                                    <p style="color: #999; text-align: center;">Select a session to view the conversation</p>
+                        <div class="tab-content" id="tab-multi">
+                            <div style="display: grid; grid-template-columns: 400px 1fr; gap: 24px;">
+                                <div>
+                                    <h3 style="margin-bottom: 15px; color: #2d3748;">Multi-Question Sessions</h3>
+                                    <div class="session-list" id="sessionListMulti"></div>
+                                </div>
+                                <div>
+                                    <h3 style="margin-bottom: 15px; color: #2d3748;">Conversation</h3>
+                                    <div class="conversation-detail" id="conversationDetailMulti">
+                                        <p style="color: #999; text-align: center;">Select a session to view the
+                                            conversation</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="tab-content" id="tab-single">
-                        <div style="display: grid; grid-template-columns: 400px 1fr; gap: 24px;">
-                            <div>
-                                <h3 style="margin-bottom: 15px; color: #2d3748;">Single-Question Sessions</h3>
-                                <div class="session-list" id="sessionListSingle"></div>
-                            </div>
-                            <div>
-                                <h3 style="margin-bottom: 15px; color: #2d3748;">Conversation</h3>
-                                <div class="conversation-detail" id="conversationDetailSingle">
-                                    <p style="color: #999; text-align: center;">Select a session to view the conversation</p>
+                        <div class="tab-content" id="tab-single">
+                            <div style="display: grid; grid-template-columns: 400px 1fr; gap: 24px;">
+                                <div>
+                                    <h3 style="margin-bottom: 15px; color: #2d3748;">Single-Question Sessions</h3>
+                                    <div class="session-list" id="sessionListSingle"></div>
+                                </div>
+                                <div>
+                                    <h3 style="margin-bottom: 15px; color: #2d3748;">Conversation</h3>
+                                    <div class="conversation-detail" id="conversationDetailSingle">
+                                        <p style="color: #999; text-align: center;">Select a session to view the
+                                            conversation</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div style="display: flex; justify-content: flex-end; margin-top: 20px; gap: 10px;">
+                            <button class="translate-btn" onclick="translatePage()" id="translateBtn"
+                                style="padding: 10px 16px; font-size: 0.85em;">
+                                <span>🌐</span>
+                                <span>Translate to English</span>
+                            </button>
+                            <button class="translate-btn" onclick="showOriginal()" id="showOriginalBtn"
+                                style="padding: 10px 16px; font-size: 0.85em; background: #718096; display: none;">
+                                <span>↩️</span>
+                                <span>Show Original</span>
+                            </button>
+                        </div>
                     </div>
-                    <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
-                        <button class="translate-btn" onclick="translatePage()" style="padding: 10px 16px; font-size: 0.85em;">
-                            <span>🌐</span>
-                            <span>Translate to English</span>
+                </div>
+
+                <!-- Analytics Section -->
+                <div class="section" id="section-analytics">
+                    <h1>Analytics Overview</h1>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Total Sessions</h3>
+                            <div class="value" id="totalSessions">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Unique Users</h3>
+                            <div class="value" id="uniqueUsers">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Questions</h3>
+                            <div class="value" id="totalQuestions">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Avg Q per Session</h3>
+                            <div class="value" id="avgQuestions">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Positive Feedback</h3>
+                            <div class="value" id="positiveFeedback">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keywords Section -->
+                <div class="section" id="section-keywords">
+                    <h1>Top Keywords & Questions</h1>
+                    <div class="main-content">
+                        <div class="card">
+                            <h2>Top Keywords</h2>
+                            <div id="topKeywords"></div>
+                        </div>
+
+                        <div class="card">
+                            <h2>Top Questions</h2>
+                            <div id="topQuestions"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semantic Groups Section -->
+                <div class="section" id="section-semantic">
+                    <h1>Question Topics</h1>
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <p style="color: #718096; margin: 0;">Questions grouped by similar topics and keywords</p>
+                        <button class="upload-btn" onclick="toggleAllSemanticGroups()" id="toggleAllBtn"
+                            style="padding: 8px 16px; font-size: 0.85em;">
+                            Collapse All
                         </button>
                     </div>
-                </div>
-            </div>
-
-            <!-- Analytics Section -->
-            <div class="section" id="section-analytics">
-                <h1>Analytics Overview</h1>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Total Sessions</h3>
-                        <div class="value" id="totalSessions">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Unique Users</h3>
-                        <div class="value" id="uniqueUsers">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Total Questions</h3>
-                        <div class="value" id="totalQuestions">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Avg Q per Session</h3>
-                        <div class="value" id="avgQuestions">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Positive Feedback</h3>
-                        <div class="value" id="positiveFeedback">0</div>
+                    <div id="semanticGroups"
+                        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px;">
                     </div>
                 </div>
-            </div>
-
-            <!-- Keywords Section -->
-            <div class="section" id="section-keywords">
-                <h1>Top Keywords & Questions</h1>
-                <div class="main-content">
-                    <div class="card">
-                        <h2>Top Keywords</h2>
-                        <div id="topKeywords"></div>
-                    </div>
-
-                    <div class="card">
-                        <h2>Top Questions</h2>
-                        <div id="topQuestions"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Semantic Groups Section -->
-            <div class="section" id="section-semantic">
-                <h1>Question Topics</h1>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <p style="color: #718096; margin: 0;">Questions grouped by similar topics and keywords</p>
-                    <button class="upload-btn" onclick="toggleAllSemanticGroups()" id="toggleAllBtn" style="padding: 8px 16px; font-size: 0.85em;">
-                        Collapse All
-                    </button>
-                </div>
-                <div id="semanticGroups" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px;"></div>
-            </div>
 
             </div>
         </div>
@@ -1086,7 +1113,7 @@
                 const firstMessage = conv.messages[0];
                 return `
                     <div class="session-item" onclick="showConversation('${conv.sessionId}', '${detailId}', '${listId}')">
-                        <strong style="font-size: 1em; color: #2d3748;">${escapeHtml(firstMessage.question.substring(0, 70))}${firstMessage.question.length > 70 ? '...' : ''}</strong>
+                        <strong style="font-size: 1em;">${escapeHtml(firstMessage.question.substring(0, 70))}${firstMessage.question.length > 70 ? '...' : ''}</strong>
                         <div class="session-info" style="margin-top: 8px;">
                             ${conv.messages.length} question${conv.messages.length > 1 ? 's' : ''} |
                             ${firstMessage.user_question_timestamp}
@@ -1154,6 +1181,8 @@
             // Basic markdown-like formatting
             let formatted = escapeHtml(answer);
             formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            // Link parsing: [text](url)
+            formatted = formatted.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color: #0094FF; text-decoration: underline;">$1</a>');
             formatted = formatted.replace(/\n/g, '<br>');
             return formatted;
         }
@@ -1453,41 +1482,102 @@
             }
         }
 
-        // Translation function using Google Translate widget
+                                        // Simple Translation Logic
         function translatePage() {
-            // Check if Google Translate is already loaded
-            if (window.google && window.google.translate) {
-                // Toggle the translate widget
-                const translateElement = document.querySelector('.goog-te-combo');
-                if (translateElement) {
-                    translateElement.dispatchEvent(new Event('click'));
-                } else {
-                    loadGoogleTranslate();
+            const btn = document.getElementById('translateBtn');
+            
+            // Load if not loaded
+            if (!window.google || !window.google.translate) {
+                loadGoogleTranslate();
+                btn.innerHTML = '<span>⌛</span><span>Loading...</span>';
+                // Give it a moment to load
+                setTimeout(() => {
+                     if (window.google && window.google.translate) {
+                         triggerTranslation();
+                     } else {
+                         // If still not loaded, just reset button and let user try again
+                         btn.innerHTML = '<span>🌐</span><span>Translate to English</span>';
+                         btn.disabled = false;
+                     }
+                }, 1000);
+                return;
+            }
+            
+            triggerTranslation();
+        }
+
+        function triggerTranslation() {
+            const combo = document.querySelector('.goog-te-combo');
+            const btn = document.getElementById('translateBtn');
+            const originalBtn = document.getElementById('showOriginalBtn');
+
+            if (combo) {
+                combo.value = 'en';
+                combo.dispatchEvent(new Event('change'));
+                
+                if (btn) {
+                    btn.style.display = 'none';
+                    if (originalBtn) originalBtn.style.display = 'inline-flex';
                 }
             } else {
-                loadGoogleTranslate();
+                // If we can't find the combo, make the widget visible so user can use it manually
+                const widget = document.getElementById('google_translate_element');
+                if (widget) {
+                    widget.style.display = 'block';
+                    widget.style.position = 'fixed';
+                    widget.style.bottom = '20px';
+                    widget.style.right = '20px';
+                    widget.style.zIndex = '1000';
+                    widget.style.background = 'white';
+                    widget.style.padding = '10px';
+                    widget.style.borderRadius = '8px';
+                    widget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+                }
+                
+                // Reset button
+                if (btn) {
+                    btn.innerHTML = '<span>🌐</span><span>Translate to English</span>';
+                    btn.disabled = false;
+                }
             }
         }
 
+        function showOriginal() {
+            // Clear cookies and reload
+            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=." + document.domain + "; path=/;";
+            location.reload();
+        }
+
         function loadGoogleTranslate() {
-            // Create Google Translate element if it doesn't exist
             if (!document.getElementById('google_translate_element')) {
                 const translateDiv = document.createElement('div');
                 translateDiv.id = 'google_translate_element';
-                translateDiv.style.cssText = 'position: fixed; top: 80px; right: 20px; z-index: 1000; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+                // Initially hidden
+                translateDiv.style.display = 'none';
                 document.body.appendChild(translateDiv);
 
-                // Load Google Translate script
                 const script = document.createElement('script');
                 script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
                 document.body.appendChild(script);
             }
+        }
 
-            // Show the translate div
-            const translateEl = document.getElementById('google_translate_element');
-            if (translateEl) {
-                translateEl.style.display = translateEl.style.display === 'none' ? 'block' : 'none';
-            }
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'auto',
+                includedLanguages: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'auto',
+                includedLanguages: 'en',
+                autoDisplay: false
+            }, 'google_translate_element');
         }
 
         function googleTranslateElementInit() {
@@ -1655,4 +1745,5 @@
         loadData();
     </script>
 </body>
+
 </html>
