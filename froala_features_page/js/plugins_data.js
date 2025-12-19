@@ -3,7 +3,7 @@ export const plugins = [
         "id": "align",
         "title": "Align",
         "description": "Align text and paragraphs with left, center, right, or justify alignment options.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/align-plugin/",
         "config": {
             "pluginsEnabled": ["align", "paragraphFormat"],
@@ -16,7 +16,7 @@ export const plugins = [
         "id": "charCounter",
         "title": "Char Counter",
         "description": "Display the number of characters at the bottom bar of the editor and limit character input.",
-        "category": "Productivity",
+        "category": "Editing Tools",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/char-counter-plugin/",
         "config": {
             "pluginsEnabled": ["charCounter", "paragraphFormat"],
@@ -29,7 +29,7 @@ export const plugins = [
         "id": "codeBeautifier",
         "title": "Code Beautifier",
         "description": "Beautifies the code inside the code view mode.",
-        "category": "Developer",
+        "category": "Advanced Features",
         "docsUrl": "https://froala.com/code-beautifier-plugin/",
         "config": {
             "pluginsEnabled": ["codeBeautifier", "codeView", "paragraphFormat"],
@@ -42,7 +42,7 @@ export const plugins = [
         "id": "codeView",
         "title": "Code View",
         "description": "Switch between visual and HTML code view to edit raw HTML markup.",
-        "category": "Developer",
+        "category": "Advanced Features",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/code-view-plugin/",
         "config": {
             "pluginsEnabled": ["codeView", "paragraphFormat"],
@@ -55,7 +55,7 @@ export const plugins = [
         "id": "colors",
         "title": "Colors",
         "description": "Apply text and background colors with an intuitive color picker.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/colors-plugin/",
         "config": {
             "pluginsEnabled": ["colors", "paragraphFormat"],
@@ -68,7 +68,7 @@ export const plugins = [
         "id": "draggable",
         "title": "Draggable",
         "description": "Adds ability to drag content like images and videos.",
-        "category": "Layout & Tables",
+        "category": "Structure & Layout",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/draggable-plugin/",
         "config": {
             "pluginsEnabled": ["draggable", "image", "video", "paragraphFormat"],
@@ -81,7 +81,7 @@ export const plugins = [
         "id": "filestack",
         "title": "Filestack",
         "description": "Powerful cloud-based file uploads with image transformation and CDN delivery.",
-        "category": "Rich Media",
+        "category": "Media & Embeds",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/filestack-plugin/",
         "config": {
             "pluginsEnabled": ["filestack", "paragraphFormat"],
@@ -94,7 +94,7 @@ export const plugins = [
         "id": "embedly",
         "title": "Embedly",
         "description": "Embeds any content from the web in the editor.",
-        "category": "Rich Media",
+        "category": "Media & Embeds",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/embedly-plugin/",
         "config": {
             "pluginsEnabled": ["embedly", "paragraphFormat"],
@@ -107,7 +107,7 @@ export const plugins = [
         "id": "emoticons",
         "title": "Emoticons",
         "description": "Insert emoticons and emoji to add personality to your content.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/emoticons-plugin/",
         "config": {
             "pluginsEnabled": ["emoticons", "paragraphFormat"],
@@ -120,7 +120,7 @@ export const plugins = [
         "id": "entities",
         "title": "Entities",
         "description": "Converts special characters to HTML entities.",
-        "category": "Developer",
+        "category": "Advanced Features",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/entities-plugin/",
         "config": {
             "pluginsEnabled": ["entities", "codeView", "paragraphFormat"],
@@ -133,7 +133,7 @@ export const plugins = [
         "id": "exportToWord",
         "title": "Export to Word",
         "description": "Export your editor content as a Microsoft Word document.",
-        "category": "Productivity",
+        "category": "Editing Tools",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/export-to-word-plugin/",
         "config": {
             "pluginsEnabled": ["exportToWord", "paragraphFormat"],
@@ -147,7 +147,7 @@ export const plugins = [
         "id": "file",
         "title": "File",
         "description": "Upload and insert files into your content with drag-and-drop support.",
-        "category": "Rich Media",
+        "category": "Media & Embeds",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/file-plugin/",
         "config": {
             "pluginsEnabled": ["file", "paragraphFormat"],
@@ -160,7 +160,7 @@ export const plugins = [
         "id": "filesManager",
         "title": "Files Manager",
         "description": "Browse and manage uploaded files stored on your server.",
-        "category": "Rich Media",
+        "category": "Media & Embeds",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/files-manager-plugin/",
         "config": {
             "pluginsEnabled": ["file", "filesManager", "paragraphFormat"],
@@ -174,7 +174,7 @@ export const plugins = [
         "id": "findReplace",
         "title": "Find and Replace",
         "description": "Search and replace text throughout your document with ease.",
-        "category": "Productivity",
+        "category": "Editing Tools",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/find-replace-plugin/",
         "config": {
             "pluginsEnabled": ["findReplace", "paragraphFormat"],
@@ -187,7 +187,7 @@ export const plugins = [
         "id": "fontAwesome",
         "title": "Font Awesome",
         "description": "Insert Font Awesome icons directly into your content.",
-        "category": "Rich Media",
+        "category": "Media & Embeds",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/font-awesome-plugin/",
         "config": {
             "pluginsEnabled": ["fontAwesome", "paragraphFormat"],
@@ -200,7 +200,7 @@ export const plugins = [
         "id": "fontFamily",
         "title": "Font Family",
         "description": "Choose from a wide selection of fonts to customize your text style.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/font-family-plugin/",
         "config": {
             "pluginsEnabled": ["fontFamily", "paragraphFormat"],
@@ -213,7 +213,7 @@ export const plugins = [
         "id": "fontSize",
         "title": "Font Size",
         "description": "Adjust text size with precise font size controls.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/font-size-plugin/",
         "config": {
             "pluginsEnabled": ["fontSize", "paragraphFormat"],
@@ -226,7 +226,7 @@ export const plugins = [
         "id": "fullscreen",
         "title": "Fullscreen",
         "description": "Expand the editor to fullscreen for distraction-free editing.",
-        "category": "Productivity",
+        "category": "Editing Tools",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/fullscreen-plugin/",
         "config": {
             "pluginsEnabled": ["fullscreen", "paragraphFormat"],
@@ -239,7 +239,7 @@ export const plugins = [
         "id": "help",
         "title": "Help",
         "description": "Access keyboard shortcuts and helpful editing tips.",
-        "category": "Productivity",
+        "category": "Editing Tools",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/help-plugin/",
         "config": {
             "pluginsEnabled": ["help", "paragraphFormat"],
@@ -252,7 +252,7 @@ export const plugins = [
         "id": "image",
         "title": "Image",
         "description": "Upload, resize, and manipulate images with advanced editing tools.",
-        "category": "Rich Media",
+        "category": "Media & Embeds",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/image-plugin/",
         "config": {
             "pluginsEnabled": ["image", "paragraphFormat"],
@@ -265,7 +265,7 @@ export const plugins = [
         "id": "imageManager",
         "title": "Image Manager",
         "description": "Browse and manage uploaded images stored on your server.",
-        "category": "Rich Media",
+        "category": "Media & Embeds",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/image-manager-plugin/",
         "config": {
             "pluginsEnabled": ["image", "imageManager", "paragraphFormat"],
@@ -278,7 +278,7 @@ export const plugins = [
         "id": "inlineClass",
         "title": "Inline Class",
         "description": "Apply custom CSS classes to selected text for advanced styling.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/inline-class-plugin/",
         "config": {
             "pluginsEnabled": ["inlineClass", "paragraphFormat"],
@@ -291,7 +291,7 @@ export const plugins = [
         "id": "inlineStyle",
         "title": "Inline Style",
         "description": "Apply predefined CSS styles to selected text with one click.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/inline-style-plugin/",
         "config": {
             "pluginsEnabled": ["inlineStyle", "paragraphFormat"],
@@ -304,7 +304,7 @@ export const plugins = [
         "id": "lineBreaker",
         "title": "Line Breaker",
         "description": "Using the line_breaker plugin it is possible to insert a new paragraph between HTML elements where the cursor cannot be placed.",
-        "category": "Layout & Tables",
+        "category": "Structure & Layout",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/line-breaker-plugin/",
         "config": {
             "pluginsEnabled": ["lineBreaker", "table", "paragraphFormat"],
@@ -317,7 +317,7 @@ export const plugins = [
         "id": "lineHeight",
         "title": "Line Height",
         "description": "Adjust spacing between lines for improved readability and formatting.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/line-height-plugin/",
         "config": {
             "pluginsEnabled": ["lineHeight", "paragraphFormat"],
@@ -330,7 +330,7 @@ export const plugins = [
         "id": "link",
         "title": "Link",
         "description": "Insert and edit hyperlinks with customizable attributes and styling.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/link-plugin/",
         "config": {
             "pluginsEnabled": ["link", "paragraphFormat"],
@@ -343,7 +343,7 @@ export const plugins = [
         "id": "linkToAnchor",
         "title": "Link to Anchor",
         "description": "Create internal page links that jump to specific sections.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/link-to-anchor-plugin/",
         "config": {
             "pluginsEnabled": ["link", "linkToAnchor", "paragraphFormat"],
@@ -357,7 +357,7 @@ export const plugins = [
         "id": "lists",
         "title": "Lists",
         "description": "Insert lists with advanced types such as lower greek or upper roman.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/lists-plugin/",
         "config": {
             "pluginsEnabled": ["lists", "paragraphFormat"],
@@ -370,7 +370,7 @@ export const plugins = [
         "id": "markdown",
         "title": "Markdown",
         "description": "Write and edit content using Markdown syntax with live preview.",
-        "category": "Developer",
+        "category": "Advanced Features",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/markdown-plugin/",
         "config": {
             "pluginsEnabled": ["markdown", "paragraphFormat"],
@@ -383,7 +383,7 @@ export const plugins = [
         "id": "pageBreak",
         "title": "Page Break",
         "description": "Insert page breaks for structuring long documents intended for export.",
-        "category": "Layout & Tables",
+        "category": "Structure & Layout",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/page-break-plugin/",
         "config": {
             "pluginsEnabled": ["pageBreak", "paragraphFormat"],
@@ -397,7 +397,7 @@ export const plugins = [
         "id": "paragraphFormat",
         "title": "Paragraph Format",
         "description": "Format paragraphs with headings, blockquotes, and code blocks.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/paragraph-format-plugin/",
         "config": {
             "pluginsEnabled": ["paragraphFormat"],
@@ -410,7 +410,7 @@ export const plugins = [
         "id": "paragraphStyle",
         "title": "Paragraph Style",
         "description": "Apply custom CSS styles to paragraphs for unique formatting.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/paragraph-style-plugin/",
         "config": {
             "pluginsEnabled": ["paragraphStyle", "paragraphFormat"],
@@ -423,7 +423,7 @@ export const plugins = [
         "id": "quickInsert",
         "title": "Quick Insert",
         "description": "Quickly add images, tables, and media with a convenient popup menu.",
-        "category": "Layout & Tables",
+        "category": "Structure & Layout",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/quick-insert-plugin/",
         "config": {
             "pluginsEnabled": ["quickInsert", "image", "table", "video", "paragraphFormat"],
@@ -436,7 +436,7 @@ export const plugins = [
         "id": "quote",
         "title": "Quote",
         "description": "Increase or decrease quote indentation levels for nested quotations.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/quote-plugin/",
         "config": {
             "pluginsEnabled": ["quote", "paragraphFormat"],
@@ -449,7 +449,7 @@ export const plugins = [
         "id": "save",
         "title": "Save",
         "description": "Save editor content directly to your server with a single click.",
-        "category": "Productivity",
+        "category": "Editing Tools",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/save-plugin/",
         "config": {
             "pluginsEnabled": ["save", "paragraphFormat"],
@@ -462,7 +462,7 @@ export const plugins = [
         "id": "specialCharacters",
         "title": "Special Characters",
         "description": "Insert symbols, mathematical operators, and international characters easily.",
-        "category": "Formatting",
+        "category": "Text & Formatting",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/special-characters-plugin/",
         "config": {
             "pluginsEnabled": ["specialCharacters", "paragraphFormat"],
@@ -475,7 +475,7 @@ export const plugins = [
         "id": "spellChecker",
         "title": "Spell Checker",
         "description": "Check spelling and grammar with real-time error detection and corrections.",
-        "category": "Productivity",
+        "category": "Editing Tools",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/spell-checker-plugin/",
         "config": {
             "pluginsEnabled": ["spellChecker", "paragraphFormat"],
@@ -488,7 +488,7 @@ export const plugins = [
         "id": "table",
         "title": "Table",
         "description": "Create and edit tables with advanced formatting and styling options.",
-        "category": "Layout & Tables",
+        "category": "Structure & Layout",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/table-plugin/",
         "config": {
             "pluginsEnabled": ["table", "paragraphFormat"],
@@ -501,7 +501,7 @@ export const plugins = [
         "id": "track_changes",
         "title": "Track Changes",
         "description": "Track, review, and accept or reject document changes like in Word.",
-        "category": "Productivity",
+        "category": "Editing Tools",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/track-changes-plugin/",
         "config": {
             "pluginsEnabled": ["track_changes", "paragraphFormat"],
@@ -514,7 +514,7 @@ export const plugins = [
         "id": "url",
         "title": "URL",
         "description": "Automatically convert typed URLs into clickable links.",
-        "category": "Developer",
+        "category": "Advanced Features",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/url-plugin/",
         "config": {
             "pluginsEnabled": ["url", "paragraphFormat"],
@@ -527,7 +527,7 @@ export const plugins = [
         "id": "video",
         "title": "Video",
         "description": "Embed and manage videos from YouTube, Vimeo, and other sources.",
-        "category": "Rich Media",
+        "category": "Media & Embeds",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/video-plugin/",
         "config": {
             "pluginsEnabled": ["video", "paragraphFormat"],
@@ -540,7 +540,7 @@ export const plugins = [
         "id": "wordCounter",
         "title": "Word Counter",
         "description": "Display real-time word and character count while editing.",
-        "category": "Productivity",
+        "category": "Editing Tools",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/word-counter-plugin/",
         "config": {
             "pluginsEnabled": ["wordCounter", "paragraphFormat"],
@@ -553,7 +553,7 @@ export const plugins = [
         "id": "wordPaste",
         "title": "Word Paste",
         "description": "Paste content from Microsoft Word with clean HTML formatting.",
-        "category": "Productivity",
+        "category": "Editing Tools",
         "docsUrl": "https://froala.com/wysiwyg-editor/docs/plugins/word-paste-plugin/",
         "config": {
             "pluginsEnabled": ["wordPaste", "paragraphFormat"],
@@ -566,7 +566,7 @@ export const plugins = [
         "id": "codeMirror",
         "title": "Code Mirror (Code View)",
         "description": "Enhanced code editing with syntax highlighting using CodeMirror.",
-        "category": "3rd Party Plugins",
+        "category": "Integrations",
         "docsUrl": "https://froala.com/wysiwyg-editor/examples/code-mirror/",
         "config": {
             "pluginsEnabled": ["codeView", "paragraphFormat"],
@@ -579,7 +579,7 @@ export const plugins = [
         "id": "codox",
         "title": "Codox Real-time",
         "description": "Real-time collaborative editing with co-cursors and presence.",
-        "category": "3rd Party Plugins",
+        "category": "Integrations",
         "docsUrl": "https://froala.com/wysiwyg-editor/examples/codox-real-time-editing/",
         "config": {
             "pluginsEnabled": ["paragraphFormat", "image", "table"],
@@ -610,7 +610,7 @@ export const plugins = [
         "id": "tui",
         "title": "TUI Image Editor",
         "description": "Advanced image editing features including filters, cropping, and drawing.",
-        "category": "3rd Party Plugins",
+        "category": "Integrations",
         "docsUrl": "https://froala.com/wysiwyg-editor/examples/tui-advanced-image-editor/",
         "config": {
             "pluginsEnabled": ["image", "imageTUI", "paragraphFormat"],
@@ -633,7 +633,7 @@ export const plugins = [
         "id": "tribute",
         "title": "Tribute.js",
         "description": "Native ES6 @mention implementation.",
-        "category": "3rd Party Plugins",
+        "category": "Integrations",
         "docsUrl": "https://froala.com/wysiwyg-editor/examples/tribute-js/",
         "config": {
             "pluginsEnabled": ["paragraphFormat"],
@@ -666,7 +666,7 @@ export const plugins = [
         "id": "wsc",
         "title": "Web Spell Checker",
         "description": "Professional proofreading tool for spelling and grammar.",
-        "category": "3rd Party Plugins",
+        "category": "Integrations",
         "docsUrl": "https://froala.com/wysiwyg-editor/examples/web-spell-checker/",
         "config": {
             "pluginsEnabled": ["paragraphFormat"],
@@ -687,7 +687,7 @@ export const plugins = [
         "id": "wiris",
         "title": "MathType (Wiris)",
         "description": "Type and edit complex mathematical equations and chemical formulas.",
-        "category": "3rd Party Plugins",
+        "category": "Integrations",
         "docsUrl": "https://froala.com/wysiwyg-editor/examples/wiris/",
         "config": {
             "pluginsEnabled": ["wiris", "paragraphFormat"],
@@ -703,7 +703,7 @@ export const plugins = [
         "id": "multilingual",
         "title": "Multilingual",
         "description": "Translate content directly within the editor.",
-        "category": "3rd Party Plugins",
+        "category": "Integrations",
         "docsUrl": "https://froala.com/wysiwyg-editor/examples/multilingual-translation/",
         "config": {
             "pluginsEnabled": ["paragraphFormat"],

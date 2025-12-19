@@ -189,7 +189,7 @@ body {
 
 /* 1. Hero Section - Split Layout */
 .hero {
-    background: linear-gradient(135deg, #ffffff 0%, var(--bg-light) 100%);
+    background: linear-gradient(135deg, #00CBA9 0%, #0098f7 100%);
     padding: 80px 0;
     min-height: 600px;
     display: flex;
@@ -214,17 +214,19 @@ body {
 .hero h1 {
     font-size: 3.5rem;
     font-weight: 700;
-    color: var(--heading-color);
+    color: #ffffff;
     margin-bottom: 24px;
     letter-spacing: -0.5px;
     line-height: 1.2;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 .hero .subtitle {
     font-size: 1.25rem;
-    color: var(--text-color);
+    color: #ffffff;
     margin-bottom: 40px;
     line-height: 1.6;
+    opacity: 0.95;
 }
 
 /* Hero Visual - Simple Card */
@@ -232,6 +234,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
 }
 
 .editor-preview-card {

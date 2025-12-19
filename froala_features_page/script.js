@@ -13,19 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let allPlugins = plugins;
 
     const categoryOrder = [
-        "Formatting",
-        "Rich Media",
-        "Layout & Tables",
-        "Productivity",
-        "Developer",
-        "3rd Party Plugins"
+        "Text & Formatting",
+        "Media & Embeds",
+        "Structure & Layout",
+        "Editing Tools",
+        "Advanced Features",
+        "Integrations"
     ];
 
     // Render Plugins
     function renderPlugins(pluginsToRender = allPlugins) {
         pluginsGrid.innerHTML = '';
         if (pluginsToRender.length === 0) {
-            pluginsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999; padding: 40px;">No plugins found matching your search.</p>';
+            // Don't show message here - it will be handled by the search function
+            // which checks all sections before showing "no results"
             return;
         }
 
@@ -51,12 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (groupPlugins && groupPlugins.length > 0) {
                 // Category Descriptions for SEO
                 const categoryDescriptions = {
-                    "Formatting": "Empower users with precise control over typography and style. From font selection to inline styling, ensure every word looks perfect.",
-                    "Rich Media": "Bring content to life with powerful media tools. Seamlessly handle images, videos, and files to create immersive, visually stunning experiences.",
-                    "Layout & Tables": "Organize information effectively. Provide robust tools for creating complex tables, lists, and structured layouts with intuitive ease.",
-                    "Productivity": "Enhance efficiency and workflow. Features like spell checking, character counts, and track changes help users write better and faster.",
-                    "Developer": "Advanced tools for total control. Access code view, markdown support, and debugging features designed to meet developer needs.",
-                    "3rd Party Plugins": "Expand capabilities with seamless integrations. Connect Froala with industry-leading tools for real-time editing, math equations, and more."
+                    "Text & Formatting": "Empower users with precise control over typography and style. From font selection to inline styling, ensure every word looks perfect.",
+                    "Media & Embeds": "Bring content to life with powerful media tools. Seamlessly handle images, videos, and files to create immersive, visually stunning experiences.",
+                    "Structure & Layout": "Organize information effectively. Provide robust tools for creating complex tables, lists, and structured layouts with intuitive ease.",
+                    "Editing Tools": "Enhance efficiency and workflow. Features like spell checking, character counts, and track changes help users write better and faster.",
+                    "Advanced Features": "Advanced tools for total control. Access code view, markdown support, and debugging features designed to meet developer needs.",
+                    "Integrations": "Expand capabilities with seamless integrations. Connect Froala with industry-leading tools for real-time editing, math equations, and more."
                 };
 
                 // Render Header
@@ -179,20 +180,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchTerm = e.target.value.toLowerCase().trim();
 
         // 1. Filter Plugins
+        let hasPluginResults = false;
         if (!searchTerm) {
             renderPlugins(allPlugins);
+            hasPluginResults = true;
         } else {
             const filtered = allPlugins.filter(plugin =>
                 plugin.title.toLowerCase().includes(searchTerm) ||
                 plugin.description.toLowerCase().includes(searchTerm)
             );
             renderPlugins(filtered);
+            hasPluginResults = filtered.length > 0;
         }
 
         // Helper to filter static lists (Frameworks, SDKs, APIs)
         const filterSection = (sectionId, itemSelector) => {
             const section = document.getElementById(sectionId);
-            if (!section) return;
+            if (!section) return false;
 
             const items = section.querySelectorAll(itemSelector);
             let hasVisibleItems = false;
@@ -206,36 +210,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Hide the entire section if no items match
             section.style.display = (hasVisibleItems || !searchTerm) ? '' : 'none';
+            return hasVisibleItems;
         };
 
         // 2. Filter Frameworks
-        filterSection('frameworks-section', '.framework-item');
+        const hasFrameworkResults = filterSection('frameworks-section', '.framework-item');
 
         // 3. Filter SDKs
-        filterSection('sdks-section', '.framework-item');
+        const hasSDKResults = filterSection('sdks-section', '.framework-item');
 
-        // 4. Filter API
-        filterSection('api-section', '.api-card');
+        // 4. Filter Accessibility
+        const hasAccessibilityResults = filterSection('accessibility-section', '.api-card');
+
+        // 5. Filter API
+        const hasAPIResults = filterSection('api-section', '.api-card');
+
+        // Check if there are any results at all
+        const hasAnyResults = hasPluginResults || hasFrameworkResults || hasSDKResults || hasAccessibilityResults || hasAPIResults;
+
+        // Show/hide no results message
+        if (searchTerm && !hasAnyResults) {
+            pluginsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999; padding: 40px;">No results found matching your search.</p>';
+        }
     });
 
     // Navigation Active State
     function updateActiveNav() {
-        // Include #plugins-grid in the tracked sections
+        // Include both main sections and category headers
         const sections = document.querySelectorAll('section[id], header[id], #plugins-grid');
+        const categoryHeaders = document.querySelectorAll('.category-header[id]');
         const scrollPos = window.scrollY + 150;
 
+        // Remove active class from all nav links
+        const allNavLinks = document.querySelectorAll('.nav-tab, .nav-child-tab');
+
+        let activeSection = null;
+        let activeCategoryHeader = null;
+
+        // Check main sections
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
 
             if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
+                activeSection = sectionId;
+            }
+        });
+
+        // Check category headers (they're within plugins-grid)
+        categoryHeaders.forEach(header => {
+            const headerTop = header.offsetTop;
+            const headerParent = header.closest('.category-group-header');
+            const nextHeader = headerParent?.nextElementSibling;
+
+            // Calculate height until next category or end of container
+            let headerHeight = 300; // default fallback
+            if (nextHeader && nextHeader.classList.contains('category-group-header')) {
+                headerHeight = nextHeader.offsetTop - headerTop;
+            }
+
+            if (scrollPos >= headerTop && scrollPos < headerTop + headerHeight) {
+                activeCategoryHeader = header.getAttribute('id');
+            }
+        });
+
+        // Apply active states
+        allNavLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+
+            // Highlight category child tabs
+            if (activeCategoryHeader && href === `#${activeCategoryHeader}`) {
+                link.classList.add('active');
+                // Also keep parent "Plugins" tab highlighted
+                const pluginsTab = document.querySelector('a[href="#plugins-grid"]');
+                if (pluginsTab) pluginsTab.classList.add('active');
+            }
+            // Highlight main section tabs
+            else if (activeSection && href === `#${activeSection}` && !activeCategoryHeader) {
+                link.classList.add('active');
             }
         });
     }
@@ -488,16 +542,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initialize Hero Editor
-    if (document.getElementById('hero-editor')) {
-        new FroalaEditor('#hero-editor', {
-            key: 'Lc2C1qC1D1D4C3qB12qC8tsE4B-8F3J3A6B8B5D5D2A2di1aaA4cA1lnE1F2nrXYb1VPUGRHYZNRJd1JVOOb1HAc1zSZC1KGD1D1D1A1F1I4A10B1C6E4==',
-            heightMin: 350,
-            heightMax: 500,
-            placeholderText: 'Experience the fully featured editor...',
-            toolbarSticky: false
-        });
-    }
+    // Initialize Hero Editor - Removed, using image instead
+    // if (document.getElementById('hero-editor')) {
+    //     new FroalaEditor('#hero-editor', {
+    //         key: 'Lc2C1qC1D1D4C3qB12qC8tsE4B-8F3J3A6B8B5D5D2A2di1aaA4cA1lnE1F2nrXYb1VPUGRHYZNRJd1JVOOb1HAc1zSZC1KGD1D1D1A1F1I4A10B1C6E4==',
+    //         heightMin: 350,
+    //         heightMax: 500,
+    //         placeholderText: 'Experience the fully featured editor...',
+    //         toolbarSticky: false
+    //     });
+    // }
 
     // Initialize
     renderPlugins();
