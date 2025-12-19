@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froala Features</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Froala Editor CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_style.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <!-- Plugin CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/plugins/char_counter.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/plugins/code_view.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/plugins/colors.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/plugins/draggable.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/third_party/embedly.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/plugins/find_and_replace.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/plugins/image.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/plugins/line_breaker.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/plugins/table.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <!-- Code Mirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
+    <!-- Filestack Dependencies -->
+    <link rel="stylesheet" href="https://static.filestackapi.com/transforms-ui/2.x.x/transforms.css" />
+
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Mobile Header (Visible only on Mobile) -->
+    <header class="mobile-header">
+        <div class="img-container">
+            <img src="https://froala.com/wp-content/uploads/2019/10/froala.svg" alt="Froala" class="mobile-logo-img">
+        </div>
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- 1. Hero Section -->
+        <header class="hero" id="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Froala Features</h1>
+                    <p class="subtitle">Everything you need to add rich text editing to your app. 30+ plugins,
+                        integrations for React, Vue, Angular, and more, plus a full API for custom implementations.</p>
+                    <div class="cta-group">
+                        <a href="#plugins-section" class="cta-button btn-primary">Explore Features</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div id="hero-editor"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. Unlimited Section -->
+        <section class="unlimited-section" id="unlimited-section">
+            <div class="container">
+                <h2>Unlimited editor loads, unlimited users</h2>
+                <p>No traffic limits. Scale your application without worrying about usage caps.</p>
+            </div>
+        </section>
+
+        <!-- 3. Plugins Ecosystem -->
+        <section id="plugins-section" class="plugins-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Feature-Rich Ecosystem</h2>
+                    <p>Explore 30+ plugins, extensive framework support, and powerful developer tools.</p>
+                </div>
+
+                <!-- Left Sidebar Navigation -->
+                <div class="plugins-layout">
+                    <aside class="plugins-sidebar">
+                        <div class="plugins-search">
+                            <input type="text" id="plugin-search" placeholder="Search plugins..." class="search-input">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <nav class="plugins-nav">
+                            <a href="#hero-section" class="nav-tab">Overview</a>
+                            <a href="#plugins-grid" class="nav-tab">Plugins</a>
+                            <div class="nav-child-group">
+                                <a href="#cat-formatting" class="nav-child-tab">Formatting</a>
+                                <a href="#cat-rich-media" class="nav-child-tab">Rich Media</a>
+                                <a href="#cat-layout-and-tables" class="nav-child-tab">Layout & Tables</a>
+                                <a href="#cat-productivity" class="nav-child-tab">Productivity</a>
+                                <a href="#cat-developer" class="nav-child-tab">Developer</a>
+                                <a href="#cat-3rd-party-plugins" class="nav-child-tab">3rd Party Plugins</a>
+                            </div>
+                            <a href="#frameworks-section" class="nav-tab">Front-end Frameworks</a>
+                            <a href="#sdks-section" class="nav-tab">Server SDKs</a>
+                            <a href="#accessibility-section" class="nav-tab">Accessibility</a>
+                            <a href="#api-section" class="nav-tab">Developer API</a>
+                        </nav>
+                    </aside>
+                    <div class="plugins-content">
+
+                        <!-- Editor Demo Modal/Container -->
+                        <div id="editor-demo-container" class="editor-demo-container hidden">
+                            <div class="demo-header">
+                                <h3 id="demo-title">Plugin Demo</h3>
+                                <button id="close-demo" class="close-btn"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="demo-body">
+                                <div id="froala-editor"></div>
+                                <details class="config-display">
+                                    <summary>Under the Hood: See Configuration</summary>
+                                    <pre id="config-code"></pre>
+                                </details>
+                            </div>
+                            <div class="demo-footer">
+                                <p id="demo-desc">Plugin description...</p>
+                                <a id="demo-docs-link" href="#" target="_blank">Read Documentation <i
+                                        class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+
+                        <div id="plugins-grid" class="plugins-grid">
+                            <!-- Plugins will be injected here by JS -->
+                        </div>
+
+                        <!-- Front-end Frameworks Section -->
+                        <section id="frameworks-section" class="content-section">
+                            <h2 class="section-title">Front-end Frameworks</h2>
+                            <p class="section-description">Seamlessly integrate with the most popular modern web
+                                frameworks. Whether you're building with React, Vue, Angular, or others, we have
+                                dedicated wrappers to get you started in minutes.</p>
+                            <div class="frameworks-list">
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/rails/"
+                                    target="_blank" class="framework-item"><i class="fas fa-gem"></i> <span>Ruby on
+                                        Rails</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/react/"
+                                    target="_blank" class="framework-item"><i class="fab fa-react"></i>
+                                    <span>React</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/aurelia/"
+                                    target="_blank" class="framework-item"><i class="fas fa-cube"></i>
+                                    <span>Aurelia</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/angular/"
+                                    target="_blank" class="framework-item"><i class="fab fa-angular"></i>
+                                    <span>Angular</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/ionic/"
+                                    target="_blank" class="framework-item"><i class="fas fa-atom"></i>
+                                    <span>Ionic</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/vue-js/"
+                                    target="_blank" class="framework-item"><i class="fab fa-vuejs"></i>
+                                    <span>Vue.js</span></a>
+                                <a href="https://github.com/froala/yii2-froala-editor" target="_blank"
+                                    class="framework-item"><i class="fas fa-leaf"></i> <span>Yii</span></a>
+                                <a href="https://github.com/froala/django-froala-editor" target="_blank"
+                                    class="framework-item"><i class="fab fa-python"></i> <span>Django</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/ember-js/"
+                                    target="_blank" class="framework-item"><i class="fab fa-ember"></i>
+                                    <span>Ember</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/knockout-js/"
+                                    target="_blank" class="framework-item"><i class="fas fa-k"></i>
+                                    <span>Knockout</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/cakephp/"
+                                    target="_blank" class="framework-item"><i class="fab fa-php"></i>
+                                    <span>CakePHP</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/symfony/"
+                                    target="_blank" class="framework-item"><i class="fab fa-symfony"></i>
+                                    <span>Symfony</span></a>
+                                <a href="https://github.com/froala/craft-froala-wysiwyg" target="_blank"
+                                    class="framework-item"><i class="fas fa-drafting-compass"></i>
+                                    <span>CraftCMS</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/wordpress/"
+                                    target="_blank" class="framework-item"><i class="fab fa-wordpress"></i>
+                                    <span>WordPress</span></a>
+                                <a href="https://github.com/froala/sencha-froala-editor" target="_blank"
+                                    class="framework-item"><i class="fas fa-code"></i> <span>Sencha</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/gatsby/"
+                                    target="_blank" class="framework-item"><i class="fas fa-ghost"></i>
+                                    <span>Gatsby</span></a>
+                            </div>
+                        </section>
+
+                        <!-- Server SDKs Section -->
+                        <section id="sdks-section" class="content-section">
+                            <h2 class="section-title">Server SDKs</h2>
+                            <p class="section-description">Simplify your backend integration. Our robust server-side
+                                SDKs handle image uploads, file management, and security validation across Node.js, PHP,
+                                Python, Java, and more.</p>
+                            <div class="frameworks-list">
+                                <a href="https://froala.com/wysiwyg-editor/docs/sdks/nodejs/" target="_blank"
+                                    class="framework-item"><i class="fab fa-node-js"></i> <span>Node.js</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/sdks/php/" target="_blank"
+                                    class="framework-item"><i class="fab fa-php"></i> <span>PHP</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/sdks/python/" target="_blank"
+                                    class="framework-item"><i class="fab fa-python"></i> <span>Python</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/sdks/ruby/" target="_blank"
+                                    class="framework-item"><i class="fas fa-gem"></i> <span>Ruby on Rails</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/sdks/java/" target="_blank"
+                                    class="framework-item"><i class="fab fa-java"></i> <span>Java</span></a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/sdks/dotnet/" target="_blank"
+                                    class="framework-item"><i class="fab fa-microsoft"></i> <span>.NET</span></a>
+                            </div>
+                        </section>
+
+                        <!-- Accessibility Section -->
+                        <section id="accessibility-section" class="content-section">
+                            <h2 class="section-title">Accessibility & Usability</h2>
+                            <p class="section-description">Build for everyone. Ensure your content is accessible to all
+                                users with full Section 508 and WCAG 2.0 compliance, plus comprehensive keyboard
+                                navigation and RTL support.</p>
+                            <div class="api-grid" style="grid-template-columns: repeat(4, 1fr);">
+                                <a href="https://froala.com/wysiwyg-editor/examples/tabs/" target="_blank"
+                                    class="api-card">
+                                    <div class="icon"><i class="fas fa-long-arrow-alt-right"></i></div>
+                                    <h3>Tab Key Support</h3>
+                                    <p>Control the behavior of the TAB key to focus the next element or indent text.</p>
+                                </a>
+                                <a href="https://froala.com/wysiwyg-editor/accessibility/" target="_blank"
+                                    class="api-card">
+                                    <div class="icon"><i class="fas fa-universal-access"></i></div>
+                                    <h3>Accessibility</h3>
+                                    <p>Detailed documentation on Section 508, WCAG 2.0, and WAI-ARIA compliance.</p>
+                                </a>
+                                <a href="https://froala.com/wysiwyg-editor/shortcuts/" target="_blank" class="api-card">
+                                    <div class="icon"><i class="fas fa-keyboard"></i></div>
+                                    <h3>Keyboard Shortcuts</h3>
+                                    <p>Comprehensive list of all available keyboard shortcuts for faster editing.</p>
+                                </a>
+                                <a href="https://froala.com/wysiwyg-editor/examples/editor-direction/" target="_blank"
+                                    class="api-card">
+                                    <div class="icon"><i class="fas fa-align-right"></i></div>
+                                    <h3>RTL Support</h3>
+                                    <p>Full support for Right-To-Left languages like Arabic, Hebrew, and Farsi.</p>
+                                </a>
+                            </div>
+                        </section>
+
+                        <!-- Developer API Section -->
+                        <section id="api-section" class="content-section">
+                            <h2 class="section-title">Complete Control for Developers</h2>
+                            <p class="section-description">Extensible and powerful. Hook into 100+ events, control the
+                                editor programmatically with methods, and customize every behavior with granular
+                                options.</p>
+                            <div class="api-grid">
+                                <a href="https://froala.com/wysiwyg-editor/docs/options/" target="_blank"
+                                    class="api-card">
+                                    <div class="icon"><i class="fas fa-cog"></i></div>
+                                    <h3>Options</h3>
+                                    <p>Customize every aspect of the editor behavior.</p>
+                                </a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/methods/" target="_blank"
+                                    class="api-card">
+                                    <div class="icon"><i class="fas fa-wrench"></i></div>
+                                    <h3>Methods</h3>
+                                    <p>Programmatically control the editor instance.</p>
+                                </a>
+                                <a href="https://froala.com/wysiwyg-editor/docs/events/" target="_blank"
+                                    class="api-card">
+                                    <div class="icon"><i class="fas fa-bolt"></i></div>
+                                    <h3>Events</h3>
+                                    <p>Hook into editor lifecycle and user actions.</p>
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Filestack Dependencies -->
+    <script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+    <script
+        src="https://static.filestackapi.com/filestack-drag-and-drop-js/1.1.1/filestack-drag-and-drop.min.js"></script>
+    <script src="https://static.filestackapi.com/transforms-ui/2.x.x/transforms.umd.min.js"></script>
+
+    <!-- Froala Editor JS -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+
+    <!-- Froala Plugins -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/align.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/char_counter.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/code_beautifier.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/code_view.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/colors.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/draggable.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/third_party/embedly.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/emoticons.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/entities.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/export_to_word.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/file.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/files_manager.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/filestack.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/find_and_replace.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/third_party/font_awesome.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/font_family.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/font_size.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/fullscreen.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/help.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/image.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/image_manager.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/inline_class.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/inline_style.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/line_breaker.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/line_height.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/link.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/lists.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/markdown.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/page_break.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/paragraph_format.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/paragraph_style.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/quick_insert.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/quote.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/save.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/special_characters.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/third_party/spell_checker.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/table.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/track_changes.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/url.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/video.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/word_counter.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/word_paste.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/third_party/image_tui.min.js"></script>
+
+    <!-- Code Mirror JS -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+    <!-- PDF Export JS -->
+    <script type="text/javascript"
+        src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
+    <!-- Export to Word dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/file-saver-es@2.0.5/dist/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/dist/html-docx.min.js"></script>
+
+    <!-- Main Script -->
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
