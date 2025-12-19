@@ -491,6 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Hero Editor
     if (document.getElementById('hero-editor')) {
         new FroalaEditor('#hero-editor', {
+            key: 'Lc2C1qC1D1D4C3qB12qC8tsE4B-8F3J3A6B8B5D5D2A2di1aaA4cA1lnE1F2nrXYb1VPUGRHYZNRJd1JVOOb1HAc1zSZC1KGD1D1D1A1F1I4A10B1C6E4==',
             heightMin: 350,
             heightMax: 500,
             placeholderText: 'Experience the fully featured editor...',
