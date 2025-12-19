@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Base configuration with license key and common options
         const baseConfig = {
             // Add your license key here (get from https://froala.com/wysiwyg-editor/pricing/)
-            key: 'YOUR_LICENSE_KEY_HERE',
+            key: 'Lc2C1qC1D1D4C3qB12qC8tsE4B-8F3J3A6B8B5D5D2A2di1aaA4cA1lnE1F2nrXYb1VPUGRHYZNRJd1JVOOb1HAc1zSZC1KGD1D1D1A1F1I4A10B1C6E4==',
 
             // Image upload configuration
             imageUploadURL: '/upload_image',
