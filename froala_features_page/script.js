@@ -175,6 +175,348 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Semantic keyword mapping for intelligent search
+    const semanticKeywords = {
+        'align': [
+        'alignment', 'justify', 'center', 'left', 'right', 'text align', 
+        'paragraph align', 'justify text', 'center text', 'left align', 
+        'right align', 'text position', 'positioning', 'orientation', 
+        'flush left', 'flush right', 'centering', 'indentation', 'layout', 
+        'text flow', 'horizontal align', 'text placement', 'justification'
+    ],
+    'charCounter': [
+        'character', 'count', 'limit', 'length', 'word count', 'char limit', 
+        'character limit', 'counting', 'character counter', 'text length', 
+        'max characters', 'counter', 'input size', 'text metrics', 
+        'capacity', 'remaining characters', 'usage tracker', 'input limit', 
+        'validation', 'length check', 'character tracking'
+    ],
+    'codeBeautifier': [
+        'format', 'beautify', 'indent', 'html', 'code formatting', 
+        'pretty print', 'code format', 'beautifier', 'format code', 
+        'clean code', 'organize code', 'code cleanup', 'syntax formatting', 
+        'indentation fixer', 'source cleanup', 'html tidy', 'structure code', 
+        'readability', 'prettifier', 'auto format', 'style fixer'
+    ],
+    'codeView': [
+        'html', 'source', 'code', 'markup', 'raw', 'source code', 
+        'html view', 'code editor', 'view source', 'edit html', 
+        'raw html', 'html editor', 'developer mode', 'markup editor', 
+        'tag view', 'inspect element', 'coding mode', 'text editor', 
+        'backend view', 'source editing', 'syntax view', 'raw text'
+    ],
+    'colors': [
+        'color', 'background', 'text color', 'highlight', 'picker', 
+        'color picker', 'background color', 'font color', 'text highlight', 
+        'highlighter', 'coloring', 'paint', 'hex color', 'rgb', 
+        'palette', 'shade', 'tint', 'hue', 'saturation', 
+        'foreground color', 'swatch', 'color selection', 'text shading', 
+        'fill color', 'opacity', 'custom color'
+    ],
+    'draggable': [
+        'drag', 'drop', 'move', 'reorder', 'drag and drop', 'draggable', 
+        'rearrange', 'drag content', 'move content', 'reposition', 'dnd', 
+        'sort', 'sortable', 'shift', 'grab', 'handle', 
+        'movable elements', 'interactive move', 'layout adjustment', 
+        'slide', 'organize', 'shuffle'
+    ],
+    'filestack': [
+        'upload', 'file upload', 'image upload', 'cloud', 'storage', 
+        'facebook', 'instagram', 'google drive', 'dropbox', 'cloud storage', 
+        'cdn', 'cloud upload', 'social upload', 'import from', 'cloud files', 
+        'remote upload', 'external upload', 'third party upload', 
+        'asset picker', 'remote files', 'content delivery', 'cloud import', 
+        'media fetch', 'social import', 'drive integration'
+    ],
+    'embedly': [
+        'embed', 'url', 'youtube', 'twitter', 'social media', 'rich media', 
+        'embed content', 'embed url', 'video embed', 'social embed', 
+        'media embed', 'iframe', 'oembed', 'preview', 'link preview', 
+        'rich snippet', 'content card', 'integration', 'third party content', 
+        'url expansion', 'media card', 'social integration', 'smart embed'
+    ],
+    'emoticons': [
+        'emoji', 'emoticon', 'smiley', 'icon', 'emojis', 'smileys', 
+        'emoticons', 'faces', 'reactions', 'unicode emoji', 
+        'stickers', 'pictographs', 'facial expressions', 'moods', 
+        'graphics', 'symbols', 'expressive icons', 'glyphs', 'avatar'
+    ],
+    'entities': [
+        'html entities', 'special characters', 'escape', 'encode', 
+        'html encode', 'character encoding', 'entity encoding', 
+        'escape html', 'sanitize', 'html safe', 'string escape', 
+        'text cleaning', 'reserved characters', 'markup encoding', 
+        'security', 'xss prevention', 'input sanitization'
+    ],
+    'exportToWord': [
+        'export', 'word', 'download', 'doc', 'docx', 'microsoft', 
+        'microsoft word', 'save as word', 'word document', 'export doc', 
+        'word export', 'download doc', 'ms word', 'convert to word', 
+        'document conversion', 'offline copy', 'report generation', 
+        'office export', 'save to disk', 'file export'
+    ],
+    'file': [
+        'file', 'upload', 'attachment', 'document', 'pdf', 'file upload', 
+        'attach file', 'upload file', 'file attachment', 'attach', 
+        'attachments', 'documents', 'upload document', 'resource', 
+        'binary', 'data file', 'downloadable', 'linked file', 
+        'insert file', 'media attachment', 'file embedding'
+    ],
+    'filesManager': [
+        'file manager', 'browse files', 'media library', 'file browser', 
+        'manage files', 'file gallery', 'uploaded files', 'file management', 
+        'browse uploads', 'server files', 'directory', 'folder view', 
+        'asset library', 'file explorer', 'server browser', 'media organizer', 
+        'file list', 'storage view'
+    ],
+    'findReplace': [
+        'find', 'replace', 'search', 'substitute', 'find and replace', 
+        'search and replace', 'find text', 'replace text', 'search replace', 
+        'text search', 'text replace', 'batch edit', 'global replace', 
+        'query', 'text modification', 'swap text', 'lookup', 
+        'pattern match', 'search tool', 'replace all'
+    ],
+    'fontAwesome': [
+        'icon', 'font awesome', 'symbol', 'icons', 'fa icon', 
+        'font icon', 'web icon', 'vector icon', 'icon font', 
+        'glyph', 'scalable vector', 'ui icons', 'symbolic font', 
+        'icon library', 'graphics', 'interface icons', 'svg icons'
+    ],
+    'fontFamily': [
+        'font', 'typeface', 'typography', 'font family', 'font type', 
+        'text font', 'change font', 'font style', 'fonts', 
+        'font face', 'text appearance', 'lettering style', 
+        'font selection', 'serif', 'sans-serif', 'script', 'typography design'
+    ],
+    'fontSize': [
+        'size', 'font size', 'text size', 'large', 'small', 
+        'text scale', 'font scale', 'bigger', 'smaller', 'resize text', 
+        'text height', 'font height', 'typography size', 'text dimension', 
+        'scaling', 'points', 'px', 'readability', 'zoom text', 'enlarge'
+    ],
+    'fullscreen': [
+        'fullscreen', 'maximize', 'expand', 'full screen', 'maximized', 
+        'distraction free', 'focus mode', 'zen mode', 'fullscreen mode', 
+        'whole screen', 'wide view', 'canvas maximize', 'enlarge view', 
+        'focus view', 'expanded mode', 'presentation mode'
+    ],
+    'help': [
+        'help', 'keyboard shortcuts', 'shortcuts', 'hotkeys', 'help menu', 
+        'documentation', 'tips', 'assistance', 'guide', 'manual', 
+        'instructions', 'support', 'key bindings', 'usage guide', 
+        'tutorial', 'command list', 'cheat sheet', 'reference'
+    ],
+    'image': [
+        'image', 'picture', 'photo', 'upload image', 'resize', 'crop', 
+        'img', 'insert image', 'add image', 'image upload', 'pic', 
+        'photograph', 'graphics', 'resize image', 'crop image', 
+        'image editor', 'edit image', 'image manipulation', 'visual', 
+        'artwork', 'snapshot', 'figure', 'illustration', 'embedding'
+    ],
+    'imageManager': [
+        'image manager', 'gallery', 'media library', 'browse images', 
+        'image gallery', 'image library', 'photo gallery', 'image browser', 
+        'manage images', 'uploaded images', 'photo organizer', 
+        'media storage', 'visual assets', 'server images', 'album', 
+        'grid view', 'thumbnail view', 'select image'
+    ],
+    'inlineClass': [
+        'class', 'css class', 'style', 'inline class', 'custom class', 
+        'apply class', 'css styling', 'html class', 'span style', 
+        'text classifier', 'custom attribute', 'style tag', 
+        'semantic style', 'element class', 'add class', 'formatting class'
+    ],
+    'inlineStyle': [
+        'style', 'css', 'formatting', 'inline style', 'custom style', 
+        'css style', 'apply style', 'custom css', 'direct styling', 
+        'manual format', 'text decoration', 'css attribute', 
+        'visual override', 'local style', 'style attribute'
+    ],
+    'lineBreaker': [
+        'line break', 'paragraph', 'separator', 'break line', 'new line', 
+        'line separator', 'insert line', 'paragraph break', 'soft return', 
+        'divider', 'spacing', 'carriage return', 'split line', 
+        'vertical space', 'text break', 'horizontal rule'
+    ],
+    'lineHeight': [
+        'line height', 'spacing', 'leading', 'line spacing', 
+        'vertical spacing', 'space between lines', 'text spacing', 
+        'paragraph spacing', 'text density', 'vertical rhythm', 
+        'readability spacing', 'line distance', 'text gap', 'row height'
+    ],
+    'link': [
+        'link', 'hyperlink', 'url', 'anchor', 'insert link', 
+        'add link', 'create link', 'web link', 'external link', 
+        'href', 'clickable', 'redirection', 'web address', 
+        'path', 'pointer', 'connection', 'reference'
+    ],
+    'linkToAnchor': [
+        'anchor', 'jump', 'internal link', 'bookmark', 'jump to', 
+        'anchor link', 'page anchor', 'section link', 'internal anchor', 
+        'jump link', 'table of contents', 'page navigation', 'hash link', 
+        'scroll to', 'target link', 'in-page link', 'section jump'
+    ],
+    'lists': [
+        'list', 'bullet', 'numbered', 'ordered', 'unordered', 
+        'bullet list', 'numbered list', 'ol', 'ul', 'bulleted', 
+        'bullets', 'numbering', 'list items', 'checklist', 
+        'points', 'enumeration', 'steps', 'series', 'outline', 
+        'itemization', 'todo list'
+    ],
+    'markdown': [
+        'markdown', 'md', 'markup', 'markdown syntax', 'markdown editor', 
+        'markdown mode', 'md format', 'markdown formatting', 
+        'lightweight markup', 'text-to-html', 'plain text format', 
+        'commonmark', 'gfm', 'writing mode', 'simplified formatting'
+    ],
+    'pageBreak': [
+        'page break', 'separator', 'print', 'new page', 'break page', 
+        'page separator', 'print break', 'pagination', 'new sheet', 
+        'print layout', 'split page', 'pdf break', 'divider', 'hard break'
+    ],
+    'paragraphFormat': [
+        'heading', 'paragraph', 'blockquote', 'format', 'h1', 'h2', 'h3', 
+        'header', 'headers', 'paragraph format', 'text format', 
+        'block format', 'code block', 'pre', 'text structure', 
+        'block style', 'typography hierarchy', 'title', 'subtitle', 
+        'section header', 'text block'
+    ],
+    'paragraphStyle': [
+        'paragraph style', 'block style', 'custom paragraph', 
+        'paragraph formatting', 'block styling', 'box style', 
+        'container style', 'text box formatting', 'custom block', 
+        'layout style', 'div style', 'wrapper style'
+    ],
+    'quickInsert': [
+        'quick insert', 'add', 'insert', 'quick add', 'fast insert', 
+        'easy insert', 'insert menu', 'plus button', 'shortcut menu', 
+        'context menu', 'smart insert', 'floating menu', 'action menu', 
+        'add block', 'rapid insert', 'helper menu'
+    ],
+    'quote': [
+        'quote', 'blockquote', 'citation', 'quotation', 'quoted text', 
+        'cite', 'block quote', 'excerpt', 'testimonial', 'reference text', 
+        'indentation quote', 'saying', 'speech', 'pull quote'
+    ],
+    'save': [
+        'save', 'submit', 'store', 'save content', 'submit content', 
+        'save changes', 'persist', 'update', 'record', 'commit', 
+        'send data', 'keep', 'store data', 'upload changes', 'sync'
+    ],
+    'specialCharacters': [
+        'special characters', 'symbols', 'unicode', 'copyright', 
+        'trademark', 'special chars', 'character map', 'insert symbol', 
+        'omega', 'special symbols', '©', '™', '®', 'currency', 
+        'math symbols', 'glyphs', 'foreign characters', 'accents', 
+        'punctuation', 'arrows', 'shapes'
+    ],
+    'spellChecker': [
+        'spell', 'spelling', 'grammar', 'spellcheck', 'spell check', 
+        'grammar check', 'proofread', 'spelling check', 'typo', 
+        'typos', 'spelling error', 'correction', 'auto correct', 
+        'language check', 'proofing tool', 'text review', 'red underline', 
+        'error detection', 'writing aid'
+    ],
+    'table': [
+        'table', 'grid', 'rows', 'columns', 'cells', 'insert table', 
+        'create table', 'data table', 'spreadsheet', 'tabular', 
+        'table editor', 'matrix', 'data grid', 'structured data', 
+        'row', 'column', 'cell merge', 'table layout', 'chart data'
+    ],
+    'track_changes': [
+        'track changes', 'revision', 'history', 'review', 'track edits', 
+        'change tracking', 'document review', 'edit tracking', 
+        'revision history', 'changes', 'audit trail', 'version control', 
+        'diff', 'suggestions', 'collaborative review', 'markup view', 
+        'editor log', 'change log'
+    ],
+    'url': [
+        'url', 'auto link', 'automatic', 'auto url', 'automatic link', 
+        'link conversion', 'url detection', 'web address recognizer', 
+        'hyperlink detector', 'text to link', 'magic link', 
+        'address formatting', 'path detection'
+    ],
+    'video': [
+        'video', 'youtube', 'vimeo', 'embed video', 'insert video', 
+        'video embed', 'video player', 'media', 'movie', 'clip', 
+        'video upload', 'streaming', 'film', 'motion picture', 
+        'mp4', 'webm', 'multimedia', 'play', 'visual content'
+    ],
+    'wordCounter': [
+        'word count', 'character count', 'count', 'word counter', 
+        'counter', 'count words', 'word limit', 'character counter', 
+        'text stats', 'statistics', 'volume', 'writing metrics', 
+        'text analysis', 'length check', 'content size', 'data metrics'
+    ],
+    'wordPaste': [
+        'paste', 'word', 'microsoft word', 'clean paste', 
+        'paste from word', 'word paste', 'copy paste', 'paste content', 
+        'paste text', 'import from word', 'strip formatting', 
+        'clean html', 'office paste', 'format remover', 'plain text paste', 
+        'clipboard cleanup', 'word cleanup'
+    ],
+    'codeMirror': [
+        'code mirror', 'syntax highlighting', 'code editor', 'codemirror', 
+        'code coloring', 'syntax coloring', 'code view', 'advanced code', 
+        'ide', 'script editor', 'programming view', 'textmate', 
+        'source highlighter', 'developer editor', 'line numbers', 
+        'code folding', 'bracket matching'
+    ],
+    'codox': [
+        'collaboration', 'real-time', 'co-editing', 'multiplayer', 
+        'collaborative', 'co-authoring', 'real time editing', 'live editing', 
+        'shared editing', 'team editing', 'simultaneous editing', 
+        'sync', 'google docs style', 'cursors', 'remote collaboration', 
+        'group edit', 'live sync', 'presence'
+    ],
+    'tui': [
+        'image editor', 'advanced editing', 'filters', 'crop', 'draw', 
+        'image manipulation', 'photo editor', 'edit photo', 'image filters', 
+        'crop image', 'drawing', 'advanced image', 'tui editor', 
+        'photo effects', 'masking', 'rotation', 'flip', 'brightness', 
+        'contrast', 'canvas editor', 'annotate image'
+    ],
+    'tribute': [
+        'mention', 'at mention', '@mention', 'autocomplete', 'mentions', 
+        'tag user', 'tag people', '@', 'user mention', 'auto complete', 
+        'referencing', 'tagging', 'user lookup', 'context menu', 
+        'suggestions', 'name completion', 'handle'
+    ],
+    'wsc': [
+        'spell checker', 'proofreading', 'grammar', 'web spell checker', 
+        'spell check', 'grammar check', 'advanced spell', 'proofread', 
+        'server side spell check', 'language correction', 'dictionary', 
+        'thesaurus', 'writing assistant', 'text validation', 'proofing'
+    ],
+    'wiris': [
+        'math', 'equation', 'formula', 'mathtype', 'chemistry', 
+        'mathematical', 'equations', 'formulas', 'math editor', 
+        'latex', 'chemical formula', 'science', 'stem', 
+        'calculus', 'algebra', 'scientific notation', 'math symbols', 
+        'equation builder', 'scientific editor'
+    ],
+    'multilingual': [
+        'translate', 'translation', 'language', 'multilingual', 
+        'translator', 'multi language', 'localization', 'i18n', 
+        'internationalization', 'locale', 'globalization', 
+        'language switcher', 'l10n', 'native text', 'dialect', 
+        'ui language', 'text direction'
+    ]
+    };
+
+    // Intelligent search function
+    function matchesSearch(plugin, searchTerm) {
+        // Direct match in title or description
+        if (plugin.title.toLowerCase().includes(searchTerm) ||
+            plugin.description.toLowerCase().includes(searchTerm)) {
+            return true;
+        }
+
+        // Semantic keyword match
+        const keywords = semanticKeywords[plugin.id] || [];
+        return keywords.some(keyword => keyword.includes(searchTerm) || searchTerm.includes(keyword));
+    }
+
     // Search Functionality
     searchInput.addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase().trim();
@@ -185,10 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderPlugins(allPlugins);
             hasPluginResults = true;
         } else {
-            const filtered = allPlugins.filter(plugin =>
-                plugin.title.toLowerCase().includes(searchTerm) ||
-                plugin.description.toLowerCase().includes(searchTerm)
-            );
+            const filtered = allPlugins.filter(plugin => matchesSearch(plugin, searchTerm));
             renderPlugins(filtered);
             hasPluginResults = filtered.length > 0;
         }
