@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froala for JavaScript Developers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation (Mock) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Froala</a>
+            <div class="nav-links">
+                <a href="#">Overview</a>
+                <a href="#">Features</a>
+                <a href="#">Docs</a>
+                <a href="#">Examples</a>
+                <a href="#" class="btn btn-outline">Pricing</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="separator">/</li>
+                <li class="current">JavaScript</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero hero-small">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Froala for JavaScript</h1>
+                <p>JavaScript WYSIWYG editor. Lightweight, customizable, and integration for
+                    vanilla JS projects.</p>
+                <div class="hero-actions">
+                    <a href="https://froala.com/wysiwyg-editor/docs/overview/" class="btn btn-white">View
+                        Documentation</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="framework-logo-large">
+                    <i class="fa-brands fa-js"></i>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#ffffff" fill-opacity="1"
+                    d="M0,64L60,85.3C120,107,240,149,360,154.7C480,160,600,128,720,122.7C840,117,960,139,1080,144C1200,149,1320,139,1380,133.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Quick Start Section -->
+    <!-- Quick Start Section -->
+    <section class="quick-start-section">
+        <div class="container">
+            <div class="quick-start-header">
+                <div class="quick-start-header-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3>Quick Start</h3>
+            </div>
+            <p>Get up and running with Froala in JavaScript in seconds.</p>
+
+            <div class="qs-tabs-container">
+                <div class="qs-tabs-header">
+                    <button class="qs-tab-btn active" onclick="switchTab(event, 'qs-tab-1')">
+                        <span class="qs-step-badge">1</span>
+                        Install
+                    </button>
+                    <button class="qs-tab-btn" onclick="switchTab(event, 'qs-tab-2')">
+                        <span class="qs-step-badge">2</span>
+                        Import
+                    </button>
+                    <button class="qs-tab-btn" onclick="switchTab(event, 'qs-tab-3')">
+                        <span class="qs-step-badge">3</span>
+                        Initialize
+                    </button>
+                </div>
+
+                <div class="qs-tab-content active" id="qs-tab-1">
+                    <h4>Install</h4>
+                    <p>Add Froala to your project via npm or CDN.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>Terminal</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="cmd-prefix">$</span>npm install froala-editor</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qs-tab-content" id="qs-tab-2">
+                    <h4>Import</h4>
+                    <p>Import the editor and its styles.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>index.js</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="code-keyword">import</span> FroalaEditor <span class="code-keyword">from</span> <span class="code-string">'froala-editor'</span>;
+<span class="code-keyword">import</span> <span class="code-string">'froala-editor/css/froala_editor.pkgd.min.css'</span>;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qs-tab-content" id="qs-tab-3">
+                    <h4>Initialize</h4>
+                    <p>Create a new editor instance on an element.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>Script</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="code-comment">// Initialize on a textarea or div</span>
+<span class="code-keyword">new</span> FroalaEditor(<span class="code-string">'#editor'</span>);</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab Switching Script -->
+    <script>
+        function switchTab(event, tabId) {
+            // Remove active class from all buttons and contents
+            document.querySelectorAll('.qs-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.qs-tab-content').forEach(content => content.classList.remove('active'));
+
+            // Add active class to clicked button and target content
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+
+    <!-- Tutorials Section -->
+    <section class="section tutorials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>JavaScript Tutorials</h2>
+                <p>Froala guides for your projects.</p>
+            </div>
+
+            <!-- Featured Tutorial -->
+            <div class="featured-card">
+                <div class="featured-image">
+                    <i class="fa-brands fa-js"></i>
+                </div>
+                <div class="featured-content">
+                    <span class="featured-label">Featured Guide</span>
+                    <h3>Froala JavaScript WYSIWYG Editor Overview</h3>
+                    <p>A comprehensive look at the Froala JavaScript WYSIWYG editor, a market leader known for its
+                        numerous features, utility, and adaptability for modern web applications.</p>
+                    <a href="https://froala.com/blog/general/a-closer-look-at-the-froala-javascript-wysiywg-editor/"
+                        class="btn btn-primary">Read the Full
+                        Guide</a>
+                </div>
+            </div>
+
+            <div class="grid tutorials-grid">
+                <!-- Tutorial 1 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-js">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Learn to Integrate Froala into Your NodeJS Application</h3>
+                        <p>A comprehensive tutorial on integrating Froala into NodeJS applications built with Express
+                            framework.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/learn-to-integrate-froala-into-your-nodejs-application/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 2 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-js">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Creating a Rich Text Form in NextJS</h3>
+                        <p>Tutorial on building a rich-text contact form in Next.js using the Froala WYSIWYG editor with
+                            practical examples.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/rich-text-form-using-froalas-wysiwyg-editor-in-nextjs/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 3 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-js">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Image Management in Express Framework: Froala Node.JS SDK</h3>
+                        <p>Learn how to handle image management in Express Framework using the Froala Node.js SDK for
+                            your JavaScript applications.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/image-management-in-express-framework-froala-node-js-sdk/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 4 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-js">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Top 5 Online JavaScript Editors - A Beginner's Guide</h3>
+                        <p>A beginner's guide to finding the right online JavaScript editor for your development needs.
+                        </p>
+                        <a href="https://froala.com/blog/general/top-5-online-javascript-editors-a-beginners-guide/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 5 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-js">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Code Smarter With Froala— An Online JavaScript Editor</h3>
+                        <p>Discover how the Froala editor is designed to handle JavaScript code efficiently as an online
+                            editor.</p>
+                        <a href="https://froala.com/blog/general/code-smarter-with-froala-an-online-javascript-editor/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 6 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-js">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>12 Steps To Find The Perfect JavaScript Editor</h3>
+                        <p>A comprehensive list of 12 steps to help you find the right JavaScript rich text editor for
+                            your project.</p>
+                        <a href="https://froala.com/blog/editor/12-steps-to-find-the-perfect-javascript-editor/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 7 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-js">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Why We Love JavaScript Web Editor</h3>
+                        <p>Learn how JavaScript web editors (WYSIWYG editors) make web content development and editing
+                            quick and easy.</p>
+                        <a href="https://froala.com/blog/general/why-we-love-javascript-web-editor-and-you-should-too/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 8 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-js">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>5 Easy Steps To Build a Custom WYSIWYG Editor JavaScript</h3>
+                        <p>Tutorial on customizing the Froala Editor in 5 easy steps using the online customization
+                            wizard.</p>
+                        <a href="https://froala.com/blog/general/5-easy-steps-to-build-a-custom-wysiwyg-editor-javascript/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 9 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-js">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Add Multilingual Translation to Froala with Translate Plus API</h3>
+                        <p>Discover how to add real-time translation capabilities to your Froala-based editors using the
+                            Translate Plus API.</p>
+                        <a href="https://froala.com/blog/editor/how-to-easily-add-multilingual-translation-to-your-froala-editor/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 10 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-js">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>The Advanced Guide to A Rich Text Editor</h3>
+                        <p>Explore the advanced features and capabilities of rich text editors with comprehensive
+                            guidance on implementing Froala.</p>
+                        <a href="https://froala.com/blog/editor/the-advanced-guide-to-a-rich-text-editor/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section"
+        style="background: var(--gradient-primary); color: var(--white); text-align: center; padding: 5rem 0;">
+        <div class="container">
+            <h2 style="color: var(--white); margin-bottom: 1.5rem; font-size: 2.5rem;">Start Building with Froala</h2>
+            <p
+                style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Get started with Froala's WYSIWYG editor in your JavaScript applications today.</p>
+            <a href="https://froala.com/wysiwyg-editor/pricing/" class="btn btn-white"
+                style="background: white; color: var(--primary-blue); padding: 1rem 3rem; font-size: 1.1rem; font-weight: 600;">Sign
+                Up</a>
+        </div>
+    </section>
+
+    <!-- Footer (Mock) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Froala</h4>
+                    <p>The next generation WYSIWYG HTML Editor.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#">Overview</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Changelog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Developers</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Community</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Froala. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

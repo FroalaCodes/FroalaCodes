@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froala for Ruby on Rails Developers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation (Mock) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Froala</a>
+            <div class="nav-links">
+                <a href="#">Overview</a>
+                <a href="#">Features</a>
+                <a href="#">Docs</a>
+                <a href="#">Examples</a>
+                <a href="#" class="btn btn-outline">Pricing</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="separator">/</li>
+                <li class="current">Ruby on Rails</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero hero-small">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Froala for Ruby on Rails</h1>
+                <p>Rails WYSIWYG editor. Gem installation, Active Storage integration, and rich
+                    features.</p>
+                <div class="hero-actions">
+                    <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/ruby-on-rails/"
+                        class="btn btn-white">View Rails Documentation</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="framework-logo-large">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#ffffff" fill-opacity="1"
+                    d="M0,64L60,85.3C120,107,240,149,360,154.7C480,160,600,128,720,122.7C840,117,960,139,1080,144C1200,149,1320,139,1380,133.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Quick Start Section -->
+    <!-- Quick Start Section -->
+    <section class="quick-start-section">
+        <div class="container">
+            <div class="quick-start-header">
+                <div class="quick-start-header-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3>Quick Start</h3>
+            </div>
+            <p>Get up and running with Froala in Ruby on Rails in seconds.</p>
+
+            <div class="qs-tabs-container">
+                <div class="qs-tabs-header">
+                    <button class="qs-tab-btn active" onclick="switchTab(event, 'qs-tab-1')">
+                        <span class="qs-step-badge">1</span>
+                        Install
+                    </button>
+                    <button class="qs-tab-btn" onclick="switchTab(event, 'qs-tab-2')">
+                        <span class="qs-step-badge">2</span>
+                        Import
+                    </button>
+                    <button class="qs-tab-btn" onclick="switchTab(event, 'qs-tab-3')">
+                        <span class="qs-step-badge">3</span>
+                        Initialize
+                    </button>
+                </div>
+
+                <div class="qs-tab-content active" id="qs-tab-1">
+                    <h4>Install</h4>
+                    <p>Add the Froala gem to your Gemfile.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>Gemfile</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code>gem <span class="code-string">'froala_editor_sdk'</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qs-tab-content" id="qs-tab-2">
+                    <h4>Import</h4>
+                    <p>Add assets to your application manifest.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>application.js</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="code-comment">//= require froala_editor.min.js</span>
+<span class="code-comment">//= require froala_style.min.css</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qs-tab-content" id="qs-tab-3">
+                    <h4>Initialize</h4>
+                    <p>Create an editor instance in your view.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>JavaScript</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="code-comment">// Initialize on your element</span>
+<span class="code-keyword">new</span> FroalaEditor(<span class="code-string">'#editor'</span>);</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab Switching Script -->
+    <script>
+        function switchTab(event, tabId) {
+            // Remove active class from all buttons and contents
+            document.querySelectorAll('.qs-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.qs-tab-content').forEach(content => content.classList.remove('active'));
+
+            // Add active class to clicked button and target content
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+
+    <!-- Tutorials Section -->
+    <section class="section tutorials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Rails Tutorials</h2>
+                <p>Froala in Rails projects.</p>
+            </div>
+
+            <!-- Featured Tutorial -->
+            <div class="featured-card">
+                <div class="featured-image">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+                <div class="featured-content">
+                    <span class="featured-label">Featured Guide</span>
+                    <h3>Rails Froala WYSIWYG Editor Integration</h3>
+                    <p>Complete documentation for integrating Froala WYSIWYG Editor in Ruby on Rails applications.
+                        Includes installation instructions, asset inclusion, and editor initialization.</p>
+                    <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/rails/"
+                        class="btn btn-primary">Read the Full Guide</a>
+                </div>
+            </div>
+
+            <div class="grid tutorials-grid">
+                <!-- Tutorial 1 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-ruby">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Image Upload | Ruby on Rails</h3>
+                        <p>Learn how to handle image uploads on your server using Ruby with complete integration
+                            examples.</p>
+                        <a href="https://froala.com/wysiwyg-editor/docs/server/ruby/image-upload/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 2 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-ruby">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Video Upload | Ruby on Rails</h3>
+                        <p>Comprehensive guide on handling video uploads on your server using Ruby.</p>
+                        <a href="https://froala.com/wysiwyg-editor/docs/server/ruby/video-upload/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 3 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-ruby">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>File Upload | Ruby on Rails</h3>
+                        <p>Learn how to handle file uploads on your server using Ruby with detailed server integration
+                            examples.</p>
+                        <a href="https://froala.com/wysiwyg-editor/docs/server/ruby/file-upload/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 4 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-ruby">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Ruby SDK Froala WYSIWYG Editor</h3>
+                        <p>Explore the complete Ruby SDK documentation for Froala WYSIWYG Editor with implementation
+                            examples.</p>
+                        <a href="https://froala.com/wysiwyg-editor/docs/sdks/ruby/" class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 5 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-ruby">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>How To Add A Text Editor In An HTML Form</h3>
+                        <p>Learn how to add a powerful text editor into HTML forms including Ruby on Rails applications.
+                        </p>
+                        <a href="https://froala.com/blog/editor/how-to-add-a-text-editor-in-an-html-form/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section"
+        style="background: var(--gradient-primary); color: var(--white); text-align: center; padding: 5rem 0;">
+        <div class="container">
+            <h2 style="color: var(--white); margin-bottom: 1.5rem; font-size: 2.5rem;">Start Building with Froala</h2>
+            <p
+                style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Get started with Froala's WYSIWYG editor in your Ruby on Rails applications today.</p>
+            <a href="https://froala.com/wysiwyg-editor/pricing/" class="btn btn-white"
+                style="background: white; color: var(--primary-blue); padding: 1rem 3rem; font-size: 1.1rem; font-weight: 600;">Sign
+                Up</a>
+        </div>
+    </section>
+
+    <!-- Footer (Mock) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Froala</h4>
+                    <p>The next generation WYSIWYG HTML Editor.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#">Overview</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Changelog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Developers</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Community</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Froala. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

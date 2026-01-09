@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froala for React Developers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation (Mock) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Froala</a>
+            <div class="nav-links">
+                <a href="#">Overview</a>
+                <a href="#">Features</a>
+                <a href="#">Docs</a>
+                <a href="#">Examples</a>
+                <a href="#" class="btn btn-outline">Pricing</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="separator">/</li>
+                <li class="current">React</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero hero-small">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Froala for React</h1>
+                <p>React WYSIWYG editor. Integration with React, API access, and customizable UI.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/react/" class="btn btn-white">View
+                        React Documentation</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="framework-logo-large">
+                    <i class="fa-brands fa-react"></i>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#ffffff" fill-opacity="1"
+                    d="M0,64L60,85.3C120,107,240,149,360,154.7C480,160,600,128,720,122.7C840,117,960,139,1080,144C1200,149,1320,139,1380,133.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Quick Start Section -->
+    <!-- Quick Start Section -->
+    <section class="quick-start-section">
+        <div class="container">
+            <div class="quick-start-header">
+                <div class="quick-start-header-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3>Quick Start</h3>
+            </div>
+            <p>Get up and running with Froala in React in seconds.</p>
+
+            <div class="qs-tabs-container">
+                <div class="qs-tabs-header">
+                    <button class="qs-tab-btn active" onclick="switchTab(event, 'qs-tab-1')">
+                        <span class="qs-step-badge">1</span>
+                        Install
+                    </button>
+                    <button class="qs-tab-btn" onclick="switchTab(event, 'qs-tab-2')">
+                        <span class="qs-step-badge">2</span>
+                        Import
+                    </button>
+                    <button class="qs-tab-btn" onclick="switchTab(event, 'qs-tab-3')">
+                        <span class="qs-step-badge">3</span>
+                        Use
+                    </button>
+                </div>
+
+                <div class="qs-tab-content active" id="qs-tab-1">
+                    <h4>Install</h4>
+                    <p>Add Froala to your React project via npm.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>Terminal</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="cmd-prefix">$</span>npm install react-froala-wysiwyg froala-editor</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qs-tab-content" id="qs-tab-2">
+                    <h4>Import</h4>
+                    <p>Import the component and styles into your app.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>App.js</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="code-keyword">import</span> FroalaEditor <span class="code-keyword">from</span> <span class="code-string">'react-froala-wysiwyg'</span>;
+<span class="code-keyword">import</span> <span class="code-string">'froala-editor/css/froala_editor.pkgd.min.css'</span>;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qs-tab-content" id="qs-tab-3">
+                    <h4>Use</h4>
+                    <p>Render the editor component in your JSX.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>Component</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="code-comment">// Render the editor</span>
+&lt;FroalaEditor tag=<span class="code-string">'textarea'</span>/&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab Switching Script -->
+    <script>
+        function switchTab(event, tabId) {
+            // Remove active class from all buttons and contents
+            document.querySelectorAll('.qs-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.qs-tab-content').forEach(content => content.classList.remove('active'));
+
+            // Add active class to clicked button and target content
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+
+    <!-- Tutorials Section -->
+    <section class="section tutorials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>React Tutorials</h2>
+                <p>Froala in React projects.</p>
+            </div>
+
+            <!-- Featured Tutorial -->
+            <div class="featured-card">
+                <div class="featured-image">
+                    <i class="fa-brands fa-react"></i>
+                </div>
+                <div class="featured-content">
+                    <span class="featured-label">Featured Guide</span>
+                    <h3>Integrate Froala with React</h3>
+                    <p>Learn how to integrate the React WYSIWYG editor with installation steps and basic configuration.
+                    </p>
+                    <a href="https://froala.com/blog/editor/tutorials/integrate-froala-with-react/"
+                        class="btn btn-primary">Read the Full Guide</a>
+                </div>
+            </div>
+
+            <div class="grid tutorials-grid">
+                <!-- Tutorial 1 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-react">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Modern Web Development with React: A Full Guide</h3>
+                        <p>Comprehensive guide covering state management, hooks, context APIs, Tailwind CSS styling, and
+                            API integration with Froala.</p>
+                        <a href="https://froala.com/blog/general/full-tutorial-reactjs-modern-web-development/"
+                            class="btn-tutorial">Read
+                            the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 2 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-react">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Building Interactive Web Apps with React and Froala</h3>
+                        <p>Discover how to build interactive web applications using React and Froala Editor with
+                            practical examples.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/building-interactive-web-apps-with-react-and-froala-editor/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 3 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-react">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Integrating Froala as a Functional Component in React 18</h3>
+                        <p>Learn how to integrate Froala in React 18 with full support using functional components and
+                            modern React patterns.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/integrating-froala-as-a-functional-component-in-react-18/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 4 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-react">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>useState Hook: Manage Froala React WYSIWYG Editor State</h3>
+                        <p>Master the useState hook to effectively manage the state of your Froala React WYSIWYG editor.
+                        </p>
+                        <a href="https://froala.com/blog/editor/tutorials/usestate-hook-manage-froala-react-wysiwyg-editor-state/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 5 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-react">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Gaining Control over Rich Text Editing with Froala React SDK</h3>
+                        <p>Explore advanced Froala React SDK components for editing images, links, buttons, and inputs
+                            with comprehensive control.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/gaining-comprehensive-control-over-rich-text-editing-with-froala-react-sdk-components/"
+                            class="btn-tutorial">Read
+                            the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 6 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-react">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Inline React Editor: Using Froala's Inline Mode</h3>
+                        <p>Learn how to use Froala's Inline Mode to embed rich text editing capabilities into your React
+                            applications.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/inline-react-editor-using-froalas-inline-mode-guide/"
+                            class="btn-tutorial">Read
+                            the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 7 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-react">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Enhance Your React Forms With a Rich Text Editor</h3>
+                        <p>Integrate Froala into your React forms to provide a robust and professional form experience
+                            for your users.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/enhance-your-react-forms-with-a-rich-text-editor/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 8 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-react">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Creating Custom Buttons with React and Froala Editor</h3>
+                        <p>Learn how to seamlessly integrate custom toolbar buttons into Froala Editor using React to
+                            enhance capabilities.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/creating-custom-buttons-with-react-and-froala-editor/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 9 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-react">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>How to Customize Froala Image Edit Buttons in a React App</h3>
+                        <p>Customize image edit buttons in Froala for your React applications with step-by-step
+                            implementation guide.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/how-to-customize-froala-image-edit-buttons-in-a-react-app/"
+                            class="btn-tutorial">Read
+                            the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 10 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-react">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Creating React Rich Text Editor for Right-to-Left Languages</h3>
+                        <p>Build accessible RTL language support in your React applications using Froala's WYSIWYG
+                            editor.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/creating-react-rich-text-editor-for-right-to-left-languages/"
+                            class="btn-tutorial">Read
+                            the tutorial</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section"
+        style="background: var(--gradient-primary); color: var(--white); text-align: center; padding: 5rem 0;">
+        <div class="container">
+            <h2 style="color: var(--white); margin-bottom: 1.5rem; font-size: 2.5rem;">Start Building with Froala</h2>
+            <p
+                style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Get started with Froala's WYSIWYG editor in your React applications today.</p>
+            <a href="https://froala.com/wysiwyg-editor/pricing/" class="btn btn-white"
+                style="background: white; color: var(--primary-blue); padding: 1rem 3rem; font-size: 1.1rem; font-weight: 600;">Sign
+                Up</a>
+        </div>
+    </section>
+
+    <!-- Footer (Mock) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Froala</h4>
+                    <p>The next generation WYSIWYG HTML Editor.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#">Overview</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Changelog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Developers</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Community</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Froala. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

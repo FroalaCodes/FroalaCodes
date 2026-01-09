@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Taking - Froala Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_style.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <style>
+        :root {
+            --primary-blue: #0084ff;
+            --primary-dark: #0066cc;
+            --text-dark: #1a1a1a;
+            --text-gray: #6b7280;
+            --bg-light: #f9fafb;
+            /* --notes-yellow: #ffd700; --notes-purple: #9333ea; Removed unused vars */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Notes Layout */
+        .notes-wrapper {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Left Sidebar - Notebooks */
+        .notes-sidebar {
+            width: 260px;
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .notes-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .notes-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .new-note-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .new-note-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(147, 51, 234, 0.4);
+        }
+
+        .notebooks {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .notebooks-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            padding: 0 0.5rem;
+        }
+
+        .notebook-item {
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+
+        .notebook-item:hover {
+            background: var(--bg-light);
+        }
+
+        .notebook-item.active {
+            background: rgba(0, 145, 235, 0.1);
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .notebook-icon {
+            font-size: 1.1rem;
+        }
+
+        .notebook-count {
+            margin-left: auto;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        /* Middle - Notes List */
+        .notes-list {
+            width: 300px;
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .notes-list-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .notes-list-header h2 {
+            margin: 0 0 1rem 0;
+            font-size: 1.3rem;
+            color: var(--text-dark);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary-blue);
+        }
+
+        .notes-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0.5rem;
+        }
+
+        .note-item {
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+            border: 1px solid transparent;
+        }
+
+        .note-item:hover {
+            background: var(--bg-light);
+        }
+
+        .note-item.active {
+            background: rgba(0, 145, 235, 0.1);
+            border-color: var(--primary-blue);
+        }
+
+        .note-item-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .note-item-preview {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .note-item-date {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        /* Main Editor */
+        .notes-editor {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+
+        .editor-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            /* Changed to column to stack back-link and toolbar */
+            gap: 1rem;
+            /* Space between back-link and toolbar */
+        }
+
+        .notes-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notes-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .editor-status {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background: var(--bg-light);
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-ghost {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            padding: 0.5rem 0.75rem;
+        }
+
+        .btn-ghost:hover {
+            background: var(--bg-light);
+        }
+
+        .editor-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            gap: 0.75rem;
+        }
+
+        .note-title {
+            width: 100%;
+            border: none;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            outline: none;
+            color: var(--text-dark);
+        }
+
+        .note-meta {
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Config Modal */
+        .config-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .config-modal-overlay.active {
+            display: flex;
+        }
+
+        .config-modal {
+            background: white;
+            border-radius: 12px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .config-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .config-modal-title {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .config-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: color 0.3s ease;
+        }
+
+        .config-modal-close:hover {
+            color: var(--text-dark);
+        }
+
+        .config-section {
+            margin-bottom: 2rem;
+        }
+
+        .config-code-container {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .config-code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .config-code-title {
+            color: #fff;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+        }
+
+        .config-code {
+            color: #d4d4d4;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="notes-wrapper">
+        <!-- Left Sidebar - Notebooks -->
+        <div class="notes-sidebar">
+            <div class="notes-header">
+                <div class="notes-logo">
+                    <i class="fa-solid fa-note-sticky"></i> NoteApp
+                </div>
+                <button class="new-note-btn">
+                    <i class="fa-solid fa-plus"></i> New Note
+                </button>
+            </div>
+
+            <div class="notebooks">
+                <div class="notebooks-title">Notebooks</div>
+                <div class="notebook-item active">
+                    <i class="fa-solid fa-book notebook-icon"></i>
+                    <span>Personal</span>
+                    <span class="notebook-count">12</span>
+                </div>
+                <div class="notebook-item">
+                    <i class="fa-solid fa-briefcase notebook-icon"></i>
+                    <span>Work</span>
+                    <span class="notebook-count">8</span>
+                </div>
+                <div class="notebook-item">
+                    <i class="fa-solid fa-lightbulb notebook-icon"></i>
+                    <span>Ideas</span>
+                    <span class="notebook-count">15</span>
+                </div>
+                <div class="notebook-item">
+                    <i class="fa-solid fa-graduation-cap notebook-icon"></i>
+                    <span>Learning</span>
+                    <span class="notebook-count">6</span>
+                </div>
+                <div class="notebook-item">
+                    <i class="fa-solid fa-star notebook-icon"></i>
+                    <span>Favorites</span>
+                    <span class="notebook-count">3</span>
+                </div>
+                <div class="notebook-item">
+                    <i class="fa-solid fa-archive notebook-icon"></i>
+                    <span>Archived</span>
+                    <span class="notebook-count">24</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle - Notes List -->
+        <div class="notes-list">
+            <div class="notes-list-header">
+                <h2>Personal Notes</h2>
+                <input type="text" class="search-box" placeholder="Search notes...">
+            </div>
+
+            <div class="notes-items">
+                <div class="note-item active">
+                    <div class="note-item-title">Meeting Notes - Project Alpha</div>
+                    <div class="note-item-preview">Discussed the new feature roadmap and timeline for Q1 2026...</div>
+                    <div class="note-item-date">Today, 2:30 PM</div>
+                </div>
+
+                <div class="note-item">
+                    <div class="note-item-title">Book Summary: Atomic Habits</div>
+                    <div class="note-item-preview">Key takeaways from James Clear's book on building better habits...
+                    </div>
+                    <div class="note-item-date">Yesterday</div>
+                </div>
+
+                <div class="note-item">
+                    <div class="note-item-title">Recipe: Homemade Pizza</div>
+                    <div class="note-item-preview">Perfect dough recipe that I need to remember. Uses 500g flour...
+                    </div>
+                    <div class="note-item-date">Jan 6</div>
+                </div>
+
+                <div class="note-item">
+                    <div class="note-item-title">Travel Plans - Japan 2026</div>
+                    <div class="note-item-preview">Itinerary for Tokyo, Kyoto, and Osaka. Must-see places and
+                        restaurants...</div>
+                    <div class="note-item-date">Jan 5</div>
+                </div>
+
+                <div class="note-item">
+                    <div class="note-item-title">Gift Ideas</div>
+                    <div class="note-item-preview">Birthday and holiday gift ideas for friends and family...</div>
+                    <div class="note-item-date">Jan 3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Editor -->
+        <div class="notes-editor">
+            <div class="editor-header">
+                <!-- Standard Back Link -->
+                <a href="../index.html#quick-configs" class="back-link">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Quick Configs
+                </a>
+
+                <!-- Toolbar -->
+                <div class="notes-toolbar">
+                    <div class="note-meta">
+                        <span class="note-date">Last edited: Just now</span>
+                        <span class="note-tag">Personal</span>
+                    </div>
+                    <div class="notes-actions">
+                        <!-- View Config Button -->
+                        <button class="btn btn-ghost" onclick="openConfigModal()"
+                            style="color: var(--primary-blue); background: rgba(0, 145, 235, 0.1);">
+                            <i class="fa-solid fa-code"></i> View Config
+                        </button>
+                        <button class="btn btn-ghost" title="Share">
+                            <i class="fa-solid fa-share-nodes"></i>
+                        </button>
+                        <button class="btn btn-ghost" title="More options">
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-content">
+                <input type="text" class="note-title" value="Meeting Notes - Project Alpha">
+                <div class="editor-status">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Saved 2 minutes ago
+                </div>
+
+                <div id="froala-editor">
+                    <h2>Meeting Overview</h2>
+                    <p>Today's meeting covered the Q1 2026 roadmap for Project Alpha. We made some significant decisions
+                        about feature prioritization and timeline adjustments.</p>
+
+                    <h3>Attendees</h3>
+                    <ul>
+                        <li>Sarah Chen (Product Manager)</li>
+                        <li>Mike Rodriguez (Lead Developer)</li>
+                        <li>Emily Watson (UX Designer)</li>
+                        <li>David Kim (QA Lead)</li>
+                    </ul>
+
+                    <h3>Key Decisions</h3>
+                    <ol>
+                        <li><strong>Feature Priority:</strong> User authentication redesign moved to top priority</li>
+                        <li><strong>Timeline:</strong> Beta release pushed to Feb 15 to ensure quality</li>
+                        <li><strong>Resources:</strong> Approved budget for 2 additional contractors</li>
+                    </ol>
+
+                    <h3>Action Items</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Owner</th>
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Update project timeline</td>
+                                <td>Sarah</td>
+                                <td>Jan 10</td>
+                            </tr>
+                            <tr>
+                                <td>Design mockups for auth flow</td>
+                                <td>Emily</td>
+                                <td>Jan 12</td>
+                            </tr>
+                            <tr>
+                                <td>Set up contractor interviews</td>
+                                <td>Mike</td>
+                                <td>Jan 15</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <blockquote>
+                        <p><strong>Important:</strong> Next meeting scheduled for Friday, Jan 12 at 2 PM to review
+                            design mockups.</p>
+                    </blockquote>
+
+                    <h3>Notes & Ideas</h3>
+                    <ul>
+                        <li>Consider implementing OAuth for social login</li>
+                        <li>Emily suggested A/B testing the onboarding flow</li>
+                        <li>Need to discuss security audit requirements with compliance team</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Config Modal -->
+    <div id="configModalOverlay" class="config-modal-overlay" onclick="closeConfigModal(event)">
+        <div class="config-modal">
+            <div class="config-modal-header">
+                <h2 class="config-modal-title">
+                    <i class="fa-solid fa-code"></i> Configuration
+                </h2>
+                <button class="config-modal-close" onclick="closeConfigModal(event)">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="config-modal-body">
+                <div class="config-section">
+                    <h2 style="margin-top: 0; color: #1f2937;">Froala Configuration for Notes</h2>
+                    <p style="color: #6b7280; margin-bottom: 1.5rem;">This demo uses the following Froala Editor
+                        configuration optimized
+                        for note-taking apps:</p>
+
+                    <div class="config-code-container">
+                        <div class="config-code-header">
+                            <div class="config-code-title">
+                                <i class="fa-brands fa-js"></i> JavaScript Configuration
+                            </div>
+                            <button class="copy-btn" onclick="copyConfig()">
+                                <i class="fa-solid fa-copy"></i> Copy Config
+                            </button>
+                        </div>
+                        <pre class="config-code"><code>new FroalaEditor('#froala-editor', {
+      key: 'YOUR_LICENSE_KEY',
+      
+      // Plugins for essential note-taking
+      pluginsEnabled: [
+        'align', 'colors', 'fontFamily', 'fontSize',
+        'paragraphFormat', 'lists', 'link', 'image',
+        'table', 'quote', 'specialCharacters', 'wordCounter',
+        'quickInsert', 'save'
+      ],
+    
+      // Clean, minimal toolbar
+      toolbarButtons: {
+        'moreText': {
+          'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'textColor', 'backgroundColor', 'clearFormatting']
+        },
+        'moreParagraph': {
+          'buttons': ['alignLeft', 'alignCenter', 'formatOLSimple', 'formatUL', 'paragraphFormat', 'quote']
+        },
+        'moreRich': {
+          'buttons': ['insertLink', 'insertImage', 'insertTable', 'specialCharacters', 'insertHR']
+        },
+        'moreMisc': {
+          'buttons': ['undo', 'redo', 'selectAll']
+        }
+      },
+      
+      // Editor settings
+      heightMin: 600,
+      placeholderText: 'Start typing your note...',
+      
+      // Quick insert for rapid content creation
+      quickInsertEnabled: true,
+      quickInsertButtons: ['image', 'table', 'ul', 'ol', 'hr'],
+      
+      // Auto-save configuration
+      saveInterval: 2000,
+      saveMethod: 'POST',
+      
+      // Typography tailored for reading notes
+      fontFamily: {
+        'Inter,sans-serif': 'Inter',
+        'Arial,Helvetica,sans-serif': 'Arial',
+        'Georgia,serif': 'Georgia',
+        'Courier New,Courier,monospace': 'Monospace'
+      },
+      
+      // Clean paste to avoid messy formatting from other sources
+      pastePlain: true,
+      
+      // Event handlers
+      events: {
+        'focus': function () {
+          console.log('Editor focused');
+        },
+        'blur': function () {
+          console.log('Editor saved');
+        }
+      }
+    });</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config_utils.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+    <script>
+        new FroalaEditor('#froala-editor', {
+            key: 'Lc2C1qC1D1D4C3qB12qC8tsE4B-8F3J3A6B8B5D5D2A2di1aaA4cA1lnE1F2nrXYb1VPUGRHYZNRJd1JVOOb1HAc1zSZC1KGD1D1D1A1F1I4A10B1C6E4==',
+            pluginsEnabled: [
+                'align', 'colors', 'fontSize', 'paragraphFormat',
+                'lists', 'link', 'image', 'table',
+                'quote', 'emoticons', 'specialCharacters',
+                'wordCounter', 'charCounter'
+            ],
+            toolbarButtons: {
+                'moreText': {
+                    'buttons': ['bold', 'italic', 'underline', 'strikeThrough',
+                        'fontSize', 'textColor', 'backgroundColor',
+                        'clearFormatting']
+                },
+                'moreParagraph': {
+                    'buttons': ['formatOL', 'formatUL', 'paragraphFormat',
+                        'alignLeft', 'alignCenter', 'alignRight',
+                        'outdent', 'indent', 'quote']
+                },
+                'moreRich': {
+                    'buttons': ['insertLink', 'insertImage', 'insertTable',
+                        'emoticons', 'insertHR']
+                },
+                'moreMisc': {
+                    'buttons': ['undo', 'redo', 'selectAll']
+                }
+            },
+            saveInterval: 5000,
+            saveParam: 'content',
+            heightMin: 400,
+            placeholderText: 'Start writing your note...',
+            wordCounterMax: -1,
+            charCounterCount: false,
+            shortcutsEnabled: ['bold', 'italic', 'underline',
+                'strikeThrough', 'undo', 'redo'],
+            imageEditButtons: ['imageReplace', 'imageAlign',
+                'imageRemove', 'imageAlt'],
+            imageMaxSize: 5 * 1024 * 1024,
+            imagePaste: true,
+            linkAlwaysBlank: false,
+            linkAutoPrefix: 'https://',
+            pastePlain: false,
+            quickInsertEnabled: false,
+            enter: FroalaEditor.ENTER_P
+        });
+
+        function toggleConfig() {
+            const modal = document.getElementById('configModal');
+            modal.classList.toggle('active');
+        }
+
+        function closeModalOnOutside(event) {
+            if (event.target.id === 'configModal') {
+                toggleConfig();
+            }
+        }
+
+        function copyConfig() {
+            const configText = document.querySelector('.config-code code').textContent;
+            navigator.clipboard.writeText(configText).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy Config';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('configModal');
+                if (modal.classList.contains('active')) {
+                    toggleConfig();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

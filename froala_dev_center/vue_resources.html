@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froala for Vue Developers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation (Mock) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Froala</a>
+            <div class="nav-links">
+                <a href="#">Overview</a>
+                <a href="#">Features</a>
+                <a href="#">Docs</a>
+                <a href="#">Examples</a>
+                <a href="#" class="btn btn-outline">Pricing</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="separator">/</li>
+                <li class="current">Vue</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero hero-small">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Froala for Vue</h1>
+                <p>Vue WYSIWYG editor. Integration with Vue 2 and Vue 3, API access, and
+                    customizable UI.</p>
+                <div class="hero-actions">
+                    <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/vue3/" class="btn btn-white">View
+                        Vue Documentation</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="framework-logo-large">
+                    <i class="fa-brands fa-vuejs"></i>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#ffffff" fill-opacity="1"
+                    d="M0,64L60,85.3C120,107,240,149,360,154.7C480,160,600,128,720,122.7C840,117,960,139,1080,144C1200,149,1320,139,1380,133.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Quick Start Section -->
+    <!-- Quick Start Section -->
+    <section class="quick-start-section">
+        <div class="container">
+            <div class="quick-start-header">
+                <div class="quick-start-header-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3>Quick Start</h3>
+            </div>
+            <p>Get up and running with Froala in Vue in seconds.</p>
+
+            <div class="qs-tabs-container">
+                <div class="qs-tabs-header">
+                    <button class="qs-tab-btn active" onclick="switchTab(event, 'qs-tab-1')">
+                        <span class="qs-step-badge">1</span>
+                        Install
+                    </button>
+                    <button class="qs-tab-btn" onclick="switchTab(event, 'qs-tab-2')">
+                        <span class="qs-step-badge">2</span>
+                        Register
+                    </button>
+                    <button class="qs-tab-btn" onclick="switchTab(event, 'qs-tab-3')">
+                        <span class="qs-step-badge">3</span>
+                        Use
+                    </button>
+                </div>
+
+                <div class="qs-tab-content active" id="qs-tab-1">
+                    <h4>Install</h4>
+                    <p>Add Froala to your Vue project via npm.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>Terminal</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="cmd-prefix">$</span>npm install vue-froala-wysiwyg froala-editor</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qs-tab-content" id="qs-tab-2">
+                    <h4>Register</h4>
+                    <p>Register the plugin in your Vue application.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>main.js</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="code-keyword">import</span> VueFroala <span class="code-keyword">from</span> <span class="code-string">'vue-froala-wysiwyg'</span>;
+<span class="code-keyword">import</span> <span class="code-string">'froala-editor/css/froala_editor.pkgd.min.css'</span>;
+
+app.use(VueFroala);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qs-tab-content" id="qs-tab-3">
+                    <h4>Use</h4>
+                    <p>Add the editor component to your template.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>Template</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="code-comment">&lt;!-- In your component --&gt;</span>
+&lt;froala :tag=<span class="code-string">"'textarea'"</span>&gt;&lt;/froala&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab Switching Script -->
+    <script>
+        function switchTab(event, tabId) {
+            // Remove active class from all buttons and contents
+            document.querySelectorAll('.qs-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.qs-tab-content').forEach(content => content.classList.remove('active'));
+
+            // Add active class to clicked button and target content
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+
+    <!-- Tutorials Section -->
+    <section class="section tutorials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Vue Tutorials</h2>
+                <p>Froala in Vue projects.</p>
+            </div>
+
+            <!-- Featured Tutorial -->
+            <div class="featured-card">
+                <div class="featured-image">
+                    <i class="fa-brands fa-vuejs"></i>
+                </div>
+                <div class="featured-content">
+                    <span class="featured-label">Featured Guide</span>
+                    <h3>How to Integrate Froala With Vue 3</h3>
+                    <p>A comprehensive step-by-step tutorial with a working demo showing how to set up Froala in a Vue 3
+                        application. Covers installation, configuration, and best practices for Vue integration.</p>
+                    <a href="https://froala.com/blog/editor/tutorials/how-to-integrate-froala-with-vue-3/"
+                        class="btn btn-primary">Read the Full Guide</a>
+                </div>
+            </div>
+
+            <div class="grid tutorials-grid">
+                <!-- Tutorial 1 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-vue">
+                            <i class="fa-brands fa-vuejs"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Using Froala as a Vue Visual HTML Editor for Markdown</h3>
+                        <p>Learn how to use Froala as a powerful Vue 3 WYSIWYG Markdown editor component in your
+                            applications.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/using-froala-html-visual-editor-for-vue-markdown-apps/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 2 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-vue">
+                            <i class="fa-brands fa-vuejs"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Build a Google Docs-like Editor with Froala Vue</h3>
+                        <p>Tutorial on using the Froala Vue WYSIWYG editor to build a Google Docs alternative with
+                            collaborative features.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/building-a-google-docs-alternative-using-froala-online-javascript-editor/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 3 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-vue">
+                            <i class="fa-brands fa-vuejs"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Web Editing with Froala's Special Tags in Vue App</h3>
+                        <p>Covers Froala editor Vue special tags including img, button, input, and a tags for different
+                            initialization modes.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/web-editing-with-froalas-special-tags-in-vue-app/"
+                            class="btn-tutorial">Read
+                            the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 4 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-vue">
+                            <i class="fa-brands fa-vuejs"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Optimizing Vue Applications: Initializing Froala Editor on Click</h3>
+                        <p>Control when the editor appears on the page to optimize application load speed, especially
+                            with multiple editors.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/optimizing-vue-applications-initializing-froala-editor-on-click/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 5 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-vue">
+                            <i class="fa-brands fa-vuejs"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Responsive Video Design with an Online JavaScript Editor</h3>
+                        <p>Working example of the Froala Responsive Video Feature implemented in Vue 3 applications.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/responsive-video-design-with-an-online-javascript-editor/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 6 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-vue">
+                            <i class="fa-brands fa-vuejs"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Integrating Google Cloud Storage in Vue.js Rich Text Editor</h3>
+                        <p>Tutorial on integrating Google Cloud Storage into Vue.js apps using the Froala Rich Text
+                            Editor and Filestack.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/seamlessly-integrating-google-cloud-storage-into-your-vue-js-rich-text-editor-with-froala-and-filestack/"
+                            class="btn-tutorial">Read
+                            the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 7 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-vue">
+                            <i class="fa-brands fa-vuejs"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Froala & Quasar Integration: Mastering the Best WYSIWYG Editor</h3>
+                        <p>Guide to integrating Froala with the Quasar Framework, a Vue.js-based framework for building
+                            responsive applications.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/froala-quasar-integration-best-wysiwyg-html-editor/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 8 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-vue">
+                            <i class="fa-brands fa-vuejs"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Accessible HTML Editor with Froala and Vue</h3>
+                        <p>A comprehensive guide for building an accessible HTML editor with setup process,
+                            customization options, and accessibility best practices.</p>
+                        <a href="https://froala.com/blog/general/accessible-html-editor-software-with-froala-and-vue/"
+                            class="btn-tutorial">Read
+                            the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 9 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-vue">
+                            <i class="fa-brands fa-vuejs"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Crafting a Custom Button for the Froala Editor in Vue.js</h3>
+                        <p>Learn how to create custom toolbar buttons that extend Froala's functionality in your Vue
+                            applications.</p>
+                        <a href="https://froala.com/blog/editor/tutorials/vuejs-froala-custom-buttons/"
+                            class="btn-tutorial">Read
+                            the tutorial</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section"
+        style="background: var(--gradient-primary); color: var(--white); text-align: center; padding: 5rem 0;">
+        <div class="container">
+            <h2 style="color: var(--white); margin-bottom: 1.5rem; font-size: 2.5rem;">Start Building with Froala</h2>
+            <p
+                style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Get started with Froala's WYSIWYG editor in your Vue applications today.</p>
+            <a href="https://froala.com/wysiwyg-editor/pricing/" class="btn btn-white"
+                style="background: white; color: var(--primary-blue); padding: 1rem 3rem; font-size: 1.1rem; font-weight: 600;">Sign
+                Up</a>
+        </div>
+    </section>
+
+    <!-- Footer (Mock) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Froala</h4>
+                    <p>The next generation WYSIWYG HTML Editor.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#">Overview</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Changelog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Developers</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Community</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Froala. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

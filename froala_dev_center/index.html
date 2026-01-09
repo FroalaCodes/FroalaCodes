@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froala Developer Resources</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation (Mock) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Froala</a>
+            <div class="nav-links">
+                <a href="#">Overview</a>
+                <a href="#">Features</a>
+                <a href="#">Docs</a>
+                <a href="#">Examples</a>
+                <a href="#" class="btn btn-outline">Pricing</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Welcome to Froala Developer Hub</h1>
+                <p>Your central resource for integrating the world's most powerful WYSIWYG editor. Find
+                    framework-specific guides, pre-configured setups, and comprehensive API documentation—all in one
+                    place.</p>
+                <div class="hero-actions">
+                    <a href="#frameworks" class="btn btn-white">Choose Framework</a>
+                    <a href="#quick-configs" class="btn btn-transparent">Browse Quick Configs</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Abstract Code/Tech Visual -->
+                <div class="code-card">
+                    <div class="code-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="code-body">
+                        <pre><code>import FroalaEditor from 'react-froala-wysiwyg';
+
+// Initialize Editor
+&lt;FroalaEditor
+  tag='textarea'
+  config={config}
+  model={model}
+  onModelChange={handleModelChange}
+/&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#ffffff" fill-opacity="1"
+                    d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Fixed Page Navigation Sidebar -->
+    <aside class="content-nav">
+        <h3 class="content-nav-title">On this page</h3>
+        <nav class="content-nav-links">
+            <a href="#frameworks" class="content-nav-link" data-section="frameworks">Frameworks</a>
+            <a href="#quick-configs" class="content-nav-link" data-section="quick-configs">Pre-Built Configs</a>
+            <a href="#case-studies" class="content-nav-link" data-section="case-studies">Case Studies</a>
+            <a href="#documentation" class="content-nav-link" data-section="documentation">Documentation</a>
+            <a href="#community" class="content-nav-link" data-section="community">Community</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content-area">
+
+        <!-- Frameworks Section -->
+        <section id="frameworks" class="section frameworks-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Start with Your Framework</h2>
+                    <p>Choose your preferred framework below to access installation guides, configuration examples,
+                        and
+                        framework-specific best practices.</p>
+                </div>
+                <div class="grid frameworks-grid">
+                    <!-- React -->
+                    <a href="react_resources.html" class="card framework-card">
+                        <div class="card-icon react-icon">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                        <h3>React</h3>
+                        <p>React SDK.</p>
+                        <span class="link-arrow">Use Froala in React <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <!-- Vue -->
+                    <a href="vue_resources.html" class="card framework-card">
+                        <div class="card-icon vue-icon">
+                            <i class="fa-brands fa-vuejs"></i>
+                        </div>
+                        <h3>Vue</h3>
+                        <p>Vue.js integration.</p>
+                        <span class="link-arrow">Use Froala in Vue <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <!-- Angular -->
+                    <a href="angular_resources.html" class="card framework-card">
+                        <div class="card-icon angular-icon">
+                            <i class="fa-brands fa-angular"></i>
+                        </div>
+                        <h3>Angular</h3>
+                        <p>Components for Angular.</p>
+                        <span class="link-arrow">Use Froala in Angular <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <!-- JavaScript -->
+                    <a href="js_resources.html" class="card framework-card">
+                        <div class="card-icon js-icon">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                        <h3>JavaScript</h3>
+                        <p>Pure JavaScript implementation.</p>
+                        <span class="link-arrow">Use Froala in JavaScript <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <!-- Django -->
+                    <a href="django_resources.html" class="card framework-card">
+                        <div class="card-icon python-icon">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                        <h3>Django</h3>
+                        <p>Backend integration for Django.</p>
+                        <span class="link-arrow">Use Froala in Django <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <!-- Ruby -->
+                    <a href="ruby_resources.html" class="card framework-card">
+                        <div class="card-icon ruby-icon">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <h3>Ruby on Rails</h3>
+                        <p>Gem for Rails integration.</p>
+                        <span class="link-arrow">Use Froala in Ruby <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/"
+                        class="btn btn-outline-primary">View
+                        All Frameworks</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links (Core Docs) moved to bottom -->
+
+        <!-- Quick Configs Section -->
+        <section id="quick-configs" class="section quick-configs-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Pre-Built Configurations</h2>
+                    <p>Save time with ready-to-use editor configurations optimized for specific use cases. Click any
+                        config
+                        to preview the editor and copy the setup code directly into your project.</p>
+                </div>
+                <div class="grid quick-configs-grid">
+                    <!-- Email Editor -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('email')" class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <h3>Email Editor</h3>
+                        <p>Perfect for email clients with HTML templates, inline styles, and clean paste.</p>
+                        <div class="config-tags">
+                            <span class="config-tag">Email</span>
+                            <span class="config-tag">Marketing</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Comment Box -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('comment')" class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-comment"></i>
+                        </div>
+                        <h3>Comment Box</h3>
+                        <p>Lightweight editor for comments with emoticons, mentions, and character limits.</p>
+                        <div class="config-tags">
+                            <span class="config-tag">Social</span>
+                            <span class="config-tag">Community</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- LMS Content Editor -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('lms')" class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3>LMS Content Editor</h3>
+                        <p>Full-featured editor for Learning Management Systems with math equations, video, and
+                            tables.</p>
+                        <div class="config-tags">
+                            <span class="config-tag">EdTech</span>
+                            <span class="config-tag">Education</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- CMS Article Editor -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('cms')" class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <h3>CMS Article Editor</h3>
+                        <p>Professional content management with image manager, SEO tools, and export options.</p>
+                        <div class="config-tags">
+                            <span class="config-tag">CMS</span>
+                            <span class="config-tag">Publishing</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Documentation Editor -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('documentation')"
+                        class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <h3>Documentation Editor</h3>
+                        <p>Technical documentation with markdown support, code highlighting, and table of contents.
+                        </p>
+                        <div class="config-tags">
+                            <span class="config-tag">Technical</span>
+                            <span class="config-tag">Docs</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Forum Post Editor -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('forum')" class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3>Forum Post Editor</h3>
+                        <p>Community forum editor with quotes, mentions, code blocks, and emoticons.</p>
+                        <div class="config-tags">
+                            <span class="config-tag">Community</span>
+                            <span class="config-tag">Forum</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Note Taking -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('note')" class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-note-sticky"></i>
+                        </div>
+                        <h3>Note Taking</h3>
+                        <p>Simple and distraction-free editor for personal notes with quick insert and auto-save.
+                        </p>
+                        <div class="config-tags">
+                            <span class="config-tag">Productivity</span>
+                            <span class="config-tag">Personal</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Blog Post Editor -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('blog')" class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-pen-fancy"></i>
+                        </div>
+                        <h3>Blog Post Editor</h3>
+                        <p>Rich blogging experience with media embeds, image editing, and SEO-friendly formatting.
+                        </p>
+                        <div class="config-tags">
+                            <span class="config-tag">Blogging</span>
+                            <span class="config-tag">Content</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Survey/Form Builder -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('survey')" class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-clipboard-question"></i>
+                        </div>
+                        <h3>Survey/Form Builder</h3>
+                        <p>Form descriptions and instructions with lists, tables, and special characters.</p>
+                        <div class="config-tags">
+                            <span class="config-tag">Forms</span>
+                            <span class="config-tag">Survey</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Knowledge Base -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('knowledge')" class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3>Knowledge Base</h3>
+                        <p>Help center articles with search-friendly formatting, images, and code snippets.</p>
+                        <div class="config-tags">
+                            <span class="config-tag">Support</span>
+                            <span class="config-tag">Help</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Ticket/Support Editor -->
+                    <a href="javascript:void(0)" onclick="openQuickConfigModal('ticket')" class="card config-card">
+                        <div class="config-icon" style="background: var(--gradient-primary);">
+                            <i class="fa-solid fa-ticket"></i>
+                        </div>
+                        <h3>Ticket/Support Editor</h3>
+                        <p>Customer support tickets with file attachments, templates, and quick responses.</p>
+                        <div class="config-tags">
+                            <span class="config-tag">Support</span>
+                            <span class="config-tag">CRM</span>
+                        </div>
+                        <span class="link-arrow">View Config <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section id="case-studies" class="section case-studies-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Success Stories</h2>
+                    <p>Learn how leading companies leverage Froala Editor to power their content creation workflows.
+                    </p>
+                </div>
+
+                <!-- Featured Case Study -->
+                <div class="featured-card">
+                    <div class="featured-image"
+                        style="background: var(--gradient-primary); display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-users" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-label">Featured Case Study</span>
+                        <h3>People Alchemy</h3>
+                        <p>How People Alchemy uses Froala's WYSIWYG Editor to provide content editing capabilities.
+                        </p>
+                        <a href="https://froala.com/wysiwyg-editor/customers/people-alchemy/"
+                            class="btn btn-primary">Read
+                            Case Study</a>
+                    </div>
+                </div>
+
+                <div class="grid tutorials-grid">
+                    <!-- Case Study 1 -->
+                    <article class="card tutorial-card">
+                        <div class="tutorial-icon-container">
+                            <div class="tutorial-icon" style="background: var(--gradient-primary);">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h3>EasyEviction</h3>
+                            <p>Froala for creating legal documents and email templates.</p>
+                            <a href="https://froala.com/wysiwyg-editor/customers/easyeviction/"
+                                class="btn-tutorial">Read
+                                Case Study</a>
+                        </div>
+                    </article>
+                    <!-- Case Study 2 -->
+                    <article class="card tutorial-card">
+                        <div class="tutorial-icon-container">
+                            <div class="tutorial-icon" style="background: var(--gradient-primary);">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h3>Unbounce</h3>
+                            <p>Using Froala's Inline Editor for content creation.</p>
+                            <a href="https://froala.com/wysiwyg-editor/customers/unbounce/" class="btn-tutorial">Read
+                                Case
+                                Study</a>
+                        </div>
+                    </article>
+                    <!-- Case Study 3 -->
+                    <article class="card tutorial-card">
+                        <div class="tutorial-icon-container">
+                            <div class="tutorial-icon" style="background: var(--gradient-primary);">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h3>Dynatrace</h3>
+                            <p>Froala support for front-end frameworks and integration.</p>
+                            <a href="https://froala.com/wysiwyg-editor/customers/dynatrace/" class="btn-tutorial">Read
+                                Case
+                                Study</a>
+                        </div>
+                    </article>
+                    <!-- Case Study 4 -->
+                    <article class="card tutorial-card">
+                        <div class="tutorial-icon-container">
+                            <div class="tutorial-icon" style="background: var(--gradient-primary);">
+                                <i class="fa-solid fa-palette"></i>
+                            </div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h3>ArtStation</h3>
+                            <p>Switching to Froala for artist showcase platform.</p>
+                            <a href="https://froala.com/wysiwyg-editor/customers/artstation/" class="btn-tutorial">Read
+                                Case
+                                Study</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="https://froala.com/wysiwyg-editor/customers/" class="btn btn-outline-primary">View All
+                        Case
+                        Studies</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Documentation (Quick Links) -->
+        <section id="documentation" class="section quick-links-section">
+            <div class="container">
+                <div class="section-header" style="margin-bottom: 2rem;">
+                    <h2>Essential Resources</h2>
+                    <p>Deep-dive into Froala's capabilities with comprehensive guides, API references, and plugin
+                        documentation.</p>
+                </div>
+                <div class="quick-links-grid">
+                    <a href="#" class="quick-link-card">
+                        <i class="fa-solid fa-book-open quick-link-icon"></i>
+                        <h4>Documentation</h4>
+                        <p>Comprehensive guides and references.</p>
+                    </a>
+                    <a href="#" class="quick-link-card">
+                        <i class="fa-solid fa-code quick-link-icon"></i>
+                        <h4>API Reference</h4>
+                        <p>Methods, events, and options.</p>
+                    </a>
+                    <a href="#" class="quick-link-card">
+                        <i class="fa-solid fa-puzzle-piece quick-link-icon"></i>
+                        <h4>Plugins</h4>
+                        <p>Extend functionality with plugins.</p>
+                    </a>
+                    <a href="#" class="quick-link-card">
+                        <i class="fa-solid fa-bolt quick-link-icon"></i>
+                        <h4>Events</h4>
+                        <p>Listen and react to editor events.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="community-section">
+            <div class="container">
+                <h2>Connect with Developers</h2>
+                <p>Get support, share knowledge, and stay updated with the latest Froala developments through our
+                    active
+                    developer community.</p>
+                <div class="community-grid">
+                    <a href="#" class="community-card">
+                        <i class="fa-brands fa-github community-icon"></i>
+                        <h4>GitHub</h4>
+                        <p>Explore our open source repositories.</p>
+                    </a>
+                    <a href="#" class="community-card">
+                        <i class="fa-brands fa-stack-overflow community-icon"></i>
+                        <h4>Stack Overflow</h4>
+                        <p>Get answers to technical questions.</p>
+                    </a>
+                    <a href="#" class="community-card">
+                        <i class="fa-brands fa-twitter community-icon"></i>
+                        <h4>Twitter</h4>
+                        <p>Follow us for latest updates.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- .main-content-area -->
+
+    <!-- Footer (Mock) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Froala</h4>
+                    <p>The next generation WYSIWYG HTML Editor.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#">Overview</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Changelog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Developers</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Community</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Froala. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Quick Config Modal System -->
+    <div id="quickConfigModal" class="quick-config-modal">
+        <div class="quick-config-content">
+            <!-- Uniform Header -->
+            <div class="quick-config-header">
+                <button class="back-btn" onclick="closeQuickConfigModal()">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Quick Configs
+                </button>
+                <button class="copy-config-btn" onclick="openConfigCodeModal()">
+                    <i class="fa-solid fa-code"></i> Copy Configuration
+                </button>
+            </div>
+
+            <!-- Demo Content Area -->
+            <div class="quick-config-body">
+                <iframe id="quickConfigFrame" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration Code Modal -->
+    <div id="configCodeModal" class="config-code-modal">
+        <div class="config-code-content">
+            <div class="config-code-header-bar">
+                <h2><i class="fa-solid fa-code"></i> Configuration</h2>
+                <button class="close-config-btn" onclick="closeConfigCodeModal()">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="config-code-body">
+                <p class="config-description">Copy this configuration to use in your project:</p>
+                <div class="config-code-container">
+                    <div class="config-code-actions">
+                        <button class="copy-code-btn" onclick="copyConfigCode()">
+                            <i class="fa-solid fa-copy"></i> Copy Config
+                        </button>
+                    </div>
+                    <pre id="configCodeBlock"><code></code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Quick Config Modal */
+        .quick-config-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .quick-config-modal.active {
+            display: flex;
+            opacity: 1;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-config-content {
+            width: 95%;
+            max-width: 1400px;
+            height: 90vh;
+            max-height: 900px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Uniform Header */
+        .quick-config-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            flex-shrink: 0;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            gap: 0.75rem;
+            color: var(--primary-dark);
+        }
+
+        /* Copy Config Button - Matching Design System */
+        .copy-config-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 16px rgba(0, 152, 247, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .copy-config-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 152, 247, 0.4);
+        }
+
+        .copy-config-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* Demo Body */
+        .quick-config-body {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .quick-config-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Configuration Code Modal */
+        .config-code-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .config-code-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .config-code-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .config-code-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .config-code-header-bar h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .close-config-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .close-config-btn:hover {
+            color: #1f2937;
+        }
+
+        .config-code-body {
+            padding: 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .config-description {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .config-code-container {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .config-code-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .copy-code-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 152, 247, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-code-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 152, 247, 0.4);
+        }
+
+        .copy-code-btn.copied {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        #configCodeBlock {
+            margin: 0;
+            color: #d4d4d4;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        #configCodeBlock code {
+            color: #d4d4d4;
+        }
+    </style>
+
+    <script>
+        // Configuration data for each quick config
+        const configData = {
+            email: {
+                file: 'quick_configs/email_editor.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Email-specific features
+  pluginsEnabled: [
+    'align', 'charCounter', 'colors', 'fontSize', 'fontFamily',
+    'image', 'link', 'lists', 'paragraphFormat', 'table'
+  ],
+  
+  toolbarButtons: {
+    'moreText': {
+      'buttons': ['bold', 'italic', 'underline', 'fontSize',
+                  'textColor', 'backgroundColor', 'clearFormatting']
+    },
+    'moreParagraph': {
+      'buttons': ['alignLeft', 'alignCenter', 'alignRight',
+                  'formatOL', 'formatUL', 'outdent', 'indent']
+    },
+    'moreRich': {
+      'buttons': ['insertLink', 'insertImage', 'insertTable']
+    }
+  },
+  
+  heightMin: 300,
+  useClasses: false, // Use inline styles for email compatibility
+  pastePlain: true
+});`
+            },
+            comment: {
+                file: 'quick_configs/comment_box.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Minimal toolbar for comments
+  pluginsEnabled: [
+    'link', 'emoticons', 'charCounter', 'lists', 'colors'
+  ],
+  
+  toolbarButtons: {
+    'moreText': {
+      'buttons': ['bold', 'italic', 'underline']
+    },
+    'moreParagraph': {
+      'buttons': ['formatOL', 'formatUL']
+    },
+    'moreRich': {
+      'buttons': ['insertLink', 'emoticons']
+    }
+  },
+  
+  heightMin: 80,
+  heightMax: 200,
+  charCounterMax: 500,
+  placeholderText: 'Write a comment...'
+});`
+            },
+            lms: {
+                file: 'quick_configs/lms_editor.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Full-featured for educational content
+  pluginsEnabled: [
+    'align', 'colors', 'fontSize', 'paragraphFormat',
+    'lists', 'link', 'image', 'video', 'table',
+    'specialCharacters', 'quote', 'codeView'
+  ],
+  
+  toolbarButtons: {
+    'moreText': {
+      'buttons': ['bold', 'italic', 'underline', 'subscript',
+                  'superscript', 'fontSize', 'textColor']
+    },
+    'moreParagraph': {
+      'buttons': ['alignLeft', 'alignCenter', 'alignRight',
+                  'formatOL', 'formatUL', 'paragraphFormat', 'quote']
+    },
+    'moreRich': {
+      'buttons': ['insertLink', 'insertImage', 'insertVideo',
+                  'insertTable', 'specialCharacters']
+    }
+  },
+  
+  heightMin: 500,
+  specialCharactersSet: ['α', 'β', 'γ', 'π', '∞', '∫', '∑', '√']
+});`
+            },
+            cms: {
+                file: 'quick_configs/cms_editor.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Professional content management
+  pluginsEnabled: [
+    'align', 'colors', 'fontSize', 'paragraphFormat',
+    'lists', 'link', 'image', 'imageManager', 'video',
+    'table', 'quote', 'codeView', 'fullscreen'
+  ],
+  
+  heightMin: 400,
+  imageEditButtons: ['imageReplace', 'imageAlign', 'imageCaption',
+                     'imageRemove', 'imageLink', 'imageAlt'],
+  linkAlwaysBlank: true
+});`
+            },
+            documentation: {
+                file: 'quick_configs/documentation_editor.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Technical documentation features
+  pluginsEnabled: [
+    'align', 'paragraphFormat', 'lists', 'link',
+    'image', 'table', 'codeView', 'specialCharacters'
+  ],
+  
+  heightMin: 500,
+  codeBeautifierOptions: {
+    end_with_newline: true,
+    indent_inner_html: true,
+    indent_char: ' ',
+    indent_size: 2
+  }
+});`
+            },
+            forum: {
+                file: 'quick_configs/forum_editor.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Community forum features
+  pluginsEnabled: [
+    'link', 'emoticons', 'lists', 'quote',
+    'image', 'codeView', 'colors'
+  ],
+  
+  heightMin: 200,
+  charCounterMax: 10000,
+  placeholderText: 'Share your thoughts...'
+});`
+            },
+            note: {
+                file: 'quick_configs/note_taking.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Simple note-taking
+  pluginsEnabled: [
+    'lists', 'link', 'colors', 'fontSize'
+  ],
+  
+  toolbarButtons: {
+    'moreText': {
+      'buttons': ['bold', 'italic', 'underline', 'fontSize']
+    },
+    'moreParagraph': {
+      'buttons': ['formatOL', 'formatUL']
+    }
+  },
+  
+  heightMin: 300,
+  placeholderText: 'Take notes...'
+});`
+            },
+            blog: {
+                file: 'quick_configs/blog_editor.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Rich blogging experience
+  pluginsEnabled: [
+    'align', 'colors', 'fontSize', 'paragraphFormat',
+    'lists', 'link', 'image', 'video', 'quote',
+    'specialCharacters', 'fullscreen', 'wordCounter'
+  ],
+  
+  heightMin: 400,
+  imageResizeWithPercent: true,
+  videoResponsive: true,
+  linkAlwaysBlank: true
+});`
+            },
+            survey: {
+                file: 'quick_configs/survey_editor.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Form descriptions
+  pluginsEnabled: [
+    'lists', 'link', 'table', 'specialCharacters'
+  ],
+  
+  heightMin: 200,
+  charCounterMax: 2000
+});`
+            },
+            knowledge: {
+                file: 'quick_configs/knowledge_base.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Help center articles
+  pluginsEnabled: [
+    'align', 'paragraphFormat', 'lists', 'link',
+    'image', 'codeView', 'specialCharacters'
+  ],
+  
+  heightMin: 400,
+  linkAlwaysBlank: true
+});`
+            },
+            ticket: {
+                file: 'quick_configs/ticket_editor.html',
+                config: `new FroalaEditor('#froala-editor', {
+  key: 'YOUR_LICENSE_KEY',
+  
+  // Support tickets
+  pluginsEnabled: [
+    'lists', 'link', 'image', 'file', 'emoticons'
+  ],
+  
+  heightMin: 250,
+  fileUpload: true,
+  charCounterMax: 5000
+});`
+            }
+        };
+
+        let currentConfig = null;
+
+        function openQuickConfigModal(configName) {
+            const modal = document.getElementById('quickConfigModal');
+            const iframe = document.getElementById('quickConfigFrame');
+            const config = configData[configName];
+
+            if (config) {
+                currentConfig = config;
+                iframe.src = config.file;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeQuickConfigModal() {
+            const modal = document.getElementById('quickConfigModal');
+            const iframe = document.getElementById('quickConfigFrame');
+
+            modal.classList.remove('active');
+            iframe.src = '';
+            currentConfig = null;
+            document.body.style.overflow = '';
+        }
+
+        function openConfigCodeModal() {
+            if (currentConfig) {
+                const codeModal = document.getElementById('configCodeModal');
+                const codeBlock = document.querySelector('#configCodeBlock code');
+
+                codeBlock.textContent = currentConfig.config;
+                codeModal.classList.add('active');
+            }
+        }
+
+        function closeConfigCodeModal() {
+            const codeModal = document.getElementById('configCodeModal');
+            codeModal.classList.remove('active');
+        }
+
+        function copyConfigCode() {
+            const codeBlock = document.querySelector('#configCodeBlock code');
+            const btn = document.querySelector('.copy-code-btn');
+
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                btn.classList.add('copied');
+
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Close modals with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const configModal = document.getElementById('configCodeModal');
+                const quickModal = document.getElementById('quickConfigModal');
+
+                if (configModal.classList.contains('active')) {
+                    closeConfigCodeModal();
+                } else if (quickModal.classList.contains('active')) {
+                    closeQuickConfigModal();
+                }
+            }
+        });
+
+        // Close config code modal when clicking backdrop
+        document.getElementById('configCodeModal').addEventListener('click', (e) => {
+            if (e.target.id === 'configCodeModal') {
+                closeConfigCodeModal();
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.content-nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+
+                if (targetSection) {
+                    // Remove active class from all links
+                    document.querySelectorAll('.content-nav-link').forEach(l => l.classList.remove('active'));
+                    // Add active class to clicked link
+                    link.classList.add('active');
+
+                    // Smooth scroll to section
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section on scroll and show/hide sidebar
+        window.addEventListener('scroll', () => {
+            const sections = ['frameworks', 'quick-configs', 'case-studies', 'documentation', 'community'];
+            let current = '';
+            const contentNav = document.querySelector('.content-nav');
+            const hero = document.querySelector('.hero');
+            const heroBottom = hero ? hero.offsetTop + hero.offsetHeight - 100 : 600;
+
+            // Show/hide sidebar based on scroll position
+            if (window.scrollY >= heroBottom) {
+                contentNav.classList.add('visible');
+            } else {
+                contentNav.classList.remove('visible');
+            }
+
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    if (window.scrollY >= (sectionTop - 100)) {
+                        current = sectionId;
+                    }
+                }
+            });
+
+            document.querySelectorAll('.content-nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+
+</html>

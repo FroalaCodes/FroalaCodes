@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Editor - Froala Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_style.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+        }
+
+        /* Blog Layout */
+        .blog-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .blog-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .blog-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .blog-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #6b7280;
+        }
+
+        .btn-ghost:hover {
+            background: #f3f4f6;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 145, 235, 0.4);
+        }
+
+        /* Main Content */
+        .blog-main {
+            flex: 1;
+            margin-top: 60px;
+            padding: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            gap: 0.75rem;
+            color: var(--primary-dark);
+        }
+
+        /* Editor Container */
+        .editor-container {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .post-title {
+            width: 100%;
+            border: none;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding: 0;
+            outline: none;
+            color: #1f2937;
+        }
+
+        .post-subtitle {
+            width: 100%;
+            border: none;
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            padding: 0;
+            outline: none;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Sidebar */
+        .blog-sidebar {
+            position: fixed;
+            right: 0;
+            top: 60px;
+            width: 320px;
+            height: calc(100vh - 60px);
+            background: white;
+            border-left: 1px solid #e5e7eb;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-section h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .sidebar-input:focus {
+            outline: none;
+            border-color: #ff9a9e;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tag i {
+            cursor: pointer;
+        }
+
+        .cover-preview {
+            width: 100%;
+            height: 150px;
+            background: #f3f4f6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Config Section */
+        .config-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .config-code-container {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+            margin-top: 1rem;
+        }
+
+        .config-code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .config-code-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .copy-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 152, 247, 0.3);
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 152, 247, 0.4);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .config-code {
+            color: #d4d4d4;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 1400px) {
+            .blog-sidebar {
+                display: none;
+            }
+
+            .blog-main {
+                max-width: 900px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="blog-header">
+        <div class="blog-logo">
+            <i class="fa-solid fa-pen-fancy"></i> MyBlog
+        </div>
+        <div class="blog-actions">
+            <button class="btn btn-ghost" onclick="alert('Preview mode')">
+                <i class="fa-solid fa-eye"></i> Preview
+            </button>
+            <button class="btn btn-ghost" onclick="alert('Saved as draft')">
+                <i class="fa-solid fa-save"></i> Save Draft
+            </button>
+            <button class="btn btn-primary" onclick="alert('Published!')">
+                <i class="fa-solid fa-paper-plane"></i> Publish
+            </button>
+        </div>
+    </div>
+
+    <div class="blog-wrapper">
+        <!-- Main Content -->
+        <div class="blog-main">
+
+            <!-- Editor -->
+            <div class="editor-container">
+                <input type="text" class="post-title" placeholder="Your story title..."
+                    value="The Ultimate Guide to Modern Web Development">
+                <input type="text" class="post-subtitle" placeholder="Add a subtitle (optional)"
+                    value="Everything you need to know to build amazing web experiences in 2026">
+
+                <div class="post-meta">
+                    <div class="meta-item">
+                        <i class="fa-solid fa-user-circle"></i>
+                        <span>Jane Smith</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fa-solid fa-calendar"></i>
+                        <span>January 8, 2026</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+
+                <div id="froala-editor">
+                    <p>Web development has come a long way in the past few years. With new frameworks, tools, and best
+                        practices emerging constantly, it can be challenging to keep up. In this comprehensive guide,
+                        we'll explore the essential skills and technologies you need to master modern web development.
+                    </p>
+
+                    <h2>Why Web Development Matters More Than Ever</h2>
+                    <p>In today's digital-first world, having a strong web presence is crucial for businesses and
+                        individuals alike. Whether you're building a personal blog, an e-commerce platform, or a complex
+                        web application, understanding modern web development principles is essential.</p>
+
+                    <h2>Core Technologies You Need to Know</h2>
+                    <h3>1. HTML5 and Semantic Markup</h3>
+                    <p>HTML5 provides the foundation for all web content. Understanding semantic markup helps create
+                        accessible, SEO-friendly websites.</p>
+
+                    <h3>2. CSS3 and Modern Styling</h3>
+                    <p>Modern CSS includes powerful features like Flexbox, Grid, and CSS Variables that make styling
+                        more efficient and maintainable.</p>
+
+                    <blockquote>
+                        <p>"Good design is as little design as possible." - Dieter Rams</p>
+                    </blockquote>
+
+                    <h3>3. JavaScript and ES6+</h3>
+                    <p>JavaScript is the language of the web. Modern ES6+ features make code more readable and powerful.
+                    </p>
+
+                    <h2>Popular Frameworks and Libraries</h2>
+                    <ul>
+                        <li><strong>React</strong> - Component-based UI library</li>
+                        <li><strong>Vue.js</strong> - Progressive JavaScript framework</li>
+                        <li><strong>Angular</strong> - Full-featured framework</li>
+                    </ul>
+
+                    <h2>Conclusion</h2>
+                    <p>Modern web development is an exciting field that's constantly evolving. By mastering these core
+                        concepts and staying curious, you'll be well-equipped to build amazing web experiences.</p>
+                </div>
+            </div>
+
+            <!-- Config Modal -->
+            <div id="configModalOverlay" class="config-modal-overlay" onclick="closeConfigModal(event)">
+                <div class="config-modal">
+                    <div class="config-modal-header">
+                        <h2 class="config-modal-title">
+                            <i class="fa-solid fa-code"></i> Configuration
+                        </h2>
+                        <button class="config-modal-close" onclick="closeConfigModal(event)">
+                            <i class="fa-solid fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="config-modal-body">
+                        <div class="config-section">
+                            <h2 style="margin-top: 0; color: #1f2937;">Froala Configuration for Blogging</h2>
+                            <p style="color: #6b7280; margin-bottom: 1.5rem;">This demo uses the following Froala Editor
+                                configuration optimized for blog post editing:</p>
+
+                            <div class="config-code-container">
+                                <div class="config-code-header">
+                                    <div class="config-code-title">
+                                        <i class="fa-brands fa-js"></i> JavaScript Configuration
+                                    </div>
+                                    <button class="copy-btn" onclick="copyConfig()">
+                                        <i class="fa-solid fa-copy"></i> Copy Config
+                                    </button>
+                                </div>
+                                <pre class="config-code"><code>new FroalaEditor('#froala-editor', {
+      key: 'YOUR_LICENSE_KEY',
+    
+      // Plugins for rich blogging experience
+      pluginsEnabled: [
+        'align', 'colors', 'fontSize', 'paragraphFormat',
+        'lists', 'link', 'image', 'video', 'embedly',
+        'quote', 'specialCharacters', 'codeView',
+        'fullscreen', 'wordCounter', 'charCounter'
+      ],
+    
+      // Blog-optimized toolbar
+      toolbarButtons: {
+        'moreText': {
+          'buttons': ['bold', 'italic', 'underline', 'fontSize',
+                      'textColor', 'backgroundColor', 'clearFormatting']
+        },
+        'moreParagraph': {
+          'buttons': ['alignLeft', 'alignCenter', 'alignRight',
+                      'formatOL', 'formatUL', 'paragraphFormat',
+                      'outdent', 'indent', 'quote']
+        },
+        'moreRich': {
+          'buttons': ['insertLink', 'insertImage', 'insertVideo',
+                      'embedly', 'specialCharacters', 'insertHR']
+        },
+        'moreMisc': {
+          'buttons': ['undo', 'redo', 'fullscreen', 'html', 'selectAll']
+        }
+      },
+    
+      heightMin: 400,
+      placeholderText: 'Tell your story...',
+    
+      // Word counter for blog posts
+      charCounterCount: true,
+      wordCounterMax: -1,
+    
+      // Image settings
+      imageEditButtons: ['imageReplace', 'imageAlign', 'imageCaption',
+                         'imageRemove', 'imageLink', 'imageAlt'],
+      imageDefaultWidth: 0,
+      imageResizeWithPercent: true,
+    
+      // Video embeds
+      videoResponsive: true,
+      videoInsertButtons: ['videoBack', '|', 'videoByURL', 'videoEmbed'],
+    
+      // Link settings
+      linkAlwaysBlank: true,
+      linkAutoPrefix: 'https://'
+    });</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="config_utils.js"></script>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="blog-sidebar">
+            <div class="sidebar-section">
+                <h3>Publish Settings</h3>
+                <select class="sidebar-input">
+                    <option>Draft</option>
+                    <option>Published</option>
+                    <option>Scheduled</option>
+                </select>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Cover Image</h3>
+                <div class="cover-preview">
+                    <i class="fa-solid fa-image"></i>
+                </div>
+                <button class="btn btn-ghost" style="width: 100%;">
+                    <i class="fa-solid fa-upload"></i> Upload Cover
+                </button>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Category</h3>
+                <select class="sidebar-input">
+                    <option>Technology</option>
+                    <option>Design</option>
+                    <option>Business</option>
+                    <option>Lifestyle</option>
+                    <option>Tutorial</option>
+                </select>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Tags</h3>
+                <input type="text" class="sidebar-input" placeholder="Add tag..."
+                    onkeypress="if(event.key==='Enter') alert('Add tag functionality')">
+                <div class="tag-container">
+                    <span class="tag">webdev <i class="fa-solid fa-times"></i></span>
+                    <span class="tag">tutorial <i class="fa-solid fa-times"></i></span>
+                    <span class="tag">javascript <i class="fa-solid fa-times"></i></span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>SEO Settings</h3>
+                <input type="text" class="sidebar-input" placeholder="SEO Title">
+                <textarea class="sidebar-input" rows="3" placeholder="Meta description"></textarea>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Reading Time</h3>
+                <input type="text" class="sidebar-input" value="5 minutes" readonly>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Visibility</h3>
+                <select class="sidebar-input">
+                    <option>Public</option>
+                    <option>Unlisted</option>
+                    <option>Private</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+    <script>
+        new FroalaEditor('#froala-editor', {
+            key: 'Lc2C1qC1D1D4C3qB12qC8tsE4B-8F3J3A6B8B5D5D2A2di1aaA4cA1lnE1F2nrXYb1VPUGRHYZNRJd1JVOOb1HAc1zSZC1KGD1D1D1A1F1I4A10B1C6E4==',
+            pluginsEnabled: [
+                'align', 'colors', 'fontSize', 'paragraphFormat',
+                'lists', 'link', 'image', 'video',
+                'quote', 'specialCharacters', 'codeView',
+                'fullscreen', 'wordCounter', 'charCounter'
+            ],
+            toolbarButtons: {
+                'moreText': {
+                    'buttons': ['bold', 'italic', 'underline', 'fontSize',
+                        'textColor', 'backgroundColor', 'clearFormatting']
+                },
+                'moreParagraph': {
+                    'buttons': ['alignLeft', 'alignCenter', 'alignRight',
+                        'formatOL', 'formatUL', 'paragraphFormat',
+                        'outdent', 'indent', 'quote']
+                },
+                'moreRich': {
+                    'buttons': ['insertLink', 'insertImage', 'insertVideo',
+                        'specialCharacters', 'insertHR']
+                },
+                'moreMisc': {
+                    'buttons': ['undo', 'redo', 'fullscreen', 'html', 'selectAll']
+                }
+            },
+            heightMin: 400,
+            placeholderText: 'Tell your story...',
+            charCounterCount: true,
+            wordCounterMax: -1,
+            imageEditButtons: ['imageReplace', 'imageAlign', 'imageCaption',
+                'imageRemove', 'imageLink', 'imageAlt'],
+            imageDefaultWidth: 0,
+            imageResizeWithPercent: true,
+            videoResponsive: true,
+            videoInsertButtons: ['videoBack', '|', 'videoByURL', 'videoEmbed'],
+            linkAlwaysBlank: true,
+            linkAutoPrefix: 'https://'
+        });
+
+        function copyConfig() {
+            const configText = document.querySelector('.config-code code').textContent;
+            navigator.clipboard.writeText(configText).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy Config';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Base Editor Config - Froala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+    type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_style.min.css" rel="stylesheet"
+    type="text/css" />
+
+  <style>
+    .config-demo-page {
+      min-height: 100vh;
+      background: var(--bg-light);
+    }
+
+    .config-header {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .config-header .btn-config-container {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+    }
+
+    .config-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .config-header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .config-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .editor-container {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .config-code-container {
+      background: #1e1e1e;
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .config-code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .config-code-title {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .copy-btn {
+      background: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .copy-btn.copied {
+      background: #10b981;
+    }
+
+    .config-code {
+      color: #d4d4d4;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-blue);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      gap: 0.75rem;
+    }
+
+    .use-case-section {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .use-case-section h2 {
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .use-case-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .use-case-section li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-gray);
+    }
+
+    .use-case-section li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary-blue);
+      font-weight: bold;
+    }
+
+    /* Modal Styles */
+    .config-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .config-modal-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .config-modal {
+      background: #fff;
+      border-radius: var(--radius-md);
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+    }
+
+    .config-modal-overlay.visible .config-modal {
+      transform: translateY(0);
+    }
+
+    .config-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .config-modal-title {
+      color: var(--text-dark);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .config-modal-close {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--text-gray);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .config-modal-close:hover {
+      color: var(--text-dark);
+    }
+
+    .config-modal-body {
+      padding: 1.5rem 2rem;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .config-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .config-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .config-section h3 {
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .btn.btn-white {
+      background: white;
+      color: var(--primary-blue);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn.btn-white:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="config-demo-page">
+    <div class="config-header">
+      <div class="btn-config-container">
+        <!-- View Config Button -->
+        <button class="btn btn-white" onclick="openConfigModal()">
+          <i class="fa-solid fa-code"></i> View Config
+        </button>
+      </div>
+      <h1><i class="fa-solid fa-lightbulb"></i> Knowledge Base Editor</h1>
+      <p>Search-friendly help articles with images, code snippets, and structured content</p>
+    </div>
+
+    <div class="config-content">
+      <a href="../index.html#quick-configs" class="back-link" style="margin-top: -1rem;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Quick Configs
+      </a>
+
+      <div class="use-case-section">
+        <h2>Perfect For:</h2>
+        <ul>
+          <li>Customer support knowledge bases</li>
+          <li>Help center articles and FAQs</li>
+          <li>Self-service support portals</li>
+          <li>Product documentation and guides</li>
+          <li>Internal company wikis</li>
+        </ul>
+      </div>
+
+      <div class="editor-container">
+        <h2 style="margin-bottom: 1rem; color: var(--text-dark);">Try It Out</h2>
+        <div id="froala-editor">
+          <h1>How to Reset Your Password</h1>
+          <p><strong>Article ID:</strong> KB-0123 | <strong>Last Updated:</strong> January 8, 2026</p>
+          <h2>Overview</h2>
+          <p>This guide will walk you through the process of resetting your account password. The process typically
+            takes less than 5 minutes.</p>
+          <h2>Step-by-Step Instructions</h2>
+          <ol>
+            <li>Navigate to the login page</li>
+            <li>Click "Forgot Password" below the login form</li>
+            <li>Enter your email address</li>
+            <li>Check your email for the reset link</li>
+            <li>Create a new password</li>
+          </ol>
+          <h2>Troubleshooting</h2>
+          <p>If you don't receive the reset email within 5 minutes:</p>
+          <ul>
+            <li>Check your spam folder</li>
+            <li>Verify you entered the correct email address</li>
+            <li>Contact support if the issue persists</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Config Section Removed (Moved to Modal) -->
+    </div>
+  </div>
+
+  <!-- Config Modal -->
+  <div id="configModalOverlay" class="config-modal-overlay" onclick="closeConfigModal(event)">
+    <div class="config-modal">
+      <div class="config-modal-header">
+        <h2 class="config-modal-title">
+          <i class="fa-solid fa-code"></i> Configuration
+        </h2>
+        <button class="config-modal-close" onclick="closeConfigModal(event)">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+      <div class="config-modal-body">
+        <div class="config-section">
+          <div class="config-code-container">
+            <div class="config-code-header">
+              <div class="config-code-title">
+                <i class="fa-brands fa-js"></i> JavaScript Configuration
+              </div>
+              <button class="copy-btn" onclick="copyConfig()">
+                <i class="fa-solid fa-copy"></i> Copy Config
+              </button>
+            </div>
+            <pre class="config-code"><code>const knowledgeBaseConfig = {
+  // Knowledge base plugins
+  pluginsEnabled: [
+    'align', 'paragraphFormat', 'paragraphStyle',
+    'lists', 'link', 'linkToAnchor', 'image',
+    'imageManager', 'video', 'table',
+    'fullscreen', 'charCounter', 'wordCounter',
+    'quote', 'specialCharacters', 'codeView',
+    'findReplace', 'save'
+  ],
+
+  // Knowledge base toolbar
+  toolbarButtons: {
+    'moreText': {
+      'buttons': ['bold', 'italic', 'underline', 'strikeThrough',
+                  'subscript', 'superscript', 'clearFormatting']
+    },
+    'moreParagraph': {
+      'buttons': ['alignLeft', 'alignCenter', 'alignRight',
+                  'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle',
+                  'outdent', 'indent', 'quote']
+    },
+    'moreRich': {
+      'buttons': ['insertLink', 'linkToAnchor', 'insertImage',
+                  'insertVideo', 'insertTable', 'specialCharacters', 'insertHR']
+    },
+    'moreMisc': {
+      'buttons': ['undo', 'redo', 'fullscreen', 'findReplace',
+                  'save', 'html', 'selectAll']
+    }
+  },
+
+  // Height settings
+  heightMin: 500,
+
+  // Placeholder
+  placeholderText: 'Write a helpful article...',
+
+  // Character and word counter
+  charCounterCount: true,
+  wordCounterMax: -1,
+
+  // Paragraph formats for article structure
+  paragraphFormat: {
+    'N': 'Normal',
+    'H1': 'Article Title',
+    'H2': 'Section Heading',
+    'H3': 'Subsection',
+    'H4': 'Minor Heading',
+    'PRE': 'Code Block'
+  },
+
+  // Paragraph styles for callouts
+  paragraphStyles: {
+    'fr-text-gray': 'Note',
+    'fr-text-bordered': 'Important',
+    'fr-class-code': 'Code Example'
+  },
+
+  // Image settings with manager
+  imageEditButtons: ['imageReplace', 'imageAlign', 'imageCaption', 'imageRemove',
+                     'imageLink', 'imageAlt', 'imageSize'],
+  imageInsertButtons: ['imageBack', '|', 'imageUpload', 'imageByURL', 'imageManager'],
+  imageMaxSize: 5 * 1024 * 1024, // 5MB
+  imageAllowedTypes: ['jpeg', 'jpg', 'png', 'gif', 'svg'],
+  imageManagerLoadURL: '/load_images',
+  imageManagerLoadMethod: 'GET',
+
+  // Video settings for tutorial videos
+  videoInsertButtons: ['videoBack', '|', 'videoByURL', 'videoEmbed'],
+  videoEditButtons: ['videoReplace', 'videoRemove', 'videoSize', 'videoAlign'],
+  videoResponsive: true,
+
+  // Table settings for structured data
+  tableEditButtons: ['tableHeader', 'tableRemove', '|', 'tableRows', 'tableColumns',
+                     'tableStyle', '-', 'tableCells', 'tableCellBackground',
+                     'tableCellVerticalAlign', 'tableCellHorizontalAlign'],
+  tableStyles: {
+    'fr-table-bordered': 'Bordered',
+    'fr-table-striped': 'Striped'
+  },
+
+  // Link settings with anchor support
+  linkEditButtons: ['linkOpen', 'linkEdit', 'linkRemove'],
+  linkInsertButtons: ['linkBack'],
+  linkAlwaysBlank: false,
+  linkAutoPrefix: 'https://',
+
+  // Link to anchor for table of contents
+  linkToAnchorEnabled: true,
+
+  // Quote settings for callouts
+  quoteButtons: ['quoteAdd', 'quoteRemove'],
+
+  // Special characters
+  specialCharactersSet: ['©', '®', '™', '§', '¶', '→', '←', '↑', '↓',
+                         '✓', '✗', '•', '—', '–'],
+
+  // Find and replace for editing
+  findReplaceButtons: ['findPrevious', 'findNext', 'replace', 'replaceAll'],
+
+  // Save configuration
+  saveURL: '/save_kb_article',
+  saveInterval: 10000, // Auto-save every 10 seconds
+  saveParam: 'content',
+
+  // List types
+  listAdvancedTypes: true,
+
+  // Code view for technical articles
+  codeBeautifierOptions: {
+    end_with_newline: true,
+    indent_inner_html: true,
+    brace_style: 'expand',
+    indent_char: ' ',
+    indent_size: 2,
+    wrap_line_length: 0
+  },
+
+  // Clean HTML for SEO
+  htmlAllowedTags: ['.*'],
+  htmlRemoveTags: ['script'],
+  htmlAllowedAttrs: ['.*'],
+
+  // Keep toolbar sticky
+  toolbarSticky: true,
+  toolbarStickyOffset: 0,
+
+  // Enter behavior
+  enter: FroalaEditor.ENTER_P,
+
+  // Events
+  events: {
+    'initialized': function () {
+      console.log('Knowledge Base Editor initialized');
+    },
+    'save.before': function (html) {
+      console.log('Saving KB article...');
+      // Add metadata for search indexing
+      return {
+        content: html,
+        wordCount: this.stats.get().words,
+        lastModified: new Date().toISOString()
+      };
+    },
+    'save.after': function (data) {
+      console.log('KB article saved and indexed');
+    }
+  }
+};</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="config_utils.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/align.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/char_counter.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/code_beautifier.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/code_view.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/find_replace.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/fullscreen.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/image.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/image_manager.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/link.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/link_to_anchor.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/lists.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/paragraph_format.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/paragraph_style.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/quote.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/save.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/special_characters.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/table.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/video.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/word_counter.min.js"></script>
+
+  <script>
+    videoResponsive: true,
+      tableEditButtons: ['tableHeader', 'tableRemove', '|', 'tableRows', 'tableColumns',
+        'tableStyle', '-', 'tableCells', 'tableCellBackground',
+        'tableCellVerticalAlign', 'tableCellHorizontalAlign'],
+        tableStyles: {
+      'fr-table-bordered': 'Bordered',
+        'fr-table-striped': 'Striped'
+    },
+    linkEditButtons: ['linkOpen', 'linkEdit', 'linkRemove'],
+      linkInsertButtons: ['linkBack'],
+        linkAlwaysBlank: false,
+          linkAutoPrefix: 'https://',
+            linkToAnchorEnabled: true,
+              quoteButtons: ['quoteAdd', 'quoteRemove'],
+                specialCharactersSet: ['©', '®', '™', '§', '¶', '→', '←', '↑', '↓',
+                  '✓', '✗', '•', '—', '–'],
+                  findReplaceButtons: ['findPrevious', 'findNext', 'replace', 'replaceAll'],
+                    saveInterval: 10000,
+                      saveParam: 'content',
+                        listAdvancedTypes: true,
+                          codeBeautifierOptions: {
+      end_with_newline: true,
+        indent_inner_html: true,
+          brace_style: 'expand',
+            indent_char: ' ',
+              indent_size: 2,
+                wrap_line_length: 0
+    },
+    htmlAllowedTags: ['.*'],
+      htmlRemoveTags: ['script'],
+        htmlAllowedAttrs: ['.*'],
+          toolbarSticky: true,
+            toolbarStickyOffset: 0,
+              enter: FroalaEditor.ENTER_P
+    });
+
+    function copyConfig() {
+      const configText = document.querySelector('.config-code code').textContent;
+      navigator.clipboard.writeText(configText).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy Config';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+
+</html>

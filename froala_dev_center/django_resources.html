@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froala for Django Developers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation (Mock) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Froala</a>
+            <div class="nav-links">
+                <a href="#">Overview</a>
+                <a href="#">Features</a>
+                <a href="#">Docs</a>
+                <a href="#">Examples</a>
+                <a href="#" class="btn btn-outline">Pricing</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="separator">/</li>
+                <li class="current">Django</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero hero-small">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Froala for Django</h1>
+                <p>Django WYSIWYG editor. Integration with Django forms and admin, image uploads, and
+                    more.</p>
+                <div class="hero-actions">
+                    <a href="https://froala.com/wysiwyg-editor/docs/framework-plugins/django/"
+                        class="btn btn-white">View Django Documentation</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="framework-logo-large">
+                    <i class="fa-brands fa-python"></i>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#ffffff" fill-opacity="1"
+                    d="M0,64L60,85.3C120,107,240,149,360,154.7C480,160,600,128,720,122.7C840,117,960,139,1080,144C1200,149,1320,139,1380,133.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Quick Start Section -->
+    <!-- Quick Start Section -->
+    <section class="quick-start-section">
+        <div class="container">
+            <div class="quick-start-header">
+                <div class="quick-start-header-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3>Quick Start</h3>
+            </div>
+            <p>Get up and running with Froala in Django in seconds.</p>
+
+            <div class="qs-tabs-container">
+                <div class="qs-tabs-header">
+                    <button class="qs-tab-btn active" onclick="switchTab(event, 'qs-tab-1')">
+                        <span class="qs-step-badge">1</span>
+                        Install
+                    </button>
+                    <button class="qs-tab-btn" onclick="switchTab(event, 'qs-tab-2')">
+                        <span class="qs-step-badge">2</span>
+                        Configure
+                    </button>
+                    <button class="qs-tab-btn" onclick="switchTab(event, 'qs-tab-3')">
+                        <span class="qs-step-badge">3</span>
+                        Use
+                    </button>
+                </div>
+
+                <div class="qs-tab-content active" id="qs-tab-1">
+                    <h4>Install</h4>
+                    <p>Add the Django Froala package via pip.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>Terminal</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="cmd-prefix">$</span>pip install django-froala-editor</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qs-tab-content" id="qs-tab-2">
+                    <h4>Configure</h4>
+                    <p>Add to installed apps and URL patterns.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>settings.py</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code>INSTALLED_APPS = [
+    <span class="code-string">'froala_editor'</span>,
+]</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qs-tab-content" id="qs-tab-3">
+                    <h4>Use</h4>
+                    <p>Use the Froala field in your models.</p>
+                    <div class="snippet-container">
+                        <div class="snippet-header">
+                            <span>models.py</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="snippet-content">
+                            <pre><code><span class="code-keyword">from</span> froala_editor.fields <span class="code-keyword">import</span> FroalaField
+
+content = FroalaField()</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab Switching Script -->
+    <script>
+        function switchTab(event, tabId) {
+            // Remove active class from all buttons and contents
+            document.querySelectorAll('.qs-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.qs-tab-content').forEach(content => content.classList.remove('active'));
+
+            // Add active class to clicked button and target content
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+
+    <!-- Tutorials Section -->
+    <section class="section tutorials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Django Tutorials</h2>
+                <p>Froala in Django projects.</p>
+            </div>
+
+            <!-- Featured Tutorial -->
+            <div class="featured-card">
+                <div class="featured-image">
+                    <i class="fa-brands fa-python"></i>
+                </div>
+                <div class="featured-content">
+                    <span class="featured-label">Featured Guide</span>
+                    <h3>How to Add Froala HTML Editor in Django in 2025</h3>
+                    <p>A comprehensive step-by-step guide to integrating the Froala HTML Editor into Django forms.
+                        Updated for Django 5 with Froala 4.4 release, covering installation and configuration.</p>
+                    <a href="https://froala.com/blog/editor/tutorials/how-to-add-froala-html-editor-software-in-django-in-2025/"
+                        class="btn btn-primary">Read the Full Guide</a>
+                </div>
+            </div>
+
+            <div class="grid tutorials-grid">
+                <!-- Tutorial 1 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-python">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Integrate Froala to Django Web Application with Image Upload</h3>
+                        <p>Learn how to integrate Froala into Django web applications with complete image upload
+                            functionality and server-side handling.</p>
+                        <a href="https://froala.com/blog/general/integrate-froala-to-django-web-application-with-image-upload/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 2 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-python">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>What's The Best Django WYSIWYG Editor With Image Upload?</h3>
+                        <p>Explore why Froala is considered the best Django WYSIWYG editor with comprehensive image
+                            upload capabilities.</p>
+                        <a href="https://froala.com/blog/editor/whats-the-best-django-wysiwyg-editor-with-image-upload/"
+                            class="btn-tutorial">Read the
+                            tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 3 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-python">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Build a Note-Taking App with Flask, Froala, and DeepSeek AI</h3>
+                        <p>Build a Python-based note-taking application using Flask framework and Froala editor with AI
+                            integration.</p>
+                        <a href="https://froala.com/blog/general/deepseek-api-integration-flask-froala-note-taking-app/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+                <!-- Tutorial 4 -->
+                <article class="card tutorial-card">
+                    <div class="tutorial-icon-container">
+                        <div class="tutorial-icon icon-python">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>6 Server Side Frameworks With WYSIWYG Editor Integration</h3>
+                        <p>Discover how Froala integrates with Django and other popular server-side frameworks for web
+                            development.</p>
+                        <a href="https://froala.com/blog/general/6-server-side-frameworks-with-wysiwyg-editor-integration/"
+                            class="btn-tutorial">Read the tutorial</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section"
+        style="background: var(--gradient-primary); color: var(--white); text-align: center; padding: 5rem 0;">
+        <div class="container">
+            <h2 style="color: var(--white); margin-bottom: 1.5rem; font-size: 2.5rem;">Start Building with Froala</h2>
+            <p
+                style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Get started with Froala's WYSIWYG editor in your Django applications today.</p>
+            <a href="https://froala.com/wysiwyg-editor/pricing/" class="btn btn-white"
+                style="background: white; color: var(--primary-blue); padding: 1rem 3rem; font-size: 1.1rem; font-weight: 600;">Sign
+                Up</a>
+        </div>
+    </section>
+
+    <!-- Footer (Mock) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Froala</h4>
+                    <p>The next generation WYSIWYG HTML Editor.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#">Overview</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Changelog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Developers</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Community</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Froala. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey/Form Builder Config - Froala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+    type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_style.min.css" rel="stylesheet"
+    type="text/css" />
+
+  <style>
+    .config-demo-page {
+      min-height: 100vh;
+      background: var(--bg-light);
+    }
+
+    .config-header {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .config-header .btn-config-container {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+    }
+
+    .config-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .config-header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .config-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .editor-container {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .config-code-container {
+      background: #1e1e1e;
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .config-code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .config-code-title {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .copy-btn {
+      background: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .copy-btn.copied {
+      background: #10b981;
+    }
+
+    .config-code {
+      color: #d4d4d4;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-blue);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      gap: 0.75rem;
+    }
+
+    .use-case-section {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .use-case-section h2 {
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .use-case-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .use-case-section li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-gray);
+    }
+
+    .use-case-section li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary-blue);
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="config-demo-page">
+    <div class="config-header">
+      <div class="btn-config-container">
+        <!-- View Config Button -->
+        <button class="btn btn-white" onclick="openConfigModal()">
+          <i class="fa-solid fa-code"></i> View Config
+        </button>
+      </div>
+      <h1><i class="fa-solid fa-clipboard-list"></i> Survey/Form Builder</h1>
+      <p>Create engaging surveys with lists, tables, and formatted questions</p>
+    </div>
+
+    <div class="config-content">
+      <a href="../index.html#quick-configs" class="back-link" style="margin-top: -1rem;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Quick Configs
+      </a>
+
+      <div class="use-case-section">
+        <h2>Perfect For:</h2>
+        <ul>
+          <li>Online surveys and questionnaires</li>
+          <li>Customer feedback forms</li>
+          <li>Research data collection</li>
+          <li>Quiz and assessment builders</li>
+          <li>Event registration forms</li>
+        </ul>
+      </div>
+
+      <div class="editor-container">
+        <h2 style="margin-bottom: 1rem; color: var(--text-dark);">Try It Out</h2>
+        <div id="froala-editor">
+          <h2>Customer Satisfaction Survey</h2>
+          <p>Thank you for taking the time to complete this survey. Your feedback helps us improve our services.</p>
+          <h3>Section 1: Service Quality</h3>
+          <p><strong>1. How would you rate our customer service?</strong></p>
+          <ul>
+            <li>Excellent</li>
+            <li>Good</li>
+            <li>Fair</li>
+            <li>Poor</li>
+          </ul>
+          <p><strong>2. Which aspects of our service do you value most?</strong> (Select all that apply)</p>
+          <ul>
+            <li>Response time</li>
+            <li>Product quality</li>
+            <li>Price</li>
+            <li>Customer support</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Config Section Removed (Moved to Modal) -->
+    </div>
+
+    <!-- Config Modal -->
+    <div id="configModalOverlay" class="config-modal-overlay" onclick="closeConfigModal(event)">
+      <div class="config-modal">
+        <div class="config-modal-header">
+          <h2 class="config-modal-title">
+            <i class="fa-solid fa-code"></i> Configuration
+          </h2>
+          <button class="config-modal-close" onclick="closeConfigModal(event)">
+            <i class="fa-solid fa-times"></i>
+          </button>
+        </div>
+        <div class="config-modal-body">
+          <div class="config-section">
+            <div class="config-code-container">
+              <div class="config-code-header">
+                <div class="config-code-title">
+                  <i class="fa-brands fa-js"></i> JavaScript Configuration
+                </div>
+                <button class="copy-btn" onclick="copyConfig()">
+                  <i class="fa-solid fa-copy"></i> Copy Config
+                </button>
+              </div>
+              <pre class="config-code"><code>const surveyEditorConfig = {
+  // Survey-specific plugins
+  pluginsEnabled: [
+    'align', 'colors', 'fontSize',
+    'paragraphFormat', 'lists',
+    'link', 'image', 'table',
+    'charCounter', 'wordCounter',
+    'specialCharacters', 'fullscreen'
+  ],
+
+  // Survey toolbar - focused on structure
+  toolbarButtons: {
+    'moreText': {
+      'buttons': ['bold', 'italic', 'underline',
+                  'fontSize', 'textColor', 'clearFormatting']
+    },
+    'moreParagraph': {
+      'buttons': ['alignLeft', 'alignCenter', 'alignRight',
+                  'formatOL', 'formatUL', 'paragraphFormat',
+                  'outdent', 'indent']
+    },
+    'moreRich': {
+      'buttons': ['insertLink', 'insertImage', 'insertTable',
+                  'specialCharacters', 'insertHR']
+    },
+    'moreMisc': {
+      'buttons': ['undo', 'redo', 'fullscreen', 'selectAll']
+    }
+  },
+
+  // Height settings
+  heightMin: 400,
+
+  // Placeholder
+  placeholderText: 'Create your survey questions...',
+
+  // Character counter
+  charCounterCount: true,
+  wordCounterMax: -1,
+
+  // Paragraph formats for survey structure
+  paragraphFormat: {
+    'N': 'Normal',
+    'H2': 'Section Title',
+    'H3': 'Question',
+    'H4': 'Sub-question'
+  },
+
+  // Font sizes for emphasis
+  fontSize: ['12', '14', '16', '18', '20', '24'],
+
+  // Image settings - for visual aids in surveys
+  imageEditButtons: ['imageReplace', 'imageAlign', 'imageRemove', 'imageSize'],
+  imageInsertButtons: ['imageBack', '|', 'imageUpload', 'imageByURL'],
+  imageMaxSize: 5 * 1024 * 1024, // 5MB
+  imageAllowedTypes: ['jpeg', 'jpg', 'png', 'gif'],
+
+  // Table settings - useful for matrix questions
+  tableEditButtons: ['tableHeader', 'tableRemove', '|', 'tableRows', 'tableColumns',
+                     'tableStyle', '-', 'tableCells', 'tableCellBackground',
+                     'tableCellVerticalAlign', 'tableCellHorizontalAlign'],
+  tableStyles: {
+    'fr-table-bordered': 'Bordered',
+    'fr-table-striped': 'Striped',
+    'fr-table-compact': 'Compact'
+  },
+  tableDefaultWidth: '100%',
+
+  // Link settings
+  linkEditButtons: ['linkOpen', 'linkEdit', 'linkRemove'],
+  linkInsertButtons: ['linkBack'],
+  linkAlwaysBlank: true,
+  linkAutoPrefix: 'https://',
+
+  // Special characters for survey formatting
+  specialCharactersSet: ['©', '®', '™', '§', '¶', '•', '→', '✓', '✗',
+                         '⭐', '❤️', '👍', '👎'],
+
+  // List advanced types for different question formats
+  listAdvancedTypes: true,
+
+  // Clean paste for survey content
+  pastePlain: false,
+  pasteDeniedTags: ['script', 'style'],
+  pasteDeniedAttrs: ['style', 'class'],
+
+  // Disable quick insert for cleaner interface
+  quickInsertEnabled: false,
+
+  // Toolbar not sticky for better form flow
+  toolbarSticky: false,
+
+  // Enter behavior
+  enter: FroalaEditor.ENTER_P,
+
+  // Events
+  events: {
+    'initialized': function () {
+      console.log('Survey Editor initialized');
+    },
+    'contentChanged': function () {
+      console.log('Survey content updated');
+      // Auto-save survey draft
+    }
+  }
+};</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="config_utils.js"></script>
+
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/align.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/char_counter.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/colors.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/font_size.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/fullscreen.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/image.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/link.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/lists.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/paragraph_format.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/special_characters.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/table.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/plugins/word_counter.min.js"></script>
+
+    <script>
+      new FroalaEditor('#froala-editor', {
+        key: 'Lc2C1qC1D1D4C3qB12qC8tsE4B-8F3J3A6B8B5D5D2A2di1aaA4cA1lnE1F2nrXYb1VPUGRHYZNRJd1JVOOb1HAc1zSZC1KGD1D1D1A1F1I4A10B1C6E4==',
+        pluginsEnabled: [
+          'align', 'colors', 'fontSize',
+          'paragraphFormat', 'lists',
+          'link', 'image', 'table',
+          'charCounter', 'wordCounter',
+          'specialCharacters', 'fullscreen'
+        ],
+        toolbarButtons: {
+          'moreText': {
+            'buttons': ['bold', 'italic', 'underline',
+              'fontSize', 'textColor', 'clearFormatting']
+          },
+          'moreParagraph': {
+            'buttons': ['alignLeft', 'alignCenter', 'alignRight',
+              'formatOL', 'formatUL', 'paragraphFormat',
+              'outdent', 'indent']
+          },
+          'moreRich': {
+            'buttons': ['insertLink', 'insertImage', 'insertTable',
+              'specialCharacters', 'insertHR']
+          },
+          'moreMisc': {
+            'buttons': ['undo', 'redo', 'fullscreen', 'selectAll']
+          }
+        },
+        heightMin: 400,
+        placeholderText: 'Create your survey questions...',
+        charCounterCount: true,
+        wordCounterMax: -1,
+        paragraphFormat: {
+          'N': 'Normal',
+          'H2': 'Section Title',
+          'H3': 'Question',
+          'H4': 'Sub-question'
+        },
+        fontSize: ['12', '14', '16', '18', '20', '24'],
+        imageEditButtons: ['imageReplace', 'imageAlign', 'imageRemove', 'imageSize'],
+        imageInsertButtons: ['imageBack', '|', 'imageUpload', 'imageByURL'],
+        imageMaxSize: 5 * 1024 * 1024,
+        imageAllowedTypes: ['jpeg', 'jpg', 'png', 'gif'],
+        tableEditButtons: ['tableHeader', 'tableRemove', '|', 'tableRows', 'tableColumns',
+          'tableStyle', '-', 'tableCells', 'tableCellBackground',
+          'tableCellVerticalAlign', 'tableCellHorizontalAlign'],
+        tableStyles: {
+          'fr-table-bordered': 'Bordered',
+          'fr-table-striped': 'Striped',
+          'fr-table-compact': 'Compact'
+        },
+        tableDefaultWidth: '100%',
+        linkEditButtons: ['linkOpen', 'linkEdit', 'linkRemove'],
+        linkInsertButtons: ['linkBack'],
+        linkAlwaysBlank: true,
+        linkAutoPrefix: 'https://',
+        specialCharactersSet: ['©', '®', '™', '§', '¶', '•', '→', '✓', '✗',
+          '⭐', '❤️', '👍', '👎'],
+        listAdvancedTypes: true,
+        pastePlain: false,
+        pasteDeniedTags: ['script', 'style'],
+        pasteDeniedAttrs: ['style', 'class'],
+        quickInsertEnabled: false,
+        toolbarSticky: false,
+        enter: FroalaEditor.ENTER_P
+      });
+
+      function copyConfig() {
+        const configText = document.querySelector('.config-code code').textContent;
+        navigator.clipboard.writeText(configText).then(() => {
+          const btn = document.querySelector('.copy-btn');
+          btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy Config';
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      }
+    </script>
+</body>
+
+</html>
