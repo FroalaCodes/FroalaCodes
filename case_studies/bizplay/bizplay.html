@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Case Study: How Bizplay gave users professional content creation tools with Froala Editor">
+    <title>Bizplay Case Study | Froala</title>
+    <link rel="canonical" href="https://froala.com/case-studies/bizplay/">
+    <meta property="og:title" content="Bizplay Case Study | Froala">
+    <meta property="og:description" content="Case Study: How Bizplay gave users professional content creation tools with Froala Editor">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://froala.com/case-studies/bizplay/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bizplay Case Study | Froala">
+    <meta name="twitter:description" content="Case Study: How Bizplay gave users professional content creation tools with Froala Editor">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --froala-blue: #0098f7;
+            --froala-green: #00d8bf;
+            --froala-black: #2D313C;
+            --froala-gray: #6b7280;
+            --gradient-green: #15b69b;
+            --gradient-blue: #0097f6;
+            --text-dark: #2D313C;
+            --text-gray: #6b7280;
+            --bg-light: #f9fafb;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        a {
+            color: var(--froala-blue);
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--froala-green);
+            text-decoration: none;
+        }
+
+
+        /* Hero - Gradient background with WHITE text */
+        .hero {
+            background: linear-gradient(135deg, var(--gradient-green) 0%, var(--gradient-blue) 100%);
+            color: #ffffff;
+            padding: 6rem 0 7rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .company-badge {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .company-logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: #ffffff;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Layout with Sidebar */
+        .page-layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 3rem;
+            padding: 3rem 2rem 0;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-inner {
+            position: sticky;
+            top: 90px;
+        }
+
+        .sidebar h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav li {
+            margin-bottom: 0.5rem;
+            padding: 0;
+        }
+
+        .sidebar nav li::before {
+            display: none;
+        }
+
+        .sidebar nav a {
+            display: block;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 16px;
+            padding: 0.5rem 0;
+            border-left: 3px solid transparent;
+            padding-left: 1rem;
+            transition: all 0.3s;
+        }
+
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
+            color: var(--froala-blue);
+            border-left-color: var(--froala-blue);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 100%;
+            padding: 0;
+        }
+
+        /* Full width sections */
+        .section-full {
+            margin-left: -2rem;
+            margin-right: -2rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        /* Sections - WHITE background with DARK text */
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Add more spacing after first section */
+        section#about {
+            padding-bottom: 4rem;
+        }
+
+        /* Add spacing to Looking Forward section */
+        section#forward {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 33px;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: var(--text-dark);
+            margin: 2rem 0 1rem;
+            font-weight: 400;
+        }
+
+        p {
+            color: var(--text-gray);
+            margin-bottom: 1.25rem;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        strong {
+            color: var(--text-dark);
+        }
+
+        a strong {
+            color: inherit;
+        }
+
+        /* Light gray background for alternate sections */
+        .bg-light {
+            background: var(--bg-light);
+        }
+
+        /* Lists - no cards, just clean lists */
+        ul,
+        ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            color: var(--text-gray);
+            margin-bottom: 0.75rem;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        ul li::marker {
+            color: var(--froala-blue);
+        }
+
+        /* Feature Grid - only for major feature callouts */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        .feature-item p {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* Card styles for features and benefits */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .card:hover {
+
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 152, 247, 0.15);
+            border-color: rgba(0, 152, 247, 0.3);
+        }
+
+        .card h4 {
+            color: var(--froala-blue);
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 0.75rem;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 22px;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Two column card grid */
+        .card-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* Quote */
+        .quote {
+            background: linear-gradient(135deg, rgba(21, 182, 155, 0.05) 0%, rgba(0, 151, 246, 0.05) 100%);
+            border-left: 4px solid var(--froala-blue);
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote p {
+            font-size: 20px;
+            color: var(--text-dark);
+            line-height: 30px;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .quote cite {
+            display: block;
+            font-style: normal;
+            font-size: 16px;
+            color: var(--text-gray);
+        }
+
+        .quote cite strong {
+            display: block;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        /* Image placeholder */
+        .image-placeholder {
+            background: linear-gradient(135deg, rgba(21, 182, 155, 0.1) 0%, rgba(0, 151, 246, 0.1) 100%);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 2px dashed rgba(0, 152, 247, 0.3);
+            margin: 3rem 0;
+            color: var(--froala-blue);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .content-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 3rem 0 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-gray);
+            font-style: italic;
+            margin: 0.5rem 0 3rem;
+        }
+
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(21, 182, 155, 0.08) 0%, rgba(0, 151, 246, 0.08) 100%);
+            border-left: 4px solid var(--froala-green);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            margin: 0;
+        }
+
+        /* CTA Section - Gradient with WHITE text */
+        .cta-section {
+            background: linear-gradient(135deg, var(--gradient-green) 0%, var(--gradient-blue) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .cta-section h2 {
+            color: #ffffff;
+            font-size: 33px;
+        }
+
+        .cta-section p {
+            color: #ffffff;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 1rem 2.5rem;
+            background: white;
+            color: var(--froala-blue);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Related Studies - Gradient with WHITE text */
+        .related-studies {
+            background: linear-gradient(135deg, var(--gradient-green) 0%, var(--gradient-blue) 100%);
+            padding: 4rem 0;
+            color: #ffffff;
+        }
+
+        .related-studies h2 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: transform 0.3s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .case-card-image {
+            background: linear-gradient(135deg, rgba(21, 182, 155, 0.1) 0%, rgba(0, 151, 246, 0.1) 100%);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border-bottom: 3px solid var(--froala-blue);
+        }
+
+        .case-card-content {
+            padding: 2rem;
+        }
+
+        .case-card h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin: 0 0 1rem;
+            color: var(--text-dark);
+        }
+
+        .case-card p {
+            font-size: 16px;
+            margin: 0;
+            color: var(--text-gray);
+        }
+
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .page-layout {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+
+            .sidebar-inner {
+                position: static;
+            }
+
+            .sidebar nav {
+                display: flex;
+                overflow-x: auto;
+                gap: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            .sidebar nav a {
+                white-space: nowrap;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                padding: 0.5rem 1rem;
+            }
+
+            .sidebar nav a:hover,
+            .sidebar nav a.active {
+                border-left: none;
+                border-bottom-color: var(--froala-blue);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero .subtitle {
+                font-size: 18px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .feature-grid,
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* Split Layout */
+        .split-layout {
+            display: flex;
+            gap: 4rem;
+            margin: 4rem 0;
+            align-items: center;
+        }
+
+        .section-header-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-header-icon {
+            display: none;
+        }
+
+        .split-content-left {
+            flex: 0 0 35%;
+        }
+
+        .split-content-left h3 {
+            margin-top: 0;
+            color: var(--froala-blue);
+            font-size: 28px;
+            margin-bottom: 1rem;
+        }
+
+        .split-content-left p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-gray);
+        }
+
+        .split-content-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 152, 247, 0.15);
+            border-color: rgba(0, 152, 247, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 18px;
+            color: var(--text-dark);
+        }
+
+        .feature-text p {
+            margin: 0;
+            font-size: 15px;
+            color: var(--text-gray);
+        }
+
+        @media (max-width: 768px) {
+            .split-layout {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .split-content-left {
+                flex: auto;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero">
+        <div class="hero-content">
+            <img src="images/bizplay-logo.png" alt="Bizplay Logo" class="company-logo">
+            <h1>How a digital signage platform gave users professional content creation tools in a familiar interface</h1>
+
+            <div class="hero-badges">
+                <span class="badge">Fewer support requests</span>
+                <span class="badge">Faster content publishing</span>
+                <span class="badge">Intuitive editing experience</span>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="page-layout">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="sidebar-inner">
+                    <h4>On This Page</h4>
+                    <nav>
+                        <ul>
+                            <li><a href="#about">About Bizplay</a></li>
+                            <li><a href="#challenge">The Challenge</a></li>
+                            <li><a href="#why-froala">Why Froala</a></li>
+                            <li><a href="#integration">Integration</a></li>
+                            <li><a href="#features">Key Features</a></li>
+                            <li><a href="#adoption">User Adoption</a></li>
+                            <li><a href="#results">Results</a></li>
+                            <li><a href="#forward">Looking Forward</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- About Section -->
+                <section id="about">
+                    <h2>About Bizplay</h2>
+                    <p><a href="https://bizplay.com" target="_blank" rel="noopener"><strong>Bizplay</strong></a> launched in 2011 with a clear mission: make digital signage easy, scalable, and accessible for everyone. The company built a cloud-based platform that lets teams create, schedule, and manage dynamic screen content in just a few clicks.</p>
+
+                    <p>From menus and announcements to promotions and live data, Bizplay makes it simple to keep every message fresh, visually engaging, and ready to drive action.</p>
+
+                    <div class="info-box">
+                        <p><strong>Their Mission:</strong> Help every organization tell better stories, engage audiences effectively, and get more value from every screen.</p>
+                    </div>
+
+                    <h3>Who uses the platform</h3>
+                    <p>Bizplay serves organizations that depend on clear, timely, and compelling on-screen communication across retail, hospitality, workplaces, education, and public venues.</p>
+                </section>
+
+                <!-- Challenge Section -->
+                <section id="challenge" class="bg-light section-full">
+                    <h2>The Challenge</h2>
+                    <p>Content creation and management power Bizplay's entire strategy. By giving teams fast, intuitive tools to build and update content, they keep users agile and consistent across all screens and locations.</p>
+
+                    <p><strong>Before implementing Froala, the platform had limited formatting capabilities:</strong></p>
+
+                    <ul>
+                        <li>Plain text entry only, suitable for simple title blocks and paragraphs</li>
+                        <li>Users wanted more formatting options like tables and emojis</li>
+                        <li>The team needed a WYSIWYG editor that could integrate smoothly into their CMS</li>
+                        <li>Required an editor that matched the familiar experience users expect from standard text editors</li>
+                    </ul>
+                </section>
+
+                <img src="images/bizplay.png" alt="Bizplay Digital Signage Platform Interface" class="content-image">
+                <p class="image-caption">Bizplay Platform</p>
+
+                <!-- Why Froala -->
+                <section id="why-froala">
+                    <h2>Why Bizplay Chose Froala</h2>
+                    <p>The team evaluated all the well-known WYSIWYG editors and several lesser-known options before making their decision.</p>
+
+                    <div class="quote">
+                        <img src="images/bizplay-logo.png" alt="Bizplay Logo"
+                            style="height: 32px; margin-bottom: 1.5rem; opacity: 1; background-color: white; padding: 4px 8px; border-radius: 4px;">
+                        <p>"Froala is a feature rich and highly configurable editor, which allows you to easily add serious WYSIWYG editing to your application."</p>
+                        <cite>
+                            <strong>Jaimy Straver</strong>
+                            Bizplay
+                        </cite>
+                    </div>
+
+                    <h3>Key Advantages</h3>
+                    <div class="card-grid-2">
+                        <div class="card">
+                            <span class="card-icon">⚙️</span>
+                            <h4>Feature richness</h4>
+                            <p>Comprehensive editing capabilities out of the box</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🔧</span>
+                            <h4>High configurability</h4>
+                            <p>Flexible customization to match specific platform needs</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🎛️</span>
+                            <h4>Separate configurable toolbar</h4>
+                            <p>Text controls rendered in a dedicated, customizable toolbar</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">✨</span>
+                            <h4>Clean, intuitive interface</h4>
+                            <p>Familiar editing experience for end users</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Integration -->
+                <section id="integration" class="bg-light section-full">
+                    <h2>Integration Experience</h2>
+
+                    <h3>Technical Setup</h3>
+                    <p>Bizplay integrated Froala into their cloud-based CMS to power content creation across their digital signage platform.</p>
+
+                    <div class="quote">
+                        <img src="images/bizplay-logo.png" alt="Bizplay Logo"
+                            style="height: 32px; margin-bottom: 1.5rem; opacity: 1; background-color: white; padding: 4px 8px; border-radius: 4px;">
+                        <p>"Integration was easy to do. Although, we had some very specific needs on how the editor would behave and that took some time to get right. Luckily the documentation is clear and elaborate, so that helped a lot."</p>
+                        <cite>
+                            <strong>Jaimy Straver</strong>
+                            Bizplay
+                        </cite>
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>For teams with custom requirements:</strong> <a href="https://froala.com/wysiwyg-editor/docs/getting-started/" target="_blank" rel="noopener">Froala's comprehensive documentation</a> provides detailed guidance for tailoring editor behavior to specific use cases.</p>
+                    </div>
+
+                    <h3>Performance in production</h3>
+                    <p>The integration improved the overall user experience by enabling users to write better formatted text in a style they're already familiar with from standard text editors.</p>
+                </section>
+
+                <!-- Features -->
+                <section id="features">
+                    <h2>Features That Made the Difference</h2>
+                    <p>The team identified several Froala features that have had the biggest impact on their platform:</p>
+
+                    <div class="card-grid">
+                        <div class="card">
+                            <span class="card-icon">✏️</span>
+                            <h4><a href="https://froala.com/wysiwyg-editor/examples/inline/" target="_blank" rel="noopener">Inline editing</a></h4>
+                            <p>Direct content editing within the signage layout</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🎛️</span>
+                            <h4><a href="https://froala.com/wysiwyg-editor/examples/customize-froala-toolbar-buttons-by-screen-size/" target="_blank" rel="noopener">Customizable toolbar</a></h4>
+                            <p>Tailored controls for digital signage content creation</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🎨</span>
+                            <h4>Custom color pickers</h4>
+                            <p>Brand-consistent color selection for on-screen content</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🔄</span>
+                            <h4>Relevant callbacks</h4>
+                            <p>Store last used colors in local storage for faster styling</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- User Adoption -->
+                <section id="adoption" class="bg-light section-full">
+                    <h2>User Adoption</h2>
+
+                    <p>Because the editor is intuitive, clean, and easy to use, Bizplay's customers can jump right into shaping their messages for digital displays.</p>
+
+                    <h3>User experience</h3>
+                    <p>The response from content creators has been positive:</p>
+                    <div class="card-grid">
+                        <div class="card">
+                            <span class="card-icon">🎯</span>
+                            <h4>Familiar interface</h4>
+                            <p>Users recognize the editing experience from standard text editors</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">⚡</span>
+                            <h4>Smooth workflow</h4>
+                            <p>Adjusting layouts, formatting text, and embedding visuals happens in a distraction-free flow</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🚀</span>
+                            <h4>Quick publishing</h4>
+                            <p>Faster path from idea to published screen content</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>Key benefit:</strong> Adding WYSIWYG functionality was a welcome extension of the CMS, enabling users to create professional-looking signage content independently.</p>
+                    </div>
+                </section>
+
+                <!-- Results -->
+                <section id="results">
+                    <h2>Results</h2>
+
+                    <div class="split-layout">
+                        <div class="split-content-left">
+                            <img src="images/workflows.png" alt="Workflow Improvements" class="section-header-image">
+                            <h3>Workflow improvements</h3>
+                            <p>The integration of Froala has streamlined content creation across the platform:</p>
+                        </div>
+                        <div class="split-content-right">
+                            <div class="feature-item">
+                                <span class="feature-icon">📉</span>
+                                <div class="feature-text">
+                                    <h4>Fewer support requests</h4>
+                                    <p>Reduced questions about formatting and layout</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <div class="feature-text">
+                                    <h4>Fewer formatting issues</h4>
+                                    <p>Consistent, professional-looking content across displays</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⚡</span>
+                                <div class="feature-text">
+                                    <h4>Faster content updates</h4>
+                                    <p>Users publish more often and make changes on the fly</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📺</span>
+                                <div class="feature-text">
+                                    <h4>Fresher messaging</h4>
+                                    <p>Screens stay relevant day-to-day with quick updates</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 3rem 0;">
+
+                    <div class="split-layout">
+                        <div class="split-content-left">
+                            <img src="images/business-impact.png" alt="Business Impact" class="section-header-image">
+                            <h3>Business impact</h3>
+                            <p>These operational improvements translated into tangible business value:</p>
+                        </div>
+                        <div class="split-content-right">
+                            <div class="feature-item">
+                                <span class="feature-icon">🎯</span>
+                                <div class="feature-text">
+                                    <h4>Stronger engagement</h4>
+                                    <p>Fresher content directly boosts engagement across customer locations</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🛠️</span>
+                                <div class="feature-text">
+                                    <h4>Team focus shifted</h4>
+                                    <p>Less troubleshooting, more product improvement</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📈</span>
+                                <div class="feature-text">
+                                    <h4>Improved retention</h4>
+                                    <p>Ease of use strengthens customer retention</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✨</span>
+                                <div class="feature-text">
+                                    <h4>Active content management</h4>
+                                    <p>Encourages more frequent updates and screen utilization</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- In Their Words -->
+                <section id="testimonial" class="bg-light section-full">
+                    <h2>In Their Words</h2>
+                    <div class="quote">
+                        <img src="images/bizplay-logo.png" alt="Bizplay Logo"
+                            style="height: 32px; margin-bottom: 1.5rem; opacity: 1; background-color: white; padding: 4px 8px; border-radius: 4px;">
+                        <p>"Froala has helped us move closer to our core goals by making content creation faster and easier for our users. When customers can update their screen content quickly and confidently, they keep their messaging fresher, and that directly boosts engagement across their locations."</p>
+                        <cite>
+                            <strong>Jaimy Straver</strong>
+                            Bizplay
+                        </cite>
+                    </div>
+                </section>
+
+                <!-- Looking Forward -->
+                <section id="forward">
+                    <h2>Looking Forward</h2>
+                    <p><strong>Froala is now a core part of Bizplay's content creation experience,</strong> supporting their mission to make digital signage effortless for everyone.</p>
+
+                    <p>Areas where the team would welcome future improvements:</p>
+                    <ul>
+                        <li>More consistent font fallback behavior when users delete text blocks</li>
+                        <li>Improved style handling for mixed content with different fonts, especially in table cells</li>
+                        <li>Better cursor position style detection when extending text</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>Try Froala for Your Platform</h2>
+            <p>If your team needs a WYSIWYG editor that end users can adopt quickly while still offering the customization developers need</p>
+            <div class="cta-buttons">
+                <a href="https://froala.com/wysiwyg_editor-download/" class="cta-button" target="_blank" rel="noopener">Start Free Trial</a>
+                <a href="https://froala.com/wysiwyg-editor/docs/getting-started/" class="cta-button cta-button-outline" target="_blank" rel="noopener">Explore Documentation</a>
+            </div>
+        </div>
+
+    </main>
+
+
+    <script>
+        // Active navigation highlighting on scroll
+        const navLinks = document.querySelectorAll('.sidebar nav a');
+        const sections = document.querySelectorAll('section[id]');
+
+        function updateActiveLink() {
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                const sectionHeight = section.offsetHeight;
+
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        window.addEventListener('load', updateActiveLink);
+    </script>
+</body>
+
+</html>
