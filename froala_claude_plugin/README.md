@@ -6,12 +6,6 @@ A Claude Code plugin that makes Claude an expert on [Froala WYSIWYG editor](http
 
 ## Installation
 
-### From GitHub (recommended)
-
-```
-/plugin marketplace add https://github.com/YOUR_USERNAME/froala-claude-plugin.git
-/plugin install froala-claude-plugin@froala-claude-plugin
-```
 
 ### Local / Development
 
