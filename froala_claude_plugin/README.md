@@ -18,7 +18,7 @@ A Claude Code plugin that makes Claude an expert on [Froala WYSIWYG editor](http
 
 ## Skills
 
-The plugin ships 4 skills that activate automatically based on your code and questions. You don't invoke them manually — Claude detects the context.
+The plugin ships 5 skills that activate automatically based on your code and questions. You don't invoke them manually — Claude detects the context.
 
 ### `froala-initialization-and-sdks`
 
@@ -87,6 +87,27 @@ Covers two approaches:
 
 ---
 
+### `froala-error-diagnosis`
+
+**Activates when** you encounter Froala errors, broken behavior, or something that silently does nothing.
+
+Covers:
+- Toolbar button missing or not showing (missing plugin JS, `pluginsEnabled` allowlist, wrong button name, v4 group object)
+- Editor renders but looks broken or unstyled (missing CSS imports)
+- `FroalaEditor is not defined` / `is not a constructor` (script load order, wrong import style)
+- Plugin method undefined (`editor.image is undefined`, `editor.link is undefined`) — plugin not imported or called before `initialized`
+- Editor does not mount / element not found (selector mismatch, DOM not ready)
+- License warning banner (missing or invalid `licenseKey`)
+- Toolbar button renders but does nothing (plugin registered after editor init)
+- Image/file upload fails silently (missing `imageUploadURL`, wrong server response shape, CORS)
+- `html.get()` returns empty string (called before editor is ready)
+- `this` is undefined or wrong in event handlers (arrow function context loss)
+- Quick diagnosis checklist for unknown issues
+
+**Trigger keywords:** `toolbar missing`, `button not showing`, `plugin not loading`, `editor broken`, `FroalaEditor is not defined`, `is not a constructor`, `html is undefined`, `image is undefined`, `Cannot read property`, `pluginsEnabled`
+
+---
+
 ## Example Interactions
 
 **"How do I add Froala to my React app with a dark theme?"**
@@ -100,6 +121,9 @@ Covers two approaches:
 
 **"How do I make Froala upload images to Filestack instead of my server?"**
 → `froala-filestack-integration` activates → Recommends the official Froala Filestack plugin with `filestackOptions` config, or manual `image.beforeUpload` interception + `client.upload()` + `editor.image.insert()` wiring for advanced cases
+
+**"My toolbar button shows up but clicking it does nothing."**
+→ `froala-error-diagnosis` activates → Checks plugin registration order (`RegisterCommand` must run before `new FroalaEditor`), `pluginsEnabled` allowlist, and `this` context in callbacks
 
 ---
 
@@ -117,7 +141,9 @@ froala-claude-plugin/
 │   │   └── SKILL.md
 │   ├── froala-custom-plugins/
 │   │   └── SKILL.md
-│   └── froala-filestack-integration/
+│   ├── froala-filestack-integration/
+│   │   └── SKILL.md
+│   └── froala-error-diagnosis/
 │       └── SKILL.md
 ├── PLUGIN_DESCRIPTION.md
 └── README.md
