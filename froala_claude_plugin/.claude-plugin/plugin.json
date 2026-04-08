@@ -1,0 +1,11 @@
+{
+  "name": "froala",
+  "description": "Froala WYSIWYG editor plugin — get expert help with initialization, events, custom plugins, and Filestack integration.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Carl Cruz"
+  },
+  "license": "MIT",
+  "keywords": ["froala", "wysiwyg", "editor", "rich-text", "filestack"],
+  "skills": "./skills/"
+}
