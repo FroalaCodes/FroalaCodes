@@ -72,17 +72,24 @@ Covers:
 
 ### `froala-filestack-integration`
 
-**Activates when** you configure image/video upload or wire Filestack into the editor.
+**Activates when** you wire Filestack into Froala for image or file uploads — either via the official plugin or manual upload interception.
 
-Covers:
+Covers two approaches:
+
+**Approach 1 — Official Froala Filestack Plugin (recommended):**
+- Enabling the native `filestack` plugin via `pluginsEnabled: ['filestack']`
+- `filestackOptions` configuration (`filestackAPI`, `uploadToFilestackOnly`, `pickerOptions`)
+- Plugin events: `filestack.uploadedToFilestack`, `filestack.uploadFailedToFilestack`, `filestack.filestackPickerOpened`, `filestack.filestackPickerClosed`
+- Required CDN dependencies (Filestack JS 3.x, drag-and-drop, transforms UI)
+
+**Approach 2 — Manual Interception (advanced):**
 - Intercepting `image.beforeUpload` to cancel Froala's default uploader
 - Passing files to `filestack.client.upload()` and injecting the CDN URL back with `editor.image.insert()`
-- Using the Filestack Picker widget as a toolbar button
-- Applying Filestack CDN transformations (resize, format conversion) on insert
-- Security: signed upload policies for production apps
-- Common pitfalls (missing `return false`, arrow function `this` context loss)
+- React-specific wiring with correct `this` context
+- Applying Filestack CDN transformations (resize, format conversion) before insert
+- Common pitfalls (missing `return false`, arrow function `this` context loss, wrong Filestack JS version)
 
-**Trigger keywords:** `image.beforeUpload`, `file.beforeUpload`, `imageUploadURL`, `fileUploadURL`, `filestack`, `filestackcontent.com`
+**Trigger keywords:** `filestackOptions`, `filestackAPI`, `uploadToFilestackOnly`, `pickerOptions`, `filestack.uploadedToFilestack`, `filestack.filestackPickerOpened`, `image.beforeUpload`, `file.beforeUpload`, `imageUploadURL`, `fileUploadURL`, `filestackcontent.com`
 
 ---
 
@@ -98,7 +105,7 @@ Covers:
 → `froala-custom-plugins` activates → Full `FroalaEditor.PLUGINS` + `RegisterCommand` boilerplate
 
 **"How do I make Froala upload images to Filestack instead of my server?"**
-→ `froala-filestack-integration` activates → `image.beforeUpload` interception + `client.upload()` + `editor.image.insert()` wiring
+→ `froala-filestack-integration` activates → Recommends the official Froala Filestack plugin with `filestackOptions` config, or manual `image.beforeUpload` interception + `client.upload()` + `editor.image.insert()` wiring for advanced cases
 
 ---
 
